@@ -14,11 +14,11 @@ public enum ResultCode {
     ;
 
     private Integer code;
-    private String message;
+    private String massage;
 
-    private ResultCode(Integer code , String message){
+    private ResultCode(Integer code , String massage){
         this.code=code;
-        this.message=message;
+        this.massage= this.massage;
     }
 
 }
