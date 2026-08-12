@@ -1,0 +1,12 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: UGVC-System
+  profiles:
+    active: xutest
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true

@@ -1,0 +1,52 @@
+
+# ==============================
+# Spring 核心配置
+# ==============================
+spring:
+  # 数据库连接配置（MySQL）
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ugvc_db?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: 1234
+
+  # # 控制台彩色日志输出（Windows/Linux 都生效）
+  # output:
+  #   ansi:
+  #     enabled: always
+
+# ==============================
+# MyBatis-Plus 数据库框架配置
+# ==============================
+mybatis-plus:
+  configuration:
+    # 打印 SQL 日志（方便调试）
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      # 主键生成策略：ASSIGN_ID = 雪花算法（分布式唯一 ID）
+      id-type: ASSIGN_ID
+
+# ==============================
+# 日志配置（输出到控制台 + 文件）
+# ==============================
+logging:
+  level:
+    root: INFO                                # 全局日志级别
+    org.springframework: INFO                 # Spring 框架日志
+    org.springframework.web: INFO
+    org.springframework.boot: INFO
+    org.apache.catalina: WARN                 # Tomcat 日志
+    org.mybatis: INFO                         # MyBatis 日志
+    com.baomidou.mybatis: INFO                # MyBatis-Plus
+    com.zaxxer.hikari: WARN                   # 数据库连接池
+  file:
+    name: ./logs/qisi.log                     # 日志文件保存路径
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(%-40.40logger{39}){cyan} : %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+  logback:
+    rollingpolicy:
+      max-file-size: 10MB                     # 单个日志文件最大大小
+      max-history: 30                         # 最多保留 30 天日志

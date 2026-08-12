@@ -2,11 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
+     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>4.1.0</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>3.5.10</version>
+        <relativePath/>
     </parent>
     <groupId>org.example</groupId>
     <artifactId>SmartMatchSystem</artifactId>
@@ -30,13 +30,13 @@
         <java.version>17</java.version>
     </properties>
     <dependencies>
-        <!-- 1. Web 核心（官方标准，含 Tomcat + Jackson） -->
+        <!-- 1. Web 核心 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- 2. 参数校验（BusinessException 常用搭档，Spring Boot 4.x 需显式引入） -->
+        <!-- 2. 参数校验（BusinessException 常用搭档，Spring Boot 4.x） -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
@@ -55,18 +55,41 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- 5. Lombok -->
+        <!-- 5. MyBatis-Plus适配Spring Boot 3.x的整合启动器包 -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+            <version>3.5.15</version>
+        </dependency>
+
+
+        <!-- 6. MyBatis-Plus 依赖的 SQL 解析器 -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-jsqlparser</artifactId>
+            <version>3.5.12</version>
+        </dependency>
+
+        <!-- 7. Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
 
-        <!-- 6. 测试（标准写法） -->
+        <!-- 8. 测试 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <!-- 9. EasyExcel Excel导入导出工具 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>easyexcel</artifactId>
+            <version>4.0.3</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
