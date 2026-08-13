@@ -1,9 +1,9 @@
 package module.part.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import module.part.entity.PartCategory;
+import module.part.entity.PartSupplier;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface PartCategoryMapper extends BaseMapper<PartCategory> {
+public interface PartSupplierMapper extends BaseMapper<PartSupplier> {
 }
