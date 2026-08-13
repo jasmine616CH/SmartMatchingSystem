@@ -24,6 +24,11 @@ public enum ResultCode {
     /** 系统内部异常 */
     INTERNAL_ERROR(500, "系统内部异常"),
 
+    /**
+     * 用户模块
+     */
+    USER_NOT_FOUND(40401, "用户不存在")
+
     ;
 
     private Integer code;

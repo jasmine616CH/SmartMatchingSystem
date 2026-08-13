@@ -3,7 +3,10 @@ package module.system.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import module.system.dto.loginDTO;
+import module.system.service.AuthService;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import common.result.Result;
@@ -14,6 +17,8 @@ import common.result.Result;
 @Slf4j
 public class AuthController {
 
+    private final AuthService authService;
+
     /**
      * 用户登录接口
      *
@@ -21,8 +26,8 @@ public class AuthController {
      * @return 成功返回相关参数，失败返回错误信息
      */
     @PostMapping("/login")
-    public Result login() {
-        return Result.success();
+    public Result login(@RequestBody loginDTO loginDTO) {
+        return Result.success(authService.login(loginDTO));
     }
 
 }
