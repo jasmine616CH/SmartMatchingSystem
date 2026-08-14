@@ -3,10 +3,18 @@ package module.system.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import common.exception.BusinessException;
 import common.result.ResultCode;
+import common.until.jwtTokenProvider;
+import lombok.RequiredArgsConstructor;
 import module.system.dto.loginDTO;
+import module.system.dto.logoutDTO;
 import module.system.entity.User;
 import module.system.mapper.UserMapper;
+import module.system.service.redisService;
 import module.system.vo.loginVo;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.stereotype.Service;
 
 import module.system.service.AuthService;
@@ -16,9 +24,12 @@ import module.system.service.AuthService;
  * 实现用户登录和登出
  */
 @Service
+@RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
 
     private final UserMapper userMapper;
+    private final jwtTokenProvider jwtTokenProvider;
+    private final redisService redisService;
 
     /**
      * 登录
@@ -42,22 +53,50 @@ public class AuthServiceImpl implements AuthService {
         }
 
         //4.检验用户密码
-        if(!aesService.decrypt(logInDTO.getPasswordHash()).equals(user.getPassword())){
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String rawPassword = user.getPassword();
+        if(!encoder.matches(rawPassword, user.getPassword())) {
             throw new BusinessException(ResultCode.PASSWORD_ERROR);
         }
 
         //5.生成Token
-        String accessToken = jwtTokenProvider.generateAccessToken(user.getID() , user.getUsername() , user.getPermission());
-        String refreshToken = redisService.generateRefreshToken(user.getID());
+        String accessToken = jwtTokenProvider.generateAccessToken(user.getUsername() , user.getUserType());
+        String refreshToken = redisService.generateRefreshToken(user.getUsername());
 
         //6.封装登录信息
-        loginVo logInVo = new loginVo();
-        logInVo.setAccessToken(accessToken);
-        logInVo.setRefreshToken(refreshToken);
-        logInVo.setUsername(user.getUsername());
-        logInVo.setName(user.getName());
-        logInVo.setPermission(user.getPermission());
+        loginVo loginVo = new loginVo();
+        loginVo.setAccessToken(accessToken);
+        loginVo.setRefreshToken(refreshToken);
+        loginVo.setUsername(user.getUsername());
+        loginVo.setRealName(user.getRealName());
+        loginVo.setUserType(user.getUserType());
 
-        return logInVo;
+        return loginVo;
+    }
+
+    /**
+     * 登出
+     * @param http 返回登出参数
+     */
+    @Override
+    @Bean
+    public SecurityFilterChain logOut(HttpSecurity http) throws Exception {
+        http
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/api/auth/login").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .formLogin(form -> form
+                        .loginPage("/api/auth/login")
+                        .defaultSuccessUrl("/api/auth/login", true)
+                )
+                .logout(logout -> logout
+                        .logoutUrl("/api/auth/logout")                // 登出请求地址
+                        .logoutSuccessUrl("/api/auth/login")   // 登出成功后跳转到登录页，并携带参数
+                        .invalidateHttpSession(true)         // 清除 Session
+                        .deleteCookies("JSESSIONID")         // 删除浏览器会话 Cookie
+                        .permitAll()
+                );
+        return http.build();
     }
 }

@@ -6,7 +6,7 @@ spring:
   # 数据库连接配置（MySQL）
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/ugvc_db?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306
     username: root
     password: 1234
 
@@ -42,7 +42,7 @@ logging:
     com.baomidou.mybatis: INFO                # MyBatis-Plus
     com.zaxxer.hikari: WARN                   # 数据库连接池
   file:
-    name: ./logs/qisi.log                     # 日志文件保存路径
+    name: ./logs                              # 日志文件保存路径
   pattern:
     console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(%-40.40logger{39}){cyan} : %msg%n"
     file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"

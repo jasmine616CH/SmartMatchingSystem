@@ -27,7 +27,17 @@ public enum ResultCode {
     /**
      * 用户模块
      */
-    USER_NOT_FOUND(40401, "用户不存在")
+    USER_NOT_FOUND(40401, "用户不存在"),
+    PASSWORD_ERROR(40402, "密码错误"),
+    USER_NOT_LOGIN(40403, "用户未注册"),
+
+    /**
+     * token模块
+     */
+    TOKEN_EXPIRED(40001 , "Token已过期"),
+    TOKEN_SIGNATURE_ERROR(40002 , "Token签名异常"),
+    TOKEN_MALFORMED(40003 , "Token格式不对"),
+    TOKEN_INVALID(40004 , "Token无效"),
 
     ;
 

@@ -32,7 +32,7 @@ public class User {
     /** 邮箱，选填 */
     private String email;
 
-    /** 账号类型：super_admin/data_admin/supplier_admin/approver/design_engineer/purchase */
+    /** 账号类型：super_admin/data_admin/supplier_admin/approver/design_engineer/purchase/solution_engineer */
     private String userType;
 
     /** 账号状态：0 冻结 1 正常 */

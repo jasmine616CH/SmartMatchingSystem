@@ -23,17 +23,17 @@ public class loginVo {
     /**
      * 姓名
      */
-    private String name;
+    private String realName;
 
     /**
-     *学号/教职工号
+     * 用户名
      */
-    private String ID;
+    private String username;
 
     /**
-     *用户权限
+     * 账户类型
      */
-    private Integer permission;
+    private String userType;
 
     /**
      * 菜单栏
