@@ -6,7 +6,6 @@ import common.result.ResultCode;
 import common.until.jwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import module.system.dto.loginDTO;
-import module.system.dto.logoutDTO;
 import module.system.entity.User;
 import module.system.mapper.UserMapper;
 import module.system.service.redisService;

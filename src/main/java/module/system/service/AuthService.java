@@ -1,7 +1,6 @@
 package module.system.service;
 
 import module.system.dto.loginDTO;
-import module.system.dto.logoutDTO;
 import module.system.vo.loginVo;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
