@@ -1,12 +1,14 @@
 package module.system.service;
 
+import module.system.dto.logoutDTO;
+
 import java.util.Map;
 
 /**
  * 缓存业务接口
  * 处理令牌管理相关操作
  */
-public interface redisService {
+public interface RedisService {
 
     /**
      * 生成刷新Token
@@ -21,4 +23,11 @@ public interface redisService {
      * @return  令牌对
      */
     Map<String , String> refreshAccessToken(String refreshToken);
+
+    /**
+     * 用户登出
+     * @param logoutDTO 登出参数
+     */
+    void logOut(logoutDTO logoutDTO);
+
 }
