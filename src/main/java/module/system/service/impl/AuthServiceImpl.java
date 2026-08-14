@@ -6,10 +6,9 @@ import common.result.ResultCode;
 import common.until.jwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import module.system.dto.loginDTO;
-import module.system.dto.logoutDTO;
 import module.system.entity.User;
 import module.system.mapper.UserMapper;
-import module.system.service.redisService;
+import module.system.service.RedisService;
 import module.system.vo.loginVo;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -29,7 +28,7 @@ public class AuthServiceImpl implements AuthService {
 
     private final UserMapper userMapper;
     private final jwtTokenProvider jwtTokenProvider;
-    private final redisService redisService;
+    private final RedisService redisService;
 
     /**
      * 登录
@@ -44,7 +43,7 @@ public class AuthServiceImpl implements AuthService {
         queryWrapper.eq("ID" , loginDTO.getUsername());
 
         //2.条件查询用户信息
-        queryWrapper.select("userName" , "name" , "permission" , "passwordHash");
+        queryWrapper.select("username" , "real_name" , "user_type" , "password");
         User user = userMapper.selectOne(queryWrapper);
 
         //3.检验用户是否存在

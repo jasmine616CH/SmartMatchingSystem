@@ -6,11 +6,15 @@ import lombok.extern.slf4j.Slf4j;
 
 import module.system.dto.loginDTO;
 import module.system.service.AuthService;
-import module.system.service.redisService;
+import module.system.service.RedisService;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.web.bind.annotation.*;
 import common.result.Result;
 
+/**
+ * 系统登录业务控制器
+ * 实现系统的登录登出
+ */
 @RequiredArgsConstructor
 @RequestMapping("/api/auth")
 @RestController
@@ -18,7 +22,7 @@ import common.result.Result;
 public class AuthController {
 
     private final AuthService authService;
-    private final redisService redisService;
+    private final RedisService redisService;
 
     /**
      * 用户登录接口
