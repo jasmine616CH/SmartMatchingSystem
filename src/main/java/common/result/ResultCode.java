@@ -30,6 +30,7 @@ public enum ResultCode {
     USER_NOT_FOUND(40401, "用户不存在"),
     PASSWORD_ERROR(40402, "密码错误"),
     USER_NOT_LOGIN(40403, "用户未注册"),
+    UEER_LOGOUT_FAIL(40404,"登出失败"),
 
     /**
      * token模块
@@ -38,15 +39,16 @@ public enum ResultCode {
     TOKEN_SIGNATURE_ERROR(40002 , "Token签名异常"),
     TOKEN_MALFORMED(40003 , "Token格式不对"),
     TOKEN_INVALID(40004 , "Token无效"),
+    TOKEN_NOT_REFRESH_(40005,"Token刷新失败"),
+    TOKEN_FAIL_REFRESH(40006,"Token刷新异常"),
 
     ;
 
     private Integer code;
-    private String massage;
+    private String message;
 
-    private ResultCode(Integer code, String massage) {
+    private ResultCode(Integer code, String message) {
         this.code = code;
-        this.massage = massage;
+        this.message = message;
     }
-
 }

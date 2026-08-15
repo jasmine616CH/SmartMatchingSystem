@@ -13,7 +13,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface UserMapper extends BaseMapper<User> {
     /**
      * 注册用户
-     * @param dto 学生教职工注册参数
+     * @param dto 方案工程师注册
      */
     @Insert("insert into ugvc_db.user(user_id, username, password, real_name, phone, email, user_type) " +
             "VALUES (#{user_id},#{username},#{password},#{real_name},#{phone},#{email},#{user_type})")

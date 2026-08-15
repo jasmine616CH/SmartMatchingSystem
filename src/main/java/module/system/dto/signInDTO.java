@@ -39,6 +39,6 @@ public class signInDTO {
     /**
      * 用户权限
      */
-    private Integer userType;
+    private String userType;
 
 }
