@@ -1,4 +1,4 @@
-package module.part.entity;
+package module.template.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,9 +9,9 @@ import java.time.LocalDateTime;
 /**
  * 配件三级分类表（树形结构） (part_category)
  */
-@Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class PartCategory {
 
     /** 主键ID（雪花算法，业务生成） */

@@ -1,7 +1,9 @@
-package module.part.mapper;
+package module.template.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import module.part.entity.PartCategory;
+
+import module.template.entity.PartCategory;
+
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
