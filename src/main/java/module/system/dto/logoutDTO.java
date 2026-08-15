@@ -1,11 +1,13 @@
 package module.system.dto;
 
+import lombok.Builder;
 import lombok.Data;
 
 /**
  * 用户登出dto
  */
 @Data
+@Builder
 public class logoutDTO {
 
 

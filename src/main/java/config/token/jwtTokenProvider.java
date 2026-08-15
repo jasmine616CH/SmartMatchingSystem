@@ -1,4 +1,4 @@
-package common.until;
+package config.token;
 
 import common.exception.BusinessException;
 import common.result.ResultCode;

@@ -10,3 +10,5 @@ spring:
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
+jwt:
+  issuer: "ug-vc"

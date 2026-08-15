@@ -5,6 +5,7 @@ import lombok.Getter;
 
 @Getter
 public class BusinessException extends RuntimeException {
+
     private final ResultCode resultCode;
 
     public BusinessException(ResultCode resultCode , String message){
@@ -13,7 +14,7 @@ public class BusinessException extends RuntimeException {
     }
 
     public BusinessException(ResultCode resultCode) {
-        super(resultCode.getMassage());
+        super(resultCode.getMessage());
         this.resultCode = resultCode;
     }
 }

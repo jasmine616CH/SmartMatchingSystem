@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 系统申请账号业务接口实现类
- * 实现系统的申请账号
+ * 实现方案工程师的申请账号
  */
 @Service
 public class ApplyServiceImpl implements ApplyService {

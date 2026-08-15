@@ -3,7 +3,7 @@ package module.system.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import common.exception.BusinessException;
 import common.result.ResultCode;
-import common.until.jwtTokenProvider;
+import config.token.jwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import module.system.dto.loginDTO;
 import module.system.entity.User;
@@ -62,15 +62,17 @@ public class AuthServiceImpl implements AuthService {
         String accessToken = jwtTokenProvider.generateAccessToken(user.getUsername() , user.getUserType());
         String refreshToken = redisService.generateRefreshToken(user.getUsername());
 
-        //6.封装登录信息
-        loginVo loginVo = new loginVo();
-        loginVo.setAccessToken(accessToken);
-        loginVo.setRefreshToken(refreshToken);
-        loginVo.setUsername(user.getUsername());
-        loginVo.setRealName(user.getRealName());
-        loginVo.setUserType(user.getUserType());
-
-        return loginVo;
+        //6.构建返回
+        return loginVo.builder()
+                .username(user.getUsername())
+                .realName(user.getRealName())
+                .userType(user.getUserType())
+                .accessToken(accessToken)
+                .refreshToken(refreshToken)
+                .expiresIn(1800L)           // 30分钟
+                .refreshExpiresIn(604800L)  // 7天
+                .tokenType("Bearer")
+                .build();
     }
 
     /**
