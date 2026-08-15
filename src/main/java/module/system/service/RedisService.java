@@ -1,7 +1,7 @@
 package module.system.service;
 
-import module.system.dto.logoutDTO;
-import module.system.dto.tokenDTO;
+import module.system.dto.LogoutDTO;
+import module.system.dto.TokenDTO;
 
 /**
  * 缓存业务接口
@@ -21,7 +21,7 @@ public interface RedisService {
      * @param refreshToken 刷新令牌
      * @return 令牌对（包含accessToken和refreshToken）
      */
-    tokenDTO refreshAccessToken(String refreshToken);
+    TokenDTO refreshAccessToken(String refreshToken);
 
     /**
      * 验证刷新令牌是否有效
@@ -34,7 +34,7 @@ public interface RedisService {
      * 用户登出
      * @param logoutDTO 登出参数
      */
-    void logout(logoutDTO logoutDTO);
+    void logout(LogoutDTO logoutDTO);
 
     /**
      * 删除用户的所有token（强制下线）

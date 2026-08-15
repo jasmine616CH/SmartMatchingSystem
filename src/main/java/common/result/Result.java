@@ -4,7 +4,7 @@ import common.exception.BusinessException;
 import lombok.Data;
 
 /**
- * 统一响应结果（泛型）
+ * 统一响应结果
  */
 @Data
 public class Result<T> {

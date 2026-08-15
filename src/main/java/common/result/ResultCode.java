@@ -30,17 +30,18 @@ public enum ResultCode {
     USER_NOT_FOUND(40401, "用户不存在"),
     PASSWORD_ERROR(40402, "密码错误"),
     USER_NOT_LOGIN(40403, "用户未注册"),
-    UEER_LOGOUT_FAIL(40404,"登出失败"),
+    USER_LOGOUT_FAIL(40404, "登出失败"),
+    USER_ALREADY_EXISTS(40405, "该手机号已注册，请勿重复注册"),
 
     /**
      * token模块
      */
-    TOKEN_EXPIRED(40001 , "Token已过期"),
-    TOKEN_SIGNATURE_ERROR(40002 , "Token签名异常"),
-    TOKEN_MALFORMED(40003 , "Token格式不对"),
-    TOKEN_INVALID(40004 , "Token无效"),
-    TOKEN_NOT_REFRESH_(40005,"Token刷新失败"),
-    TOKEN_FAIL_REFRESH(40006,"Token刷新异常"),
+    TOKEN_EXPIRED(40001, "Token已过期"),
+    TOKEN_SIGNATURE_ERROR(40002, "Token签名异常"),
+    TOKEN_MALFORMED(40003, "Token格式不对"),
+    TOKEN_INVALID(40004, "Token无效"),
+    TOKEN_NOT_REFRESH_(40005, "Token刷新失败"),
+    TOKEN_FAIL_REFRESH(40006, "Token刷新异常"),
 
     ;
 

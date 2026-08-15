@@ -1,8 +1,8 @@
 package module.system.service.impl;
 
 import lombok.SneakyThrows;
-import module.system.dto.signInDTO;
-import module.system.mapper.UserMapper;
+import module.system.dto.RegisterDTO;
+import module.system.mapper.SysUserMapper;
 import module.system.service.ApplyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,12 +17,12 @@ public class ApplyServiceImpl implements ApplyService {
 
 
     @Autowired
-    private UserMapper UserMapper;
+    private SysUserMapper UserMapper;
 
     @SneakyThrows
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void register(signInDTO request){
+    public void register(RegisterDTO request){
         UserMapper.add(request);
     }
 }

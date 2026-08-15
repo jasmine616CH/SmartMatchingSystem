@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class tokenDTO {
+public class TokenDTO {
 
     /**
      * 访问令牌

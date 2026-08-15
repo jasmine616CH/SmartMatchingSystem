@@ -1,61 +1,69 @@
 package config.security;
 
 import lombok.Data;
+import module.system.entity.SysUser;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 @Data
-public class loginUser implements UserDetails {
+public class LoginUser implements UserDetails {
 
-    /** 账号 */
-    private String userName;
-    /** 密码（加密后）*/
-    private String password;
-    /** 权限标识存储容器 */
-    private Collection<? extends GrantedAuthority> authorities;
-    /** 是否启用 */
-    private boolean enabled;
-    /** 是否未锁定 */
-    private boolean accountNonLocked;
-    /** 是否未过期 */
-    private boolean accountNonExpired;
-    /** 密码是否未过期 */
-    private boolean credentialsNonExpired;
+    private SysUser sysUser;
 
+    private List<String> roleKeys = new ArrayList<>();
+
+    public LoginUser(SysUser sysUser) {
+        this.sysUser = sysUser;
+    }
+
+    /**
+     * 组装权限角色信息
+     */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        if (roleKeys == null || roleKeys.isEmpty()) {
+            return Collections.emptyList();
+        }
+        return roleKeys.stream()
+                .map(key -> new SimpleGrantedAuthority("ROLE_" + key))
+                .toList();
     }
 
     @Override
     public String getPassword() {
-        return password;
+        return sysUser.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return userName;
+        return sysUser.getUsername();
     }
+
+    // ========== 账号状态控制 ==========
     @Override
     public boolean isAccountNonExpired() {
-        // 返回成员变量，不再写死
-        return this.accountNonExpired;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return this.accountNonLocked;
+        // status=1正常；0冻结
+        return Integer.valueOf(1).equals(sysUser.getStatus());
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return this.credentialsNonExpired;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return this.enabled;
+        return Integer.valueOf(1).equals(sysUser.getStatus());
     }
 }

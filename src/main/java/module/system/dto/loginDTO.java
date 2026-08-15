@@ -6,7 +6,7 @@ import lombok.Data;
  * 用户登录dto
  */
 @Data
-public class loginDTO {
+public class LoginDTO {
 
     /** 登录账号 */
     private String username;

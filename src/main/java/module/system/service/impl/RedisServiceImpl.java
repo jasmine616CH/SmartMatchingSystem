@@ -3,10 +3,10 @@ package module.system.service.impl;
 import com.alibaba.excel.util.StringUtils;
 import common.exception.BusinessException;
 import common.result.ResultCode;
-import config.token.jwtTokenProvider;
+import config.token.JwtTokenProvider;
 import lombok.extern.slf4j.Slf4j;
-import module.system.dto.logoutDTO;
-import module.system.dto.tokenDTO;
+import module.system.dto.LogoutDTO;
+import module.system.dto.TokenDTO;
 import module.system.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -30,7 +30,7 @@ public class RedisServiceImpl implements RedisService {
     private StringRedisTemplate redisTemplate;
 
     @Autowired
-    private jwtTokenProvider jwtTokenProvider;
+    private JwtTokenProvider jwtTokenProvider;
 
     private static final String REFRESH_TOKEN_PREFIX = "refresh:";
     private static final String USER_TOKEN_PREFIX = "user:token:";
@@ -56,7 +56,7 @@ public class RedisServiceImpl implements RedisService {
     }
 
     @Override
-    public tokenDTO refreshAccessToken(String refreshToken) {
+    public TokenDTO refreshAccessToken(String refreshToken) {
         // 1. 验证refreshToken是否存在
         String key = REFRESH_TOKEN_PREFIX + refreshToken;
         if (Boolean.FALSE.equals(redisTemplate.hasKey(key))) {
@@ -83,7 +83,7 @@ public class RedisServiceImpl implements RedisService {
 
         log.info("刷新令牌成功，用户：{}，旧refreshToken已失效", username);
 
-        return tokenDTO.builder()
+        return TokenDTO.builder()
                 .accessToken(newAccessToken)
                 .refreshToken(newRefreshToken)
                 .expiresIn(ACCESS_TOKEN_EXPIRE)
@@ -100,7 +100,7 @@ public class RedisServiceImpl implements RedisService {
     }
 
     @Override
-    public void logout(logoutDTO logoutDTO) {
+    public void logout(LogoutDTO logoutDTO) {
         String accessToken = logoutDTO.getAccessToken();
         String refreshToken = logoutDTO.getRefreshToken();
 

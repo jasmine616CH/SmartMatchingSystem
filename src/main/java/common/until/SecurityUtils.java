@@ -3,7 +3,7 @@ package common.until;
 import common.enums.userType;
 import common.exception.BusinessException;
 import common.result.ResultCode;
-import config.security.loginUser;
+import config.security.LoginUser;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -30,12 +30,12 @@ public class SecurityUtils {
     /**
      * 获取当前登录用户
      */
-    public static loginUser getLogInUser() {
+    public static LoginUser getLogInUser() {
         Authentication auth = getAuthentication();
-        if (auth == null || !(auth.getPrincipal() instanceof loginUser)) {
+        if (auth == null || !(auth.getPrincipal() instanceof LoginUser)) {
             throw new BusinessException(ResultCode.USER_NOT_LOGIN);
         }
-        return (loginUser) auth.getPrincipal();
+        return (LoginUser) auth.getPrincipal();
     }
 
     /**

@@ -1,6 +1,6 @@
 package module.system.service;
 
-import module.system.dto.signInDTO;
+import module.system.dto.RegisterDTO;
 
 /**
  * 系统申请账号业务接口
@@ -12,6 +12,6 @@ public interface ApplyService {
      * 用户注册
      * @param request 方案工程师注册参数
      */
-    void register(signInDTO request);
+    void register(RegisterDTO request);
 
 }

@@ -7,7 +7,7 @@ import lombok.Data;
  * 登出请求
  */
 @Data
-public class tokenLogoutDTO {
+public class TokenLogoutDTO {
 
     @NotBlank(message = "访问令牌不能为空")
     private String accessToken;

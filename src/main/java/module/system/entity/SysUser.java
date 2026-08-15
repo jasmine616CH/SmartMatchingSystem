@@ -1,18 +1,21 @@
 package module.system.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+
 /**
- * 系统用户表 (user)
+ * 系统用户表
  */
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class SysUser{
 
     /** 主键ID（雪花算法，业务生成） */
     private Long userId;
@@ -32,15 +35,17 @@ public class User {
     /** 邮箱，选填 */
     private String email;
 
-    /** 账号类型：super_admin/data_admin/supplier_admin/approver/design_engineer/purchase/solution_engineer */
+    /** 账号类型 */
     private String userType;
 
     /** 账号状态：0 冻结 1 正常 */
-    private Integer status;
+    public Integer status;
 
     /** 记录创建时间 */
     private LocalDateTime createTime;
 
     /** 记录更新时间 */
     private LocalDateTime updateTime;
+
+    
 }

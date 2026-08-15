@@ -1,18 +1,20 @@
 package module.system.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import common.exception.BusinessException;
 import common.result.ResultCode;
-import config.token.jwtTokenProvider;
+import config.token.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
-import module.system.dto.loginDTO;
-import module.system.entity.User;
-import module.system.mapper.UserMapper;
+import module.system.dto.RegisterDTO;
+import module.system.dto.LoginDTO;
+import module.system.entity.SysUser;
+import module.system.mapper.SysUserMapper;
 import module.system.service.RedisService;
-import module.system.vo.loginVo;
+import module.system.vo.LoginVO;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.stereotype.Service;
 
@@ -26,9 +28,10 @@ import module.system.service.AuthService;
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
 
-    private final UserMapper userMapper;
-    private final jwtTokenProvider jwtTokenProvider;
+    private final SysUserMapper userMapper;
+    private final JwtTokenProvider jwtTokenProvider;
     private final RedisService redisService;
+    private final PasswordEncoder passwordEncoder;
 
     /**
      * 登录
@@ -36,15 +39,15 @@ public class AuthServiceImpl implements AuthService {
      * @return 登录成功返回的信息和令牌
      */
     @Override
-    public loginVo login(loginDTO loginDTO) {
+    public LoginVO login(LoginDTO loginDTO) {
 
         //1.根据学号/教职工查询
-        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        QueryWrapper<SysUser> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("ID" , loginDTO.getUsername());
 
         //2.条件查询用户信息
         queryWrapper.select("username" , "real_name" , "user_type" , "password");
-        User user = userMapper.selectOne(queryWrapper);
+        SysUser user = userMapper.selectOne(queryWrapper);
 
         //3.检验用户是否存在
         if(user == null){
@@ -52,9 +55,9 @@ public class AuthServiceImpl implements AuthService {
         }
 
         //4.检验用户密码
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+       
         String rawPassword = user.getPassword();
-        if(!encoder.matches(rawPassword, user.getPassword())) {
+        if(!passwordEncoder.matches(rawPassword, user.getPassword())) {
             throw new BusinessException(ResultCode.PASSWORD_ERROR);
         }
 
@@ -63,7 +66,7 @@ public class AuthServiceImpl implements AuthService {
         String refreshToken = redisService.generateRefreshToken(user.getUsername());
 
         //6.构建返回
-        return loginVo.builder()
+        return LoginVO.builder()
                 .username(user.getUsername())
                 .realName(user.getRealName())
                 .userType(user.getUserType())
@@ -99,5 +102,25 @@ public class AuthServiceImpl implements AuthService {
                         .permitAll()
                 );
         return http.build();
+    }
+
+    @Override
+    public void register(RegisterDTO registerDTO) {
+        LambdaQueryWrapper<SysUser> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(SysUser::getPhone, registerDTO.getPhone());
+        SysUser existingUser = userMapper.selectOne(queryWrapper);
+        if (existingUser != null) {
+            throw new BusinessException(ResultCode.USER_ALREADY_EXISTS);
+        }
+
+        SysUser user = SysUser.builder()
+                .username(registerDTO.getPhone())
+                .realName(registerDTO.getRealName())
+                .phone(registerDTO.getPhone())
+                .email(registerDTO.getEmail())
+                .password(passwordEncoder.encode(registerDTO.getPassword()))
+                .build();
+
+        userMapper.insert(user);
     }
 }
