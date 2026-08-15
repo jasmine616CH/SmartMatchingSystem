@@ -11,14 +11,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.web.bind.annotation.*;
 import common.result.Result;
 
-<<<<<<< HEAD
-=======
 /**
  * 系统登录业务控制器
  * 实现系统的登录登出
  */
-@RequiredArgsConstructor
->>>>>>> 8a42fce366b8f2209fd25980a57a7dc689402fb7
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
 @RestController
