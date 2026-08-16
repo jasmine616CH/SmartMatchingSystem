@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import module.template.dto.PartCategorySaveDTO;
 
-@RequestMapping("/api/part")
+@RequestMapping("/api/category")
 @RequiredArgsConstructor
 @RestController
 @Validated
@@ -25,31 +25,31 @@ import module.template.dto.PartCategorySaveDTO;
 public class PartCategoryController {
 
     // 查询分类树
-    @GetMapping("/category/tree")
+    @GetMapping("/tree")
     public Result<?> queryCategoryTree() {
         return Result.success();
     }
 
     //查询分类详情接口
-    @GetMapping("/category/{catId}")
+    @GetMapping("/{catId}")
     public Result<?> queryCategoryDetail(@NotNull(message = "catId 不能为空") @PathVariable Long catId) {
         return Result.success();
     }
 
     // 新增分类接口
-    @PostMapping("/category")
+    @PostMapping("")
     public Result<?> addCategory(@Valid @RequestBody PartCategorySaveDTO partCategorySaveDTO) {
         return Result.success();
     }
 
     // 修改分类接口
-    @PutMapping("/category/{catId}")
+    @PutMapping("/{catId}")
     public Result<?> updateCategory(@NotNull(message = "catId 不能为空") @PathVariable Long catId) {
         return Result.success();
     }
 
     // 删除分类接口
-    @DeleteMapping("/category/{catId}")
+    @DeleteMapping("/{catId}")
     public Result<?> deleteCategory(@NotNull(message = "catId 不能为空") @PathVariable Long catId) {
         return Result.success();
     }

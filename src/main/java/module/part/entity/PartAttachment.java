@@ -23,17 +23,11 @@ public class PartAttachment {
     /** 文件原始名称 */
     private String fileName;
 
-    /** 文件云端存储访问地址 */
-    private String fileUrl;
-
     /** 文件后缀类型 pdf/dwg/stp等 */
     private String fileType;
 
     /** 文件大小（字节） */
     private Long fileSize;
-
-    /** 对应参数模板版本 */
-    private String version;
 
     /** 文件上传时间 */
     private LocalDateTime uploadTime;

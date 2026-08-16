@@ -17,42 +17,41 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import module.template.dto.ParamTemplateSaveDTO;
 
-@RequestMapping("/api/part/param")
+@RequestMapping("/api/param")
 @RequiredArgsConstructor
 @RestController
 @Validated
 @Slf4j
 public class ParamTemplateController {
-    
 
-    //新建模板
-    @PostMapping("template")
-    public Result<?> addTemplate(@Valid @RequestBody ParamTemplateSaveDTO paramTemplateSaveDTO){
-        return Result.success();
-    }
-
-    //修改模板
-    @PutMapping("template/{templateId}")
-    public Result<?> updateTemplate(@NotNull(message = "templateId 不能为空") @PathVariable Long templateId){
-        return Result.success();
-    }
-                                                                                                                                                                                        
-    //删除模板
-    @DeleteMapping("template/{templateId}")
-    public Result<?> deleteTemplate(@NotNull(message = "templateId 不能为空") @PathVariable Long templateId){
-        return Result.success();
-    }    
-    
-
-    //获取模板列表
+    // 获取模板列表
     @GetMapping("template/{catId}")
-    public Result<?> queryTemplateList(@NotNull(message = "catId 不能为空") @PathVariable Long catId){
+    public Result<?> queryTemplateList(@NotNull(message = "catId 不能为空") @PathVariable Long catId) {
         return Result.success();
     }
 
-    //获取模板详情
+    // 获取模板详情
     @GetMapping("template/{templateId}")
-    public Result<?> queryTemplateDetail(@NotNull(message = "templateId 不能为空") @PathVariable Long templateId){
+    public Result<?> queryTemplateDetail(@NotNull(message = "templateId 不能为空") @PathVariable Long templateId) {
         return Result.success();
     }
+
+    // 新建模板
+    @PostMapping("template")
+    public Result<?> addTemplate(@Valid @RequestBody ParamTemplateSaveDTO paramTemplateSaveDTO) {
+        return Result.success();
+    }
+
+    // 修改模板
+    @PutMapping("template/{templateId}")
+    public Result<?> updateTemplate(@NotNull(message = "templateId 不能为空") @PathVariable Long templateId) {
+        return Result.success();
+    }
+
+    // 删除模板
+    @DeleteMapping("template/{templateId}")
+    public Result<?> deleteTemplate(@NotNull(message = "templateId 不能为空") @PathVariable Long templateId) {
+        return Result.success();
+    }
+
 }

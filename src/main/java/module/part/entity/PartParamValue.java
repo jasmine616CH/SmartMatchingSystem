@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -41,7 +40,7 @@ public class PartParamValue {
     private String recordVersion;
 
     /** 参数录入日期 */
-    private LocalDate recordDate;
+    private LocalDateTime recordDate;
 
     /** 创建时间 */
     private LocalDateTime createTime;

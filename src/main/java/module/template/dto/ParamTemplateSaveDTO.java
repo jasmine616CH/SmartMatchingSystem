@@ -9,8 +9,8 @@ import lombok.Data;
 @Data
 public class ParamTemplateSaveDTO {
 
-     // 外键：part_category.cat_id
-     @NotNull(message = "分类ID不能为空")
+    // 外键：part_category.cat_id
+    @NotNull(message = "分类ID不能为空")
     private Long catId;
 
     // 模板名称
