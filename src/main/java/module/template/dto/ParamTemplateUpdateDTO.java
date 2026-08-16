@@ -7,7 +7,11 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-public class ParamTemplateSaveDTO {
+public class ParamTemplateUpdateDTO {
+
+    /** 主键ID（雪花算法，业务生成） */
+    @NotNull(message = "templateId 不能为空")
+    private Long templateId;
 
     // 外键：part_category.cat_id
     @NotNull(message = "分类ID不能为空")

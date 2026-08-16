@@ -24,6 +24,14 @@ public enum ResultCode {
     /** 系统内部异常 */
     INTERNAL_ERROR(500, "系统内部异常"),
 
+    // ==================== 参数相关业务码 ====================
+    PARAM_IS_NULL(40000, "必填参数不能为空"),
+    PARAM_FORMAT_ERROR(40007, "参数格式错误"),
+    PARAM_VALUE_INVALID(40008, "参数取值非法"),
+    PARAM_DUPLICATE(40009, "参数数据重复"),
+    PARAM_OVER_LENGTH(40010, "参数长度超出限制"),
+    PARAM_RANGE_ERROR(40011, "参数数值超出合法范围"),
+
     /**
      * 用户模块
      */
@@ -43,7 +51,10 @@ public enum ResultCode {
     TOKEN_NOT_REFRESH_(40005, "Token刷新失败"),
     TOKEN_FAIL_REFRESH(40006, "Token刷新异常"),
 
-    ;
+    /** 数据不存在 */
+    DATA_NOT_EXIST(42201, "数据不存在"),
+    /** 当前状态不允许执行该操作 */
+    STATUS_OPERATE_FORBIDDEN(42203, "当前状态不允许执行该操作");
 
     private Integer code;
     private String message;

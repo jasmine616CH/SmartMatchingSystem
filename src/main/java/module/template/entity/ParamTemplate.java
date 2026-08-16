@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+
 /**
  * 参数模板表 (param_template)
  */
@@ -16,6 +18,7 @@ import java.time.LocalDateTime;
 public class ParamTemplate {
 
     /** 主键ID（雪花算法，业务生成） */
+    @TableId
     private Long templateId;
 
     /** 外键：part_category.cat_id 绑定三级配件分类 */
