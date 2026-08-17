@@ -53,6 +53,7 @@ public enum ResultCode {
 
     /** 数据不存在 */
     DATA_NOT_EXIST(42201, "数据不存在"),
+    DATA_DUPLICATE(40009, "数据重复"),
     /** 当前状态不允许执行该操作 */
     STATUS_OPERATE_FORBIDDEN(42203, "当前状态不允许执行该操作");
 

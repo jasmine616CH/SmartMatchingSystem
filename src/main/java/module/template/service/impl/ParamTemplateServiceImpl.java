@@ -62,7 +62,7 @@ public class ParamTemplateServiceImpl implements ParamTemplateService {
         String templateName = paramTemplateSaveDTO.getTemplateName();
         long existCount = paramTemplateMapper.countByTemplateName(templateName);
         if (existCount > 0) {
-            throw new BusinessException(ResultCode.PARAM_DUPLICATE, templateName + "已存在");
+            throw new BusinessException(ResultCode.DATA_DUPLICATE, templateName + "已存在");
         }
 
         ParamTemplate paramTemplate = new ParamTemplate();
@@ -96,8 +96,9 @@ public class ParamTemplateServiceImpl implements ParamTemplateService {
         QueryWrapper<ParamTemplate> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("template_name", templateName);
         queryWrapper.ne("template_id", templateId);
-        ParamTemplate existTemplate = paramTemplateMapper.selectOne(queryWrapper);
-        if (existTemplate != null) {
+
+        long count = paramTemplateMapper.selectCount(queryWrapper);
+        if (count > 0) {
             throw new BusinessException(ResultCode.PARAM_DUPLICATE, "模板名：" + templateName + "已存在");
         }
 
@@ -111,9 +112,11 @@ public class ParamTemplateServiceImpl implements ParamTemplateService {
         if (templateId == null) {
             throw new BusinessException(ResultCode.PARAM_IS_NULL);
         }
-        ParamTemplate template = paramTemplateMapper.selectById(templateId);
-        if (template == null) {
-            throw new BusinessException(ResultCode.DATA_NOT_EXIST);
+        QueryWrapper<ParamTemplate> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("template_id", templateId);
+        long count = paramTemplateMapper.selectCount(queryWrapper);
+        if (count == 0) {
+            throw new BusinessException(ResultCode.DATA_NOT_EXIST, "模板不存在");
         }
         paramTemplateMapper.deleteById(templateId);
     }

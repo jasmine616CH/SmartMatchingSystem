@@ -12,6 +12,9 @@ import common.result.Result;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * 配件参数管理控制器
+ */
 @RequestMapping("/api/part/param/value")
 @RequiredArgsConstructor
 @RestController

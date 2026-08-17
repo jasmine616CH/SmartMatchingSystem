@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="module.template.mapper.ParamTemplateMapper">
+
+    <select id="countByCatName" resultType="com.xxx.entity.PartCategory">
+        select count(*) from
+        part_category where 
+        cat_name = #{catName} 
+    </select>
+</mapper>

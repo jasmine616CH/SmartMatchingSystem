@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-public class ParamTemplateFieldDTO {
+public class ParamTemplateFieldSaveDTO {
 
     // 外键：param_template.template_id
     @NotNull(message = "templateId 不能为空")

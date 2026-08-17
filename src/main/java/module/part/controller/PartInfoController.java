@@ -15,6 +15,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import module.part.dto.PartInfoDTO;
 
+/**
+ * 配件信息管理控制器
+ */
 @RequestMapping("/api/part")
 @RequiredArgsConstructor
 @RestController
@@ -34,7 +37,7 @@ public class PartInfoController {
         return Result.success();
     }
 
-    //修改配件信息
+    // 修改配件信息
     @PutMapping("/{partId}")
     public Result<?> updatePartInfo() {
         return Result.success();
@@ -46,5 +49,4 @@ public class PartInfoController {
         return Result.success();
     }
 
-    
 }

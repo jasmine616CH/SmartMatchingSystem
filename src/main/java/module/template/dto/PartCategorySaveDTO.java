@@ -10,6 +10,12 @@ import lombok.Data;
 @Data
 public class PartCategorySaveDTO {
 
+    @NotNull(message = "catId 不能为空")
+    private Long catId;
+    
+    // 自关联外键，0为一级八大系统
+    private Long parentCatId;
+
     // 分类名称
     @NotBlank(message = "分类名称不能为空")
     private String catName;

@@ -6,7 +6,7 @@ import lombok.Getter;
  * 用户权限
  */
 @Getter
-public enum userType {
+public enum UserType {
 
     SUPER_ADMIN(0, "ROLE_SUPER_ADMIN", "超级管理员"),
     DATA_ADMIN(1, "ROLE_DATA_ADMIN", "数据管理员"),
@@ -20,7 +20,7 @@ public enum userType {
     private final String authority;
     private final String desc;
 
-    userType(int code, String desc, String authority) {
+    UserType(int code, String desc, String authority) {
         this.code = code;
         this.authority = authority;
         this.desc = desc;
@@ -31,10 +31,10 @@ public enum userType {
      * 
      * @return 匹配的枚举对象
      */
-    public static userType getByCode(Integer code) {
+    public static UserType getByCode(Integer code) {
         if (code == null)
             return null;
-        for (userType e : values()) {
+        for (UserType e : values()) {
             if (e.getCode() == code) {
                 return e;
             }
@@ -50,7 +50,7 @@ public enum userType {
     public static String getNameByCode(Integer code) {
         if (code == null)
             return null;
-        for (userType e : values()) {
+        for (UserType e : values()) {
             if (e.getCode() == code) {
                 return e.getDesc();
             }
