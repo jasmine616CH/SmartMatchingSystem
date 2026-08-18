@@ -6,6 +6,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 import module.system.entity.SysUser;
 
-public interface SysUserService extends IService<SysUser> {
+public interface UserTypeService extends IService<SysUser> {
     List<String> getRoleKeysByUserId(Long userId);
 }

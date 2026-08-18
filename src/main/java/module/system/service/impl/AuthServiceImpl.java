@@ -11,7 +11,7 @@ import module.system.dto.LoginDTO;
 import module.system.entity.SysUser;
 import module.system.mapper.SysUserMapper;
 import module.system.service.RedisService;
-import module.system.vo.LoginVO;
+import module.system.vo.LoginVo;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -39,14 +39,14 @@ public class AuthServiceImpl implements AuthService {
      * @return 登录成功返回的信息和令牌
      */
     @Override
-    public LoginVO login(LoginDTO loginDTO) {
+    public LoginVo login(LoginDTO loginDTO) {
 
         //1.根据学号/教职工查询
         QueryWrapper<SysUser> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("ID" , loginDTO.getUsername());
 
         //2.条件查询用户信息
-        queryWrapper.select("username" , "real_name" , "user_type" , "password");
+        queryWrapper.select("username" , "real_name" , "user_type" , "password" , "status");
         SysUser user = userMapper.selectOne(queryWrapper);
 
         //3.检验用户是否存在
@@ -54,19 +54,23 @@ public class AuthServiceImpl implements AuthService {
             throw new BusinessException(ResultCode.USER_NOT_FOUND);
         }
 
-        //4.检验用户密码
-       
+        //4.检验用户是否在黑名单
+        if (user.getStatus() == 0){
+            throw new BusinessException(ResultCode.USER_LOGOUT_FAIL);
+        }
+
+        //5.检验用户密码
         String rawPassword = user.getPassword();
         if(!passwordEncoder.matches(rawPassword, user.getPassword())) {
             throw new BusinessException(ResultCode.PASSWORD_ERROR);
         }
 
-        //5.生成Token
+        //6.生成Token
         String accessToken = jwtTokenProvider.generateAccessToken(user.getUsername() , user.getUserType());
         String refreshToken = redisService.generateRefreshToken(user.getUsername());
 
-        //6.构建返回
-        return LoginVO.builder()
+        //7.构建返回
+        return LoginVo.builder()
                 .username(user.getUsername())
                 .realName(user.getRealName())
                 .userType(user.getUserType())

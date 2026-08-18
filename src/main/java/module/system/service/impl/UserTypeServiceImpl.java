@@ -8,14 +8,14 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import module.system.entity.SysUser;
 import module.system.mapper.SysUserMapper;
-import module.system.service.SysUserService;
+import module.system.service.UserTypeService;
 
 
 
 
 @RequiredArgsConstructor
 @Service
-public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
+public class UserTypeServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements UserTypeService {
 
     private final SysUserMapper sysUserMapper;
 

@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import module.system.dto.*;
 import module.system.service.AuthService;
 import module.system.service.RedisService;
-import module.system.vo.LoginVO;
+import module.system.vo.LoginVo;
 import module.system.vo.tokenRefreshVo;
 import org.springframework.web.bind.annotation.*;
 import common.result.Result;
@@ -33,7 +33,7 @@ public class AuthController {
      * @return 成功返回相关参数，失败返回错误信息
      */
     @PostMapping("/login")
-    public Result<LoginVO> login(@RequestBody LoginDTO loginDTO) {
+    public Result<LoginVo> login(@RequestBody LoginDTO loginDTO) {
         return Result.success(authService.login(loginDTO));
     }
 
@@ -48,7 +48,6 @@ public class AuthController {
                     .build());
             return Result.success();
         } catch (Exception e) {
-            log.error("登出异常", e);
             return Result.error(40404, "登出失败");
         }
     }
