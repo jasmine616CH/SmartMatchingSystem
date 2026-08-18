@@ -23,6 +23,9 @@ import module.template.service.ParamTemplateService;
 import module.template.vo.ParamTemplateDetailVO;
 import module.template.vo.ParamTemplateListVO;
 
+/**
+ * 参数模板管理控制器
+ */
 @RequestMapping("/api/param")
 @RequiredArgsConstructor
 @RestController

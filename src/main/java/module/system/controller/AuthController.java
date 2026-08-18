@@ -15,7 +15,6 @@ import common.result.Result;
 
 /**
  * 系统登录业务控制器
- * 实现系统的登录登出
  */
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor

@@ -12,6 +12,9 @@ import common.result.Result;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * 附件管理控制器
+ */
 @RequestMapping("/api/part/attachment")
 @RequiredArgsConstructor
 @RestController

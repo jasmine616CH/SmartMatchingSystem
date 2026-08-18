@@ -1,6 +1,6 @@
 package common.until;
 
-import common.enums.userType;
+import common.enums.UserType;
 import common.exception.BusinessException;
 import common.result.ResultCode;
 import config.security.LoginUser;
@@ -49,7 +49,7 @@ public class SecurityUtils {
 
     public static boolean isStudent() {
         return getLogInUser().getAuthorities().stream()
-                .anyMatch(auth -> userType.APPROVER.getAuthority().equals(auth.getAuthority()));
+                .anyMatch(auth -> UserType.APPROVER.getAuthority().equals(auth.getAuthority()));
     }
 
     /**

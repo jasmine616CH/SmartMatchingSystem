@@ -16,7 +16,11 @@ import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import module.template.dto.PartCategorySaveDTO;
+import module.template.service.PartCategoryService;
 
+/**
+ * 模板体系管理控制器
+ */
 @RequestMapping("/api/category")
 @RequiredArgsConstructor
 @RestController
@@ -24,35 +28,62 @@ import module.template.dto.PartCategorySaveDTO;
 @Slf4j
 public class PartCategoryController {
 
-    // 查询分类树
+    private final PartCategoryService partCategoryService;
+
+    /**
+     * 查询配件分类树
+     * 
+     * @return
+     */
     @GetMapping("/tree")
     public Result<?> queryCategoryTree() {
-        return Result.success();
+        return Result.success(partCategoryService.queryCategoryTree());
     }
 
-    //查询分类详情接口
+    /**
+     * 查询配件分类详情
+     * 
+     * @param catId
+     * @return
+     */
     @GetMapping("/{catId}")
     public Result<?> queryCategoryDetail(@NotNull(message = "catId 不能为空") @PathVariable Long catId) {
-        return Result.success();
+        return Result.success(partCategoryService.queryCategoryDetail(catId));
     }
 
-    // 新增分类接口
+    /**
+    * 新增配件分类接口
+    * @param partCategorySaveDTO
+    * 
+    * @return
+    */
     @PostMapping("")
     public Result<?> addCategory(@Valid @RequestBody PartCategorySaveDTO partCategorySaveDTO) {
+        partCategoryService.addCategory(partCategorySaveDTO);
         return Result.success();
     }
 
-    // 修改分类接口
+    /**
+     * 修改配件分类接口
+     * 
+     * @param partCategorySaveDTO
+     * @return
+     */
     @PutMapping("/{catId}")
-    public Result<?> updateCategory(@NotNull(message = "catId 不能为空") @PathVariable Long catId) {
+    public Result<?> updateCategory(@Valid @RequestBody PartCategorySaveDTO partCategorySaveDTO) {
+        partCategoryService.updateCategory(partCategorySaveDTO);
         return Result.success();
     }
 
-    // 删除分类接口
+    /**
+     * 删除配件分类接口
+     * 
+     * @param catId
+     * @return
+     */
     @DeleteMapping("/{catId}")
     public Result<?> deleteCategory(@NotNull(message = "catId 不能为空") @PathVariable Long catId) {
+        partCategoryService.deleteCategory(catId);
         return Result.success();
     }
-
-
 }
