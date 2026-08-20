@@ -1,5 +1,7 @@
 package module.template.controller;
 
+import java.util.List;
+
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +19,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import module.template.dto.PartCategorySaveDTO;
 import module.template.service.PartCategoryService;
+import module.template.vo.PartCategoryDetailVO;
+import module.template.vo.PartCategoryTreeVO;
 
 /**
  * 模板体系管理控制器
@@ -36,7 +40,7 @@ public class PartCategoryController {
      * @return
      */
     @GetMapping("/tree")
-    public Result<?> queryCategoryTree() {
+    public Result<List<PartCategoryTreeVO>> queryCategoryTree() {
         return Result.success(partCategoryService.queryCategoryTree());
     }
 
@@ -47,7 +51,7 @@ public class PartCategoryController {
      * @return
      */
     @GetMapping("/{catId}")
-    public Result<?> queryCategoryDetail(@NotNull(message = "catId 不能为空") @PathVariable Long catId) {
+    public Result<PartCategoryDetailVO> queryCategoryDetail(@NotNull(message = "catId 不能为空") @PathVariable Long catId) {
         return Result.success(partCategoryService.queryCategoryDetail(catId));
     }
 
