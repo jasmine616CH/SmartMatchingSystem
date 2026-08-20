@@ -1,6 +1,7 @@
 package module.system.service;
 
 import module.system.dto.AccountDTO;
+import module.system.dto.AddAccountDTO;
 import module.system.dto.QueryUserInformationDTO;
 import module.system.vo.QueryInformationVo;
 
@@ -27,10 +28,23 @@ public interface AdminService {
     void freezeAccount(AccountDTO dto);
 
     /**
+     * 解冻账号
+     *
+     * @param dto 账号信息
+     */
+    void unfreezeAccount(AccountDTO dto);
+
+    /**
      * 重置密码
      *
      * @param dto 账号信息
      */
-    void resetPassword(AccountDTO dto);
+    String resetPassword(AccountDTO dto);
+
+    /**
+     * 新增账户
+     * @param dto 账号信息
+     */
+    void addNewAccount(AddAccountDTO dto);
 
 }

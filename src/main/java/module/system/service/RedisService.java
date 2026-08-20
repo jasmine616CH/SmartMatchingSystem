@@ -36,31 +36,5 @@ public interface RedisService {
      */
     void logout(LogoutDTO logoutDTO);
 
-    /**
-     * 删除用户的所有token（强制下线）
-     * @param username 用户名
-     */
-    void deleteUserTokens(String username);
-
-    /**
-     * 检查accessToken是否有效
-     * @param accessToken 访问令牌
-     * @return true-有效，false-无效
-     */
-    boolean validateAccessToken(String accessToken);
-
-    /**
-     * 黑名单管理 - 将token加入黑名单
-     * @param token 令牌
-     * @param expiration 过期时间（秒）
-     */
-    void addToBlacklist(String token, long expiration);
-
-    /**
-     * 检查token是否在黑名单中
-     * @param token 令牌
-     * @return true-在黑名单中，false-不在
-     */
-    boolean isTokenBlacklisted(String token);
 
 }

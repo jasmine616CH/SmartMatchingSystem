@@ -3,8 +3,6 @@ package module.system.service;
 import module.system.dto.RegisterDTO;
 import module.system.dto.LoginDTO;
 import module.system.vo.LoginVo;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.web.SecurityFilterChain;
 
 /**
  * 系统业务接口
@@ -18,12 +16,6 @@ public interface AuthService {
      * @return 登录成功返回的信息和令牌
      */
     LoginVo login(LoginDTO loginDTO);
-
-    /**
-     * 登出
-     * @param http 登出系统参数
-     */
-    SecurityFilterChain logOut(HttpSecurity http) throws Exception;
 
     /**
      * 注册

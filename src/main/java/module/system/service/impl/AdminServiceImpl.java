@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import module.system.dto.AccountDTO;
+import module.system.dto.AddAccountDTO;
 import module.system.dto.QueryUserInformationDTO;
 import module.system.entity.SysUser;
 import module.system.mapper.SysUserMapper;
@@ -43,6 +44,11 @@ public class AdminServiceImpl implements AdminService {
     @Autowired
     private SysUserMapper sysUserMapper;
 
+    /**
+     * 获取用户列表
+     * @param dto 查找用户信息
+     * @return 用户列表
+     */
     @Override
     public List<QueryInformationVo> getUserList(QueryUserInformationDTO dto) {
 
@@ -59,13 +65,13 @@ public class AdminServiceImpl implements AdminService {
 
         //3.执行查询
         List<SysUser> list;
+        Page<SysUser> page;
         if (dto.getPageNum()!=null&&dto.getUsername()!=null){
-            Page<SysUser> page = new Page<>(dto.getPageNum() , dto.getPageSize());
-            list = page(page , wrapper).getRecords();
+            page = new Page<>(dto.getPageNum(), dto.getPageSize());
         } else {
-            Page<SysUser> page = new Page<>(1 , 10);
-            list = page(page , wrapper).getRecords();
+            page = new Page<>(1, 10);
         }
+        list = page(page , wrapper).getRecords();
 
         //4.转换为Vo并返回
         return list.stream().map(user ->{
@@ -78,6 +84,10 @@ public class AdminServiceImpl implements AdminService {
 
     }
 
+    /**
+     * 冻结账户
+     * @param dto 账号信息
+     */
     @Override
     public void freezeAccount(AccountDTO dto) {
 
@@ -88,8 +98,26 @@ public class AdminServiceImpl implements AdminService {
 
     }
 
+    /**
+     * 冻结账户
+     * @param dto 账号信息
+     */
     @Override
-    public void resetPassword(AccountDTO dto) {
+    public void unfreezeAccount(AccountDTO dto) {
+
+        //冻结账号
+        UpdateWrapper<SysUser> wrapper = new UpdateWrapper<>();
+        wrapper.eq("username" , dto.getUsername())
+                .set("status" , 1);
+
+    }
+
+    /**
+     * 重置密码
+     * @param dto 账号信息
+     */
+    @Override
+    public String resetPassword(AccountDTO dto) {
 
         //1.生成8位随机密码
         StringBuilder password = new StringBuilder(8);
@@ -110,5 +138,16 @@ public class AdminServiceImpl implements AdminService {
 
         //4.更新数据库
         int row = sysUserMapper.update(null,updateWrapper);
+
+        return password.toString();
+    }
+
+    /**
+     * 新增账号
+     * @param dto 账号信息
+     */
+    @Override
+    public void addNewAccount(AddAccountDTO dto) {
+        sysUserMapper.addAccount(dto);
     }
 }

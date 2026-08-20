@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -59,7 +58,7 @@ public class RedisServiceImpl implements RedisService {
     public TokenDTO refreshAccessToken(String refreshToken) {
         // 1. 验证refreshToken是否存在
         String key = REFRESH_TOKEN_PREFIX + refreshToken;
-        if (Boolean.FALSE.equals(redisTemplate.hasKey(key))) {
+        if (!redisTemplate.hasKey(key)) {
             throw new BusinessException(ResultCode.TOKEN_EXPIRED);
         }
 
@@ -96,7 +95,7 @@ public class RedisServiceImpl implements RedisService {
     public boolean validateRefreshToken(String refreshToken) {
         String key = REFRESH_TOKEN_PREFIX + refreshToken;
         // 只检查是否存在，黑名单检查已移除
-        return Boolean.TRUE.equals(redisTemplate.hasKey(key));
+        return redisTemplate.hasKey(key);
     }
 
     @Override
@@ -105,7 +104,7 @@ public class RedisServiceImpl implements RedisService {
         String refreshToken = logoutDTO.getRefreshToken();
 
         // 1. 处理accessToken：仅删除用户映射，不加入黑名单
-        if (StringUtils.isNotBlank(accessToken)) {
+        if (StringUtils.isBlank(accessToken)) {
             String username = jwtTokenProvider.getUserNameFromToken(accessToken);
             if (StringUtils.isNotBlank(username)) {
                 redisTemplate.delete(USER_TOKEN_PREFIX + username);
@@ -119,41 +118,6 @@ public class RedisServiceImpl implements RedisService {
 
         log.info("用户登出成功，accessToken: {}, refreshToken: {}",
                 accessToken != null, refreshToken != null);
-    }
-
-    @Override
-    public void deleteUserTokens(String username) {
-        String key = USER_TOKEN_PREFIX + username;
-        Set<String> tokens = redisTemplate.opsForSet().members(key);
-        if (tokens != null) {
-            for (String token : tokens) {
-                // 仅删除refreshToken key，不加入黑名单
-                redisTemplate.delete(REFRESH_TOKEN_PREFIX + token);
-            }
-        }
-        redisTemplate.delete(key);
-        log.info("强制下线用户：{}，已清除所有token", username);
-    }
-
-    @Override
-    public boolean validateAccessToken(String accessToken) {
-        if (StringUtils.isBlank(accessToken)) {
-            return false;
-        }
-        // 黑名单检查已移除，仅验证JWT本身是否有效
-        return jwtTokenProvider.isTokenValid(accessToken);
-    }
-
-    @Override
-    public void addToBlacklist(String token, long expiration) {
-        // 方法保留但实现为空（不再加入黑名单）
-        log.debug("黑名单功能已禁用，Token不会被加入黑名单：{}", token);
-    }
-
-    @Override
-    public boolean isTokenBlacklisted(String token) {
-        // 方法保留但始终返回false（不再检查黑名单）
-        return false;
     }
 
     // 辅助方法：保存用户与token的关联

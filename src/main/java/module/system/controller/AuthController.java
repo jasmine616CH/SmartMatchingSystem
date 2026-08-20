@@ -41,24 +41,19 @@ public class AuthController {
      */
     @PostMapping("/logout")
     public Result<Void> logout(@Valid @RequestBody TokenLogoutDTO request) {
-        try {
-            redisService.logout(LogoutDTO.builder()
-                    .accessToken(request.getAccessToken())
-                    .build());
-            return Result.success();
-        } catch (Exception e) {
-            return Result.error(40404, "登出失败");
-        }
+        redisService.logout(LogoutDTO.builder()
+                .accessToken(request.getAccessToken())
+                .build());
+        return Result.success();
+
     }
 
 
     /**
      * 用户注册接口
-     * @param request
-     * @return
      */
     @PostMapping("/register")
-    public Result register(@RequestBody RegisterDTO request) {
+    public Result<Void> register(@RequestBody RegisterDTO request) {
         authService.register(request);
         return Result.success();
     }
