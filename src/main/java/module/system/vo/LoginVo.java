@@ -10,7 +10,7 @@ import java.util.List;
  */
 @Data
 @Builder
-public class LoginVO {
+public class LoginVo {
 
     /**
      * 姓名

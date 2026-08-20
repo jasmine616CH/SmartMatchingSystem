@@ -1,6 +1,7 @@
 package module.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import module.system.dto.AddAccountDTO;
 import module.system.dto.RegisterDTO;
 import module.system.entity.SysUser;
 
@@ -29,4 +30,8 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
      * @return 角色权限列表
      */
     List<String> selectRoleKeysByUserId(Long userId);
+
+    @Insert("insert into ugvc_db.user(user_id, username, password, real_name, phone, user_type, status, create_time, update_time) " +
+            "VALUES (#{id},#{username},#{password},#{real_name},#{user_type},#{phone},#{status},#{time},#{time})")
+    void addAccount(AddAccountDTO dto);
 }
