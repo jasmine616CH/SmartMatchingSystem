@@ -3,12 +3,12 @@ package module.system.service;
 import module.system.dto.AccountDTO;
 import module.system.dto.AddAccountDTO;
 import module.system.dto.QueryUserInformationDTO;
-import module.system.vo.QueryInformationVo;
+import module.system.vo.QueryAccountVo;
 
 import java.util.List;
 
 /**
- * 管理员业务接口
+ * 超级管理员业务接口
  * 处理密码重置、账号冻结解冻等问题
  */
 public interface AdminService {
@@ -18,7 +18,7 @@ public interface AdminService {
      *
      * @return 返回用户信息
      */
-    List<QueryInformationVo> getUserList(QueryUserInformationDTO dto);
+    List<QueryAccountVo> getUserList(QueryUserInformationDTO dto);
 
     /**
      * 冻结账号

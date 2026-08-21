@@ -8,6 +8,11 @@ import lombok.Data;
 public class RegisterDTO {
 
     /**
+     * 雪花id
+     */
+    private Long userId;
+
+    /**
      * 真实姓名
      */
     @NotBlank(message = "真实姓名不能为空")

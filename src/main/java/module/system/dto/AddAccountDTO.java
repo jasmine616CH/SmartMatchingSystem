@@ -8,6 +8,11 @@ import lombok.Data;
 public class AddAccountDTO {
 
     /**
+     * 雪花ID
+     */
+    private Long userId;
+
+    /**
      * 用户名
      */
     private String username;
@@ -35,9 +40,5 @@ public class AddAccountDTO {
             message = "密码格式不对，请包含字母+数字，长度为8-12位")
     private String password;
 
-    /**
-     * 当前时间
-     */
-    private DateTime time;
 
 }

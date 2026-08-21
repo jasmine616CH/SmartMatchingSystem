@@ -7,7 +7,7 @@ import module.system.dto.AccountDTO;
 import module.system.dto.AddAccountDTO;
 import module.system.dto.QueryUserInformationDTO;
 import module.system.service.AdminService;
-import module.system.vo.QueryInformationVo;
+import module.system.vo.QueryAccountVo;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,8 +33,8 @@ public class AdminController {
      * @return 用户列表
      */
     @GetMapping("/account")
-    public Result<List<QueryInformationVo>> getUserInformation(QueryUserInformationDTO dto){
-        List<QueryInformationVo> listVo = adminService.getUserList(dto);
+    public Result<List<QueryAccountVo>> getUserInformation(QueryUserInformationDTO dto){
+        List<QueryAccountVo> listVo = adminService.getUserList(dto);
         return Result.success(listVo);
 
     }
