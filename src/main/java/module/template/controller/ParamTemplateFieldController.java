@@ -21,6 +21,7 @@ import module.template.dto.ParamTemplateFieldSaveDTO;
 import module.template.dto.ParamTemplateFieldUpdateDTO;
 import module.template.service.ParamTemplateFieldService;
 import module.template.vo.ParamTemplateFieldListVO;
+import module.template.vo.ParamTemplateFieldVO;
 
 /**
  * 参数模板控制器
@@ -44,6 +45,18 @@ public class ParamTemplateFieldController {
     public Result<List<ParamTemplateFieldListVO>> queryTemplateFieldList(
             @NotNull(message = "templateId 不能为空") @PathVariable Long templateId) {
         return Result.success(paramTemplateFieldService.queryTemplateFieldList(templateId));
+    }
+
+    /**
+     * 查询参数模板字段详情
+     * 
+     * @param paramTemplateFieldVO
+     * @return
+     */
+    @GetMapping("/field/{fieldId}")
+    public Result<ParamTemplateFieldVO> queryTemplateFieldDetail(
+            @NotNull(message = "fieldId 不能为空") @PathVariable Long fieldId) {
+        return Result.success(paramTemplateFieldService.queryTemplateFieldDetail(fieldId));
     }
 
     /**

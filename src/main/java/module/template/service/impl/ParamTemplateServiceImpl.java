@@ -16,8 +16,8 @@ import module.template.dto.ParamTemplateUpdateDTO;
 import module.template.entity.ParamTemplate;
 import module.template.mapper.ParamTemplateMapper;
 import module.template.service.ParamTemplateService;
+import module.template.vo.ParamTemplateBriefVO;
 import module.template.vo.ParamTemplateDetailVO;
-import module.template.vo.ParamTemplateListVO;
 
 @RequiredArgsConstructor
 @Service
@@ -26,16 +26,16 @@ public class ParamTemplateServiceImpl implements ParamTemplateService {
     private final ParamTemplateMapper paramTemplateMapper;
 
     @Override
-    public List<ParamTemplateListVO> queryTemplateList(Long catId) {
+    public ParamTemplateBriefVO queryTemplateList(Long catId) {
         QueryWrapper<ParamTemplate> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("cat_id", catId);
-        List<ParamTemplateListVO> paramTemplateListVOs = paramTemplateMapper.selectList(queryWrapper).stream()
-                .map(template -> {
-                    ParamTemplateListVO paramTemplateListVO = new ParamTemplateListVO();
-                    BeanUtils.copyProperties(template, paramTemplateListVO);
-                    return paramTemplateListVO;
-                }).toList();
-        return paramTemplateListVOs;
+        ParamTemplate paramTemplate = paramTemplateMapper.selectOne(queryWrapper);
+        if (paramTemplate == null) {
+            throw new BusinessException(ResultCode.DATA_NOT_EXIST);
+        }
+        ParamTemplateBriefVO paramTemplateBriefVO = new ParamTemplateBriefVO();
+        BeanUtils.copyProperties(paramTemplate, paramTemplateBriefVO);
+        return paramTemplateBriefVO;
     }
 
     @Override

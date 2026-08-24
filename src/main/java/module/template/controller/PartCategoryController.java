@@ -73,7 +73,7 @@ public class PartCategoryController {
      * @param partCategorySaveDTO
      * @return
      */
-    @PutMapping("/{catId}")
+    @PutMapping("/update")
     public Result<?> updateCategory(@Valid @RequestBody PartCategorySaveDTO partCategorySaveDTO) {
         partCategoryService.updateCategory(partCategorySaveDTO);
         return Result.success();

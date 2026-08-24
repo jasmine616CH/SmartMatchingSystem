@@ -17,6 +17,7 @@ import module.template.entity.ParamTemplateField;
 import module.template.mapper.ParamTemplateFieldMapper;
 import module.template.service.ParamTemplateFieldService;
 import module.template.vo.ParamTemplateFieldListVO;
+import module.template.vo.ParamTemplateFieldVO;
 
 @RequiredArgsConstructor
 @Service
@@ -37,6 +38,20 @@ public class ParamTemplateFieldServiceImpl implements ParamTemplateFieldService 
                 ParamTemplateFieldListVO.class);
 
         return paramTemplateFieldListVOList;
+    }
+
+    @Override
+    public ParamTemplateFieldVO queryTemplateFieldDetail(Long fieldId) {
+        if(fieldId == null){
+            throw new BusinessException(ResultCode.PARAM_IS_NULL);
+        }
+        ParamTemplateField paramTemplateField = paramTemplateFieldMapper.selectById(fieldId);
+        if(paramTemplateField == null){
+            throw new BusinessException(ResultCode.DATA_NOT_EXIST);
+        }
+        ParamTemplateFieldVO paramTemplateFieldVO = new ParamTemplateFieldVO();
+        BeanUtil.copyProperties(paramTemplateField, paramTemplateFieldVO);
+        return paramTemplateFieldVO;
     }
 
     @Override
@@ -106,5 +121,7 @@ public class ParamTemplateFieldServiceImpl implements ParamTemplateFieldService 
         }
         paramTemplateFieldMapper.deleteById(fieldId);
     }
+
+
 
 }

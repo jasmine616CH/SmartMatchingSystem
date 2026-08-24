@@ -21,7 +21,7 @@ import module.template.dto.ParamTemplateSaveDTO;
 import module.template.dto.ParamTemplateUpdateDTO;
 import module.template.service.ParamTemplateService;
 import module.template.vo.ParamTemplateDetailVO;
-import module.template.vo.ParamTemplateListVO;
+import module.template.vo.ParamTemplateBriefVO;
 
 /**
  * 参数模板管理控制器
@@ -42,7 +42,7 @@ public class ParamTemplateController {
      * @return 参数模板列表
      */
     @GetMapping("/template/{catId}")
-    public Result<List<ParamTemplateListVO>> queryTemplateList(
+    public Result<ParamTemplateBriefVO> queryTemplateList(
             @NotNull(message = "catId 不能为空") @PathVariable Long catId) {
         return Result.success(paramTemplateService.queryTemplateList(catId));
     }

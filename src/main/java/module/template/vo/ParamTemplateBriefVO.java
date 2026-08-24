@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import lombok.Data;
 
 @Data
-public class ParamTemplateListVO {
+public class ParamTemplateBriefVO {
 
     // 主键ID（雪花算法，业务生成）
     private Long templateId;
