@@ -33,13 +33,18 @@ public enum ResultCode {
     PARAM_RANGE_ERROR(40011, "参数数值超出合法范围"),
 
     /**
-     * 用户模块
+     * user模块
      */
     USER_NOT_FOUND(40401, "用户不存在"),
     PASSWORD_ERROR(40402, "密码错误"),
     USER_NOT_LOGIN(40403, "用户未注册"),
     USER_LOGOUT_FAIL(40404, "登出失败"),
     USER_ALREADY_EXISTS(40405, "该手机号已注册，请勿重复注册"),
+
+    /**
+     * supplier模块
+     */
+    SUPPLIER_FAIL_FOUND(40426,"供应商不存在"),
 
     /**
      * token模块

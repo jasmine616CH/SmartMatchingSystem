@@ -31,7 +31,7 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
      */
     List<String> selectRoleKeysByUserId(Long userId);
 
-    @Insert("insert into ugvc_db.user(user_id, username, password, real_name, phone, user_type, status, create_time, update_time) " +
-            "VALUES (#{id},#{username},#{password},#{real_name},#{user_type},#{phone},#{status},#{time},#{time})")
+    @Insert("insert into ugvc_db.user(user_id, username, password, real_name, phone, user_type, status) " +
+            "VALUES (#{id},#{username},#{password},#{real_name},#{user_type},#{phone},#{status})")
     void addAccount(AddAccountDTO dto);
 }

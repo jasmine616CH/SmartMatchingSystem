@@ -1,11 +1,13 @@
 package module.system.vo;
 
 import cn.hutool.core.date.DateTime;
+import lombok.Data;
 
 /**
  * 管理员管理用户账号返回Vo
  */
-public class QueryInformationVo {
+@Data
+public class QueryAccountVo {
 
     /**
      * 真实姓名

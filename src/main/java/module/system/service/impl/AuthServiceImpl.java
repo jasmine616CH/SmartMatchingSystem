@@ -95,6 +95,7 @@ public class AuthServiceImpl implements AuthService {
         }
 
         SysUser user = SysUser.builder()
+                .userId()
                 .username(registerDTO.getPhone())
                 .realName(registerDTO.getRealName())
                 .phone(registerDTO.getPhone())

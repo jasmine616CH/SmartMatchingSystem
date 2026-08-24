@@ -10,7 +10,7 @@ import module.system.dto.QueryUserInformationDTO;
 import module.system.entity.SysUser;
 import module.system.mapper.SysUserMapper;
 import module.system.service.AdminService;
-import module.system.vo.QueryInformationVo;
+import module.system.vo.QueryAccountVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -50,7 +50,7 @@ public class AdminServiceImpl implements AdminService {
      * @return 用户列表
      */
     @Override
-    public List<QueryInformationVo> getUserList(QueryUserInformationDTO dto) {
+    public List<QueryAccountVo> getUserList(QueryUserInformationDTO dto) {
 
         //1.构造条件构造器
         LambdaQueryWrapper<SysUser> wrapper = new LambdaQueryWrapper<>();
@@ -66,7 +66,7 @@ public class AdminServiceImpl implements AdminService {
         //3.执行查询
         List<SysUser> list;
         Page<SysUser> page;
-        if (dto.getPageNum()!=null&&dto.getUsername()!=null){
+        if (dto.getPageNum()!=null&&dto.getPageSize()!=null){
             page = new Page<>(dto.getPageNum(), dto.getPageSize());
         } else {
             page = new Page<>(1, 10);
@@ -75,7 +75,7 @@ public class AdminServiceImpl implements AdminService {
 
         //4.转换为Vo并返回
         return list.stream().map(user ->{
-            QueryInformationVo vo =new QueryInformationVo();
+            QueryAccountVo vo =new QueryAccountVo();
             BeanUtils.copyProperties(user , vo);
             return vo;
         }).collect(Collectors.toList());
