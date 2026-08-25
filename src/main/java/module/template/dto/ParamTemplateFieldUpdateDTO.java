@@ -40,6 +40,12 @@ public class ParamTemplateFieldUpdateDTO {
     @NotBlank(message = "unit 不能为空")
     private String unit;
 
+    /**
+     * JSR385 Indriya标准单位编码，如 KILOWATT、MILLIMETRE
+     * number类型必填，用于后端单位换算、表达式计算
+     */
+    private String stdUnitCode;
+
     // 数值小数精度
     @NotNull(message = "precision 不能为空")
     private Integer precision;
@@ -51,6 +57,12 @@ public class ParamTemplateFieldUpdateDTO {
     // 必填类型：0-非必填 1-全局必填 2-条件必填
     @NotNull(message = "requiredType 不能为空")
     private Integer requiredType;
+
+    /**
+     * Aviator条件必填表达式
+     * required_type=2 条件必填时生效，示例：#CHASSIS_STRUCT_TYPE=="truss"
+     */
+    private String requiredExpression;
 
     // 前端筛选支持运算符：>=、<=、区间、多选
     @NotBlank(message = "filterOperator 不能为空")

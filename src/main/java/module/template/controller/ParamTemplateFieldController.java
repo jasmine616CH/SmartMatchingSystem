@@ -91,7 +91,7 @@ public class ParamTemplateFieldController {
      * @param fieldId
      * @return
      */
-    @DeleteMapping("/{templateId}/field/{fieldId}")
+    @DeleteMapping("/field/{fieldId}")
     public Result<?> deleteTemplateField(
             @NotNull(message = "fieldId 不能为空") @PathVariable Long fieldId) {
         paramTemplateFieldService.deleteTemplateField(fieldId);

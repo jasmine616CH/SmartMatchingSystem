@@ -41,6 +41,12 @@ public class ParamTemplateField {
     /** 工程单位，如kW、N·m、V、mm */
     private String unit;
 
+    /**
+     * JSR385 Indriya标准单位编码，如 KILOWATT、MILLIMETRE
+     * number类型必填，用于后端单位换算、表达式计算
+     */
+    private String stdUnitCode;
+
     /** 数值小数精度 */
     private Integer precision;
 
@@ -49,6 +55,12 @@ public class ParamTemplateField {
 
     /** 必填类型：0-非必填 1-全局必填 2-条件必填 */
     private Integer requiredType;
+
+    /**
+     * Aviator条件必填表达式
+     * required_type=2 条件必填时生效，示例：#CHASSIS_STRUCT_TYPE=="truss"
+     */
+    private String requiredExpression;
 
     /** 前端筛选支持运算符：>=、<=、区间、多选 */
     private String filterOperator;
