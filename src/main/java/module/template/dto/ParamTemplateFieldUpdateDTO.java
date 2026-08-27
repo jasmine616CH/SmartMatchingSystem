@@ -68,9 +68,9 @@ public class ParamTemplateFieldUpdateDTO {
     @NotBlank(message = "filterOperator 不能为空")
     private String filterOperator;
 
-    // 参数数据来源：规格书/实测/计算/第三方检测
-    @NotBlank(message = "dataSource 不能为空")
-    private String dataSource;
+    // // 参数数据来源：规格书/实测/计算/第三方检测
+    // @NotBlank(message = "dataSource 不能为空")
+    // private String dataSource;
 
     // 参数适用环境限制说明
     @NotBlank(message = "envLimit 不能为空")

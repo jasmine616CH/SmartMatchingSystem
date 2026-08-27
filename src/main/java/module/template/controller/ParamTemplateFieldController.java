@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import common.result.Result;
@@ -20,6 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 import module.template.dto.ParamTemplateFieldSaveDTO;
 import module.template.dto.ParamTemplateFieldUpdateDTO;
 import module.template.service.ParamTemplateFieldService;
+import module.template.vo.CurrentTemplateFieldListVO;
 import module.template.vo.ParamTemplateFieldListVO;
 import module.template.vo.ParamTemplateFieldVO;
 
@@ -59,6 +61,50 @@ public class ParamTemplateFieldController {
         return Result.success(paramTemplateFieldService.queryTemplateFieldDetail(fieldId));
     }
 
+    // TODO
+    /**
+     * 查询当前模板参数列表
+     * 
+     * @param
+     * @return
+     */
+    @GetMapping("/field/{templateId}")
+    public Result<List<CurrentTemplateFieldListVO>> queryCurrentTemplateFieldList(
+            @NotNull(message = "templateId 不能为空") @PathVariable Long templateId) {
+        return Result.success();
+    }
+
+    // TODO
+    /**
+     * 获取枚举类型参数的枚举值
+     * 
+     * @param
+     * @return
+     */
+    @GetMapping("/field/enum/{fieldId}")
+    public Result<List<String>> queryEnumParamValues(
+            @NotNull(message = "fieldId 不能为空") @PathVariable Long fieldId) {
+        return Result.success();
+    }
+
+    /**
+     * 获取所有根基准单位（用于“数据库基准单位”下拉）
+     */
+    @GetMapping("/unit/base-list")
+    public Result<List<UnitBaseVO>> getBaseUnitList() {
+        return Result.success(unitService.getBaseUnitList());
+    }
+
+    /**
+     * 根据基准单位编码，获取该基准下的所有单位（用于“页面默认展示单位”下拉）
+     */
+    @GetMapping("/unit/list-by-base")
+    public Result<List<UnitBaseVO>> getUnitListByBase(
+            @RequestParam @NotNull String baseUnitCode) {
+        return Result.success(unitService.getUnitListByBase(baseUnitCode));
+    }
+
+    // TODO
     /**
      * 新增模板参数
      * 
@@ -72,6 +118,7 @@ public class ParamTemplateFieldController {
         return Result.success();
     }
 
+    // TODO
     /**
      * 修改模板参数
      * 

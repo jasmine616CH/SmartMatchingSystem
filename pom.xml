@@ -159,7 +159,7 @@
             <scope>compile</scope>
         </dependency>
 
-         <!-- 19 aviator规则引擎-->
+        <!-- 19 aviator规则引擎-->
         <dependency>
             <groupId>com.googlecode.aviator</groupId>
             <artifactId>aviator</artifactId>
@@ -167,12 +167,25 @@
             <scope>compile</scope>
         </dependency>
 
-         <!-- 20 liteflow规则引擎-->
+        <!-- 20 liteflow规则引擎-->
         <dependency>
             <groupId>com.yomahub</groupId>
             <artifactId>liteflow-spring-boot-starter</artifactId>
             <version>2.16.1.2</version>
             <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.8.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.8.2</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

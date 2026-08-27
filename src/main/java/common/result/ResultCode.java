@@ -31,6 +31,10 @@ public enum ResultCode {
     PARAM_DUPLICATE(40009, "参数数据重复"),
     PARAM_OVER_LENGTH(40010, "参数长度超出限制"),
     PARAM_RANGE_ERROR(40011, "参数数值超出合法范围"),
+    /** Aviator表达式语法错误 */
+    AVIATOR_EXPR_SYNTAX_ERROR(40012, "表达式语法错误"),
+    /** Aviator表达式编译失败 */
+    AVIATOR_EXPR_COMPILE_ERROR(40013, "Aviator表达式编译失败"),
 
     /**
      * user模块
@@ -44,7 +48,7 @@ public enum ResultCode {
     /**
      * supplier模块
      */
-    SUPPLIER_FAIL_FOUND(40426,"供应商不存在"),
+    SUPPLIER_FAIL_FOUND(40426, "供应商不存在"),
 
     /**
      * token模块

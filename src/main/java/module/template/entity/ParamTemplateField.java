@@ -65,8 +65,8 @@ public class ParamTemplateField {
     /** 前端筛选支持运算符：>=、<=、区间、多选 */
     private String filterOperator;
 
-    /** 参数数据来源：规格书/实测/计算/第三方检测 */
-    private String dataSource;
+    // /** 参数数据来源：规格书/实测/计算/第三方检测 */
+    // private String dataSource;
 
     /** 参数适用环境限制说明 */
     private String envLimit;
