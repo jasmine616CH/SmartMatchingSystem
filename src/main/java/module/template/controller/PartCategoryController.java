@@ -51,7 +51,8 @@ public class PartCategoryController {
      * @return
      */
     @GetMapping("/{catId}")
-    public Result<PartCategoryDetailVO> queryCategoryDetail(@NotNull(message = "catId 不能为空") @PathVariable Long catId) {
+    public Result<PartCategoryDetailVO> queryCategoryDetail(
+        @NotNull(message = "catId 不能为空") @PathVariable Long catId) {
         return Result.success(partCategoryService.queryCategoryDetail(catId));
     }
 
@@ -62,7 +63,8 @@ public class PartCategoryController {
     * @return
     */
     @PostMapping("")
-    public Result<?> addCategory(@Valid @RequestBody PartCategorySaveDTO partCategorySaveDTO) {
+    public Result<?> addCategory(
+        @Valid @RequestBody PartCategorySaveDTO partCategorySaveDTO) {
         partCategoryService.addCategory(partCategorySaveDTO);
         return Result.success();
     }
@@ -74,7 +76,8 @@ public class PartCategoryController {
      * @return
      */
     @PutMapping("/update")
-    public Result<?> updateCategory(@Valid @RequestBody PartCategorySaveDTO partCategorySaveDTO) {
+    public Result<?> updateCategory(
+        @Valid @RequestBody PartCategorySaveDTO partCategorySaveDTO) {
         partCategoryService.updateCategory(partCategorySaveDTO);
         return Result.success();
     }
@@ -86,7 +89,8 @@ public class PartCategoryController {
      * @return
      */
     @DeleteMapping("/{catId}")
-    public Result<?> deleteCategory(@NotNull(message = "catId 不能为空") @PathVariable Long catId) {
+    public Result<?> deleteCategory(
+        @NotNull(message = "catId 不能为空") @PathVariable Long catId) {
         partCategoryService.deleteCategory(catId);
         return Result.success();
     }
