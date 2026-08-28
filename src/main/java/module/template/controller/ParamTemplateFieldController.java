@@ -18,12 +18,15 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import module.system.vo.DictOptionVO;
 import module.template.dto.ParamTemplateFieldSaveDTO;
 import module.template.dto.ParamTemplateFieldUpdateDTO;
 import module.template.service.ParamTemplateFieldService;
+import module.template.service.UnitService;
 import module.template.vo.CurrentTemplateFieldListVO;
 import module.template.vo.ParamTemplateFieldListVO;
 import module.template.vo.ParamTemplateFieldVO;
+import module.template.vo.UnitBaseVO;
 
 /**
  * 参数模板控制器
@@ -36,6 +39,7 @@ import module.template.vo.ParamTemplateFieldVO;
 public class ParamTemplateFieldController {
 
     private final ParamTemplateFieldService paramTemplateFieldService;
+    private final UnitService unitService;
 
     /**
      * 查询参数模板字段列表
@@ -61,7 +65,6 @@ public class ParamTemplateFieldController {
         return Result.success(paramTemplateFieldService.queryTemplateFieldDetail(fieldId));
     }
 
-    // TODO
     /**
      * 查询当前模板参数列表
      * 
@@ -71,10 +74,9 @@ public class ParamTemplateFieldController {
     @GetMapping("/field/{templateId}")
     public Result<List<CurrentTemplateFieldListVO>> queryCurrentTemplateFieldList(
             @NotNull(message = "templateId 不能为空") @PathVariable Long templateId) {
-        return Result.success();
+        return Result.success(paramTemplateFieldService.queryCurrentTemplateFieldList(templateId));
     }
 
-    // TODO
     /**
      * 获取枚举类型参数的枚举值
      * 
@@ -82,9 +84,9 @@ public class ParamTemplateFieldController {
      * @return
      */
     @GetMapping("/field/enum/{fieldId}")
-    public Result<List<String>> queryEnumParamValues(
+    public Result<List<DictOptionVO>> queryEnumParamValues(
             @NotNull(message = "fieldId 不能为空") @PathVariable Long fieldId) {
-        return Result.success();
+        return Result.success(paramTemplateFieldService.queryEnumParamValues(fieldId));
     }
 
     /**
@@ -100,11 +102,10 @@ public class ParamTemplateFieldController {
      */
     @GetMapping("/unit/list-by-base")
     public Result<List<UnitBaseVO>> getUnitListByBase(
-            @RequestParam @NotNull String baseUnitCode) {
-        return Result.success(unitService.getUnitListByBase(baseUnitCode));
+            @RequestParam @NotNull String unitCode) {
+        return Result.success(unitService.getUnitListByBase(unitCode));
     }
 
-    // TODO
     /**
      * 新增模板参数
      * 
@@ -118,7 +119,7 @@ public class ParamTemplateFieldController {
         return Result.success();
     }
 
-    // TODO
+
     /**
      * 修改模板参数
      * 
