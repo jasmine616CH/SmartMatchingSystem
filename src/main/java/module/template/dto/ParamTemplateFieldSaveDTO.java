@@ -1,8 +1,11 @@
 package module.template.dto;
 
+import java.util.List;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import module.template.vo.ParamFieldCheckRuleVO;
 
 @Data
 public class ParamTemplateFieldSaveDTO {
@@ -57,7 +60,7 @@ public class ParamTemplateFieldSaveDTO {
      * Aviator条件必填表达式
      * required_type=2 条件必填时生效，示例：#CHASSIS_STRUCT_TYPE=="truss"
      */
-    private String requiredExpression;
+    private List<ParamFieldCheckRuleSaveDTO> checkRuleList;
 
     // 前端筛选支持运算符：>=、<=、区间、多选
     @NotBlank(message = "filterOperator 不能为空")

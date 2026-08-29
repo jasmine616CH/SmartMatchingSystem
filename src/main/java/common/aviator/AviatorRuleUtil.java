@@ -2,6 +2,7 @@ package common.aviator;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.util.StringUtils;
@@ -10,16 +11,32 @@ import com.googlecode.aviator.AviatorEvaluator;
 import com.googlecode.aviator.Expression;
 import com.googlecode.aviator.exception.ExpressionSyntaxErrorException;
 
+import cn.hutool.core.collection.CollectionUtil;
 import common.exception.BusinessException;
 import common.result.ResultCode;
 import module.template.entity.ParamFieldCheckRule;
 
 public class AviatorRuleUtil {
 
+    public static Optional<String> executeFirstErrorMsg(List<ParamFieldCheckRule> ruleList, Map<String, Object> data) {
+        if (CollectionUtil.isEmpty(ruleList) || data == null) {
+            return Optional.empty();
+        }
+        return ruleList.stream()
+                .filter(rule -> 1 == rule.getStatus())
+                .filter(rule -> {
+                    Object executeResult = AviatorEvaluator.execute(rule.getCheckExpr(), data);
+                    return !Boolean.TRUE.equals(executeResult);
+                })
+                .map(ParamFieldCheckRule::getErrorMsg)
+                .findFirst();
+    }
+
     /**
      * 编译并执行aviator表达式
+     * 
      * @param expr aviator表达式
-     * @param env 变量上下文（key:paramCode / param，value:参数值）
+     * @param env  变量上下文（key:paramCode / param，value:参数值）
      * @return true=校验通过
      */
     public static boolean execute(String expr, Map<String, Object> env) {
@@ -37,7 +54,8 @@ public class AviatorRuleUtil {
     }
 
     /**
-     * 将param_field_check_rule列表拼接成完整Aviator表达式
+     * 将param_field_check_rule列表拼接成完整Aviator表达式（所有规则默认并且&&）
+     * 
      * @param ruleList 排序后的启用校验规则
      * @return 拼接好的完整aviator表达式
      */
@@ -46,22 +64,20 @@ public class AviatorRuleUtil {
             return null;
         }
         List<String> unitList = ruleList.stream()
+                .filter(rule -> 1 == rule.getStatus())
                 .map(rule -> "(" + rule.getCheckExpr() + ")")
                 .collect(Collectors.toList());
 
-        StringBuilder sb = new StringBuilder();
-        sb.append(unitList.get(0));
-        for (int i = 1; i < ruleList.size(); i++) {
-            ParamFieldCheckRule rule = ruleList.get(i);
-            String joinLogic = rule.getJoinLogic();
-            String op = "AND".equals(joinLogic) ? " && " : " || ";
-            sb.append(op).append(unitList.get(i));
+        if (unitList.isEmpty()) {
+            return null;
         }
-        return sb.toString();
+
+        return String.join(" && ", unitList);
     }
 
     /**
      * 校验aviator表达式语法
+     * 
      * @param expr aviator表达式
      */
     public static void validateExprSyntax(String expr) {

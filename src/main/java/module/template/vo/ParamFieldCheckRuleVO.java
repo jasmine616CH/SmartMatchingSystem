@@ -1,23 +1,12 @@
-package module.template.entity;
+package module.template.vo;
 
-import java.time.LocalDateTime;
-
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@TableName("param_field_check_rule")
-public class ParamFieldCheckRule {
+public class ParamFieldCheckRuleVO {
     /**
      * 主键雪花ID
      */
-    @TableId
     private Long checkRuleId;
 
     /**
@@ -45,19 +34,8 @@ public class ParamFieldCheckRule {
      */
     private Integer sort;
 
-
     /**
      * 0禁用 1启用
      */
     private Integer status;
-
-    /**
-     * 创建时间
-     */
-    private LocalDateTime createTime;
-
-    /**
-     * 更新时间
-     */
-    private LocalDateTime updateTime;
 }

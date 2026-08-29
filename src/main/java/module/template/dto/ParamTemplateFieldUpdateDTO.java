@@ -1,18 +1,20 @@
 package module.template.dto;
 
+import java.util.List;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import module.template.vo.ParamFieldCheckRuleVO;
 
 @Data
-public class ParamTemplateFieldUpdateDTO { 
-    
+public class ParamTemplateFieldUpdateDTO {
+
     // 主键ID（雪花算法，业务生成）
     @NotNull(message = "fieldId 不能为空")
     private Long fieldId;
 
-     // 外键：param_template.template_id
+    // 外键：param_template.template_id
     @NotNull(message = "templateId 不能为空")
     private Long templateId;
 
@@ -62,7 +64,7 @@ public class ParamTemplateFieldUpdateDTO {
      * Aviator条件必填表达式
      * required_type=2 条件必填时生效，示例：#CHASSIS_STRUCT_TYPE=="truss"
      */
-    private String requiredExpression;
+    private List<ParamFieldCheckRuleUpdateDTO> checkRuleList;
 
     // 前端筛选支持运算符：>=、<=、区间、多选
     @NotBlank(message = "filterOperator 不能为空")

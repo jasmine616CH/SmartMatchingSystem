@@ -66,7 +66,8 @@ public class ParamTemplateController {
      * @return
      */
     @PostMapping("/template")
-    public Result<?> addTemplate(@Valid @RequestBody ParamTemplateSaveDTO paramTemplateSaveDTO) {
+    public Result<?> addTemplate(
+        @Valid @RequestBody ParamTemplateSaveDTO paramTemplateSaveDTO) {
         paramTemplateService.addTemplate(paramTemplateSaveDTO);
         return Result.success();
     }
@@ -78,7 +79,8 @@ public class ParamTemplateController {
      * @return
      */
     @PutMapping("/template")
-    public Result<?> updateTemplate(@Valid @RequestBody ParamTemplateUpdateDTO paramTemplateUpdateDTO) {
+    public Result<?> updateTemplate(
+        @Valid @RequestBody ParamTemplateUpdateDTO paramTemplateUpdateDTO) {
         paramTemplateService.updateTemplate(paramTemplateUpdateDTO);
         return Result.success();
     }
@@ -90,7 +92,8 @@ public class ParamTemplateController {
      * @return
      */
     @DeleteMapping("/template/{templateId}")
-    public Result<?> deleteTemplate(@NotNull(message = "templateId 不能为空") @PathVariable Long templateId) {
+    public Result<?> deleteTemplate(
+        @NotNull(message = "templateId 不能为空") @PathVariable Long templateId) {
         paramTemplateService.deleteTemplate(templateId);
         return Result.success();
     }
@@ -102,7 +105,8 @@ public class ParamTemplateController {
      * @return
      */
     @PostMapping("/submitAudit/{templateId}") // 提交审核：草稿→待审核
-    public Result<?> submitAudit(@NotNull(message = "templateId 不能为空") @PathVariable Long templateId) {
+    public Result<?> submitAudit(
+        @NotNull(message = "templateId 不能为空") @PathVariable Long templateId) {
         paramTemplateService.submitAudit(templateId);
         return Result.success();
     }
@@ -114,7 +118,8 @@ public class ParamTemplateController {
      * @return
      */
     @PostMapping("/revoke/{templateId}") // 撤回：已发布→待审核
-    public Result<?> revoke(@NotNull(message = "templateId 不能为空") @PathVariable Long templateId) {
+    public Result<?> revoke(
+        @NotNull(message = "templateId 不能为空") @PathVariable Long templateId) {
         paramTemplateService.revoke(templateId);
         return Result.success();
     }
