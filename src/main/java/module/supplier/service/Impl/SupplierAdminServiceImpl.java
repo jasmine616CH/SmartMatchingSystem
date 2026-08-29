@@ -7,11 +7,13 @@ import common.result.ResultCode;
 import module.supplier.dto.AdminSupplierDTO;
 import module.supplier.dto.QuerySupplierDTO;
 import module.supplier.dto.SupplierCodeDTO;
+import module.supplier.dto.SupplierUpdateDateDTO;
 import module.supplier.entity.SupplierContact;
 import module.supplier.entity.supplier;
 import module.supplier.mapper.SupplierContactMapper;
 import module.supplier.mapper.SupplierMapper;
 import module.supplier.service.SupplierAdminService;
+import module.supplier.vo.QuerySupplierVo;
 import module.supplier.vo.QuerySupplierVo;
 import module.supplier.vo.SupplierDateVo;
 import org.springframework.beans.BeanUtils;
@@ -104,7 +106,7 @@ public class SupplierAdminServiceImpl implements SupplierAdminService {
     public void deleteSupplier(SupplierCodeDTO dto) {
 
         //1.判断是否为空
-        LambdaQueryWrapper<supplier> wrapper =new LambdaQueryWrapper<>();
+        LambdaQueryWrapper<supplier> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(StringUtils.hasText(dto.getCreditCode()),supplier::getSupplierId,dto.getCreditCode());
         if (!StringUtils.hasText(dto.getCreditCode())){
             throw new BusinessException(ResultCode.SUPPLIER_FAIL_FOUND);
@@ -121,17 +123,41 @@ public class SupplierAdminServiceImpl implements SupplierAdminService {
      * @param dto 供应商id
      */
     @Override
-    public void updateSupplierDate(SupplierCodeDTO dto) {
-
-        //1.查询供应商信息
-        QuerySupplierDTO querySupplierDTO = new QuerySupplierDTO();
-
-
+    public void updateSupplierDate(SupplierUpdateDateDTO dto) {
+        //更新信息
+        supplierMapper.updateSupplierDate(dto);
     }
 
+    /**
+     * 查看供应商信息
+     * @param dto 供应商id
+     * @return 成功返回供应商信息
+     */
     @Override
     public SupplierDateVo viewSupplierDate(SupplierCodeDTO dto) {
-        return null;
+
+        //1.查询供应商信息
+        LambdaQueryWrapper<supplier> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(supplier::getCreditCode,dto.getCreditCode());
+        supplier supplier = supplierMapper.selectById(wrapper);
+
+        //2.查找供应商联系人信息
+        LambdaQueryWrapper<SupplierContact> contactWrapper = new LambdaQueryWrapper<>();
+        contactWrapper.eq(SupplierContact::getSupplierId,dto.getCreditCode());
+        SupplierContact supplierContact = supplierContactMapper.selectById(dto.getCreditCode());
+
+        //3.封装返回信息
+        return SupplierDateVo.builder()
+                .creditCode(supplier.getCreditCode())
+                .supplierName(supplier.getSupplierName())
+                .address(supplier.getAddress())
+                .supplierScope(supplier.getSupplyScope())
+                .remark(supplier.getRemark())
+                .phone(supplierContact.getPhone())
+                .email(supplierContact.getEmail())
+                .position(supplierContact.getPosition())
+                .email(supplierContact.getEmail())
+                .build();
     }
 
     /**

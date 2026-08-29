@@ -174,7 +174,7 @@
             <version>2.16.1.2</version>
             <scope>compile</scope>
         </dependency>
-
+        <!-- 21.JUnit 5（Jupiter） 测试框架的核心组件 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -186,6 +186,12 @@
             <artifactId>junit-jupiter-engine</artifactId>
             <version>5.8.2</version>
             <scope>test</scope>
+        </dependency>
+        <!-- 22.PageHelper核心工具 -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>4.1.1</version>
         </dependency>
     </dependencies>
 

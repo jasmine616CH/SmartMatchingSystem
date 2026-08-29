@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import module.supplier.dto.AdminSupplierDTO;
 import module.supplier.dto.QuerySupplierDTO;
 import module.supplier.dto.SupplierCodeDTO;
+import module.supplier.dto.SupplierUpdateDateDTO;
 import module.supplier.vo.QuerySupplierVo;
 import module.supplier.vo.SupplierDateVo;
 
@@ -32,7 +33,7 @@ public interface SupplierAdminService {
      *
      * @return 返沪成功信息
      */
-    void updateSupplierDate(SupplierCodeDTO dto);
+    void updateSupplierDate(SupplierUpdateDateDTO dto);
 
     /**
      * 查看供应商信息

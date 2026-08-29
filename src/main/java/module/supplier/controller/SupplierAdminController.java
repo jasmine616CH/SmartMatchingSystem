@@ -6,8 +6,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import module.supplier.dto.AdminSupplierDTO;
 import module.supplier.dto.QuerySupplierDTO;
+import module.supplier.dto.SupplierCodeDTO;
+import module.supplier.dto.SupplierUpdateDateDTO;
 import module.supplier.service.SupplierAdminService;
 import module.supplier.vo.QuerySupplierVo;
+import module.supplier.vo.SupplierDateVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,14 +33,45 @@ public class SupplierAdminController {
 
     /**
      * 查找用户
-     * @param dto 用户 查找信息
-     * @return 用户列表
+     * @param dto 供应商查找信息
+     * @return 成功返回供应商列表
      */
     @GetMapping("/account")
     public Result<Page<QuerySupplierVo>> getUserInformation(QuerySupplierDTO dto){
-        Page<QuerySupplierVo> listVo = supplierAdminService.getSupplierList(dto);
+        Page<QuerySupplierVo> listVo = supplierAdminService.searchSupplierList(dto);
         return Result.success(listVo);
+    }
 
+    /**
+     * 删除供应商
+     * @param dto 删除供应商id
+     * @return 成功返回相关信息
+     */
+    @GetMapping("/delete")
+    public Result<String> deleteSupplier(SupplierCodeDTO dto){
+        supplierAdminService.deleteSupplier(dto);
+        return Result.success("删除成功");
+    }
+
+    /**
+     * 查看供应商信息
+     * @param dto 查看供应商id
+     * @return 成功返回供应商信息
+     */
+    @GetMapping("/view-date")
+    public Result<SupplierDateVo> viewSupplierDate(SupplierCodeDTO dto){
+        return Result.success(supplierAdminService.viewSupplierDate(dto));
+    }
+
+    /**
+     * 修改供应商信息
+     * @param dto 供应商信息
+     * @return 成功返回相关信息
+     */
+    @PostMapping("/update-date")
+    public Result<String> updateSupplierDate(SupplierUpdateDateDTO dto){
+        supplierAdminService.updateSupplierDate(dto);
+        return Result.success("修改成功");
     }
 
     /**

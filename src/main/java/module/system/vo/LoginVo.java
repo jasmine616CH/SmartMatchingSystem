@@ -28,12 +28,6 @@ public class LoginVo {
     private String userType;
 
     /**
-     * 菜单栏
-     */
-    private List<menuRouteVo> menuRoute;
-
-
-    /**
      * 访问令牌
      */
     private String accessToken;

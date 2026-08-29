@@ -12,3 +12,8 @@ mybatis-plus:
     map-underscore-to-camel-case: true
 jwt:
   issuer: "ug-vc"
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql

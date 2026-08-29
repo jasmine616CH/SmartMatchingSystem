@@ -1,16 +1,11 @@
-package module.supplier.vo;
+package module.supplier.dto;
 
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
-public class SupplierDateVo {
-
-    /**
-     * 供应商联系人雪花id
-     */
-    private Long contactId;
+public class SupplierUpdateDateDTO {
 
     /**
      * 供应商企业全称

@@ -1,6 +1,7 @@
 package module.supplier.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
  * 供应商联系人表 (supplier_contact)
  */
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class SupplierContact {

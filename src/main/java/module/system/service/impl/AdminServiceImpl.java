@@ -91,10 +91,29 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void freezeAccount(AccountDTO dto) {
 
-        //冻结账号
+        //1.检查用户名是否为空
+        if (dto == null || dto.getUsername() == null) {
+            throw new IllegalArgumentException("用户名不能为空");
+        }
+
+        //2.检查用户是否存在
+        SysUser user = sysUserMapper.selectOne(
+                new LambdaQueryWrapper<SysUser>()
+                        .eq(SysUser::getUsername, dto.getUsername())
+        );
+        if (user == null) {
+            throw new RuntimeException("用户不存在");
+        }
+
+        //3.检查账户是否已被冻结
+        if (user.getStatus() == 0) {
+            throw new RuntimeException("用户已被冻结，无需重复操作");
+        }
+
+        //4.冻结账户
         UpdateWrapper<SysUser> wrapper = new UpdateWrapper<>();
-        wrapper.eq("username" , dto.getUsername())
-                .set("status" , 0);
+        wrapper.eq("username", dto.getUsername())
+                .set("status", 0);
 
     }
 
@@ -105,10 +124,29 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void unfreezeAccount(AccountDTO dto) {
 
-        //冻结账号
+        //1.检查用户名是否为空
+        if (dto == null || dto.getUsername() == null) {
+            throw new IllegalArgumentException("用户名不能为空");
+        }
+
+        //2.检查用户是否存在
+        SysUser user = sysUserMapper.selectOne(
+                new LambdaQueryWrapper<SysUser>()
+                        .eq(SysUser::getUsername, dto.getUsername())
+        );
+        if (user == null) {
+            throw new RuntimeException("用户不存在");
+        }
+
+        //3.检查账户是否已被冻结
+        if (user.getStatus() == 0) {
+            throw new RuntimeException("用户已被冻结，无需重复操作");
+        }
+
+        //4.冻结账户
         UpdateWrapper<SysUser> wrapper = new UpdateWrapper<>();
-        wrapper.eq("username" , dto.getUsername())
-                .set("status" , 1);
+        wrapper.eq("username", dto.getUsername())
+                .set("status", 1);
 
     }
 
