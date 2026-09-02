@@ -1,6 +1,5 @@
 package module.template.controller;
 
-import java.util.List;
 
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,7 +15,6 @@ import common.result.Result;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import module.template.dto.ParamTemplateSaveDTO;
 import module.template.dto.ParamTemplateUpdateDTO;
 import module.template.service.ParamTemplateService;
@@ -30,7 +28,6 @@ import module.template.vo.ParamTemplateBriefVO;
 @RequiredArgsConstructor
 @RestController
 @Validated
-@Slf4j
 public class ParamTemplateController {
 
     private final ParamTemplateService paramTemplateService;

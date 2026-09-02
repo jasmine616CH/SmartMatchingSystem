@@ -1,4 +1,4 @@
-package module.supplier.service.Impl;
+package module.supplier.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;

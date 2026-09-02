@@ -1,4 +1,4 @@
-package module.price.service.Impl;
+package module.price.service.impl;
 
 import module.price.dto.updatePriceDTO;
 import module.price.mapper.updatePriceMapper;

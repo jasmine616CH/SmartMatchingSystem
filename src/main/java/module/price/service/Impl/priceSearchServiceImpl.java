@@ -1,4 +1,4 @@
-package module.price.service.Impl;
+package module.price.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
