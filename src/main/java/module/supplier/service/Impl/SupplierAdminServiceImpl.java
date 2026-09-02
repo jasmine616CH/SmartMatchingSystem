@@ -14,7 +14,6 @@ import module.supplier.mapper.SupplierContactMapper;
 import module.supplier.mapper.SupplierMapper;
 import module.supplier.service.SupplierAdminService;
 import module.supplier.vo.QuerySupplierVo;
-import module.supplier.vo.QuerySupplierVo;
 import module.supplier.vo.SupplierDateVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

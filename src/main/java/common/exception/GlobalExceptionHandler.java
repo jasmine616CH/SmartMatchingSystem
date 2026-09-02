@@ -34,7 +34,7 @@ public class GlobalExceptionHandler {
      * 业务异常
      */
     @ExceptionHandler(BusinessException.class)
-    public Result handleBusinessException(BusinessException e) {
+    public Result<?> handleBusinessException(BusinessException e) {
         log.warn("业务异常: code={}, message={}", e.getResultCode().getCode(), e.getMessage());
         return Result.error(e);
     }
@@ -46,7 +46,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Result handleMethodArgumentNotValid(MethodArgumentNotValidException e) {
+    public Result<?> handleMethodArgumentNotValid(MethodArgumentNotValidException e) {
         String detail = e.getBindingResult().getFieldErrors().stream()
                 .map(fe -> fe.getField() + ": " + fe.getDefaultMessage())
                 .collect(Collectors.joining("; "));
@@ -59,7 +59,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(BindException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Result handleBindException(BindException e) {
+    public Result<?> handleBindException(BindException e) {
         String detail = e.getBindingResult().getFieldErrors().stream()
                 .map(fe -> fe.getDefaultMessage())
                 .collect(Collectors.joining("; "));
@@ -72,7 +72,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Result handleConstraintViolation(ConstraintViolationException e) {
+    public Result<?> handleConstraintViolation(ConstraintViolationException e) {
         String detail = e.getConstraintViolations().stream()
                 .map(cv -> cv.getMessage())
                 .collect(Collectors.joining("; "));
@@ -85,7 +85,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(MissingServletRequestParameterException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Result handleMissingParam(MissingServletRequestParameterException e) {
+    public Result<?> handleMissingParam(MissingServletRequestParameterException e) {
         String detail = "缺少必填参数: " + e.getParameterName();
         log.warn(detail);
         return Result.error(ResultCode.PARAM_VALID_FAIL.getCode(), detail);
@@ -96,7 +96,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Result handleTypeMismatch(MethodArgumentTypeMismatchException e) {
+    public Result<?> handleTypeMismatch(MethodArgumentTypeMismatchException e) {
         Class<?> requiredType = e.getRequiredType();
         String detail = String.format("参数 %s 类型不匹配，期望 %s", e.getName(),
                 requiredType != null ? requiredType.getSimpleName() : "未知");
@@ -111,7 +111,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(HttpMessageNotReadableException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Result handleMessageNotReadable(HttpMessageNotReadableException e) {
+    public Result<?> handleMessageNotReadable(HttpMessageNotReadableException e) {
         log.warn("请求体解析失败: {}", e.getMessage());
         return Result.error(ResultCode.PARAM_VALID_FAIL.getCode(), "请求体格式错误，请检查JSON");
     }
@@ -121,7 +121,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
-    public Result handleMethodNotSupported(HttpRequestMethodNotSupportedException e) {
+    public Result<?> handleMethodNotSupported(HttpRequestMethodNotSupportedException e) {
         log.warn("请求方法不支持: {}", e.getMessage());
         return Result.error(ResultCode.METHOD_NOT_ALLOWED.getCode(),
                 "不支持的请求方法: " + e.getMethod());
@@ -132,7 +132,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(HttpMediaTypeNotSupportedException.class)
     @ResponseStatus(HttpStatus.UNSUPPORTED_MEDIA_TYPE)
-    public Result handleMediaTypeNotSupported(HttpMediaTypeNotSupportedException e) {
+    public Result<?> handleMediaTypeNotSupported(HttpMediaTypeNotSupportedException e) {
         log.warn("媒体类型不支持: {}", e.getMessage());
         return Result.error(ResultCode.PARAM_VALID_FAIL.getCode(), "不支持的Content-Type");
     }
@@ -144,7 +144,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(NoHandlerFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public Result handleNoHandlerFound(NoHandlerFoundException e) {
+    public Result<?> handleNoHandlerFound(NoHandlerFoundException e) {
         log.warn("接口不存在: {} {}", e.getHttpMethod(), e.getRequestURL());
         return Result.error(ResultCode.NOT_FOUND.getCode(), "接口不存在");
     }
@@ -154,7 +154,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(NoResourceFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public Result handleNoResourceFound(NoResourceFoundException e) {
+    public Result<?> handleNoResourceFound(NoResourceFoundException e) {
         log.warn("资源不存在: {}", e.getMessage());
         return Result.error(ResultCode.NOT_FOUND.getCode(), "资源不存在");
     }
@@ -166,7 +166,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(AccessDeniedException.class)
     @ResponseStatus(HttpStatus.FORBIDDEN)
-    public Result handleAccessDenied(AccessDeniedException e) {
+    public Result<?> handleAccessDenied(AccessDeniedException e) {
         log.warn("权限不足: {}", e.getMessage());
         return Result.error(ResultCode.FORBIDDEN.getCode(), "权限不足，无法访问该资源");
     }
@@ -178,7 +178,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public Result handleUnknownException(Exception e) {
+    public Result<?> handleUnknownException(Exception e) {
         log.error("系统内部异常: ", e);
         return Result.error(ResultCode.INTERNAL_ERROR.getCode(), "服务器繁忙，请稍后重试");
     }
