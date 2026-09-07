@@ -1,8 +1,8 @@
-package module.template.mapper;
+package module.category.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
-import module.template.entity.PartCategory;
+import module.category.entity.PartCategory;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

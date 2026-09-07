@@ -1,4 +1,4 @@
-package module.template.service.impl;
+package module.category.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,12 +14,12 @@ import cn.hutool.core.bean.BeanUtil;
 import common.exception.BusinessException;
 import common.result.ResultCode;
 import lombok.RequiredArgsConstructor;
-import module.template.dto.PartCategorySaveDTO;
-import module.template.entity.PartCategory;
-import module.template.mapper.PartCategoryMapper;
-import module.template.service.PartCategoryService;
-import module.template.vo.PartCategoryDetailVO;
-import module.template.vo.PartCategoryTreeVO;
+import module.category.dto.PartCategorySaveDTO;
+import module.category.entity.PartCategory;
+import module.category.mapper.PartCategoryMapper;
+import module.category.service.PartCategoryService;
+import module.category.vo.PartCategoryDetailVO;
+import module.category.vo.PartCategoryTreeVO;
 
 @RequiredArgsConstructor
 @Service

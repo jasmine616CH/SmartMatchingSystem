@@ -1,4 +1,4 @@
-package module.template.controller;
+package module.category.controller;
 
 import java.util.List;
 
@@ -17,10 +17,10 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import module.template.dto.PartCategorySaveDTO;
-import module.template.service.PartCategoryService;
-import module.template.vo.PartCategoryDetailVO;
-import module.template.vo.PartCategoryTreeVO;
+import module.category.dto.PartCategorySaveDTO;
+import module.category.service.PartCategoryService;
+import module.category.vo.PartCategoryDetailVO;
+import module.category.vo.PartCategoryTreeVO;
 
 /**
  * 模板体系管理控制器

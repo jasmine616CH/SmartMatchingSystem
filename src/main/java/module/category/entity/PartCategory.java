@@ -1,12 +1,21 @@
-package module.template.vo;
+package module.category.entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 
-import lombok.Data;
-
+/**
+ * 配件三级分类表（树形结构） (part_category)
+ */
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
-public class PartCategoryDetailVO {
-    
+public class PartCategory {
+
     /** 主键ID（雪花算法，业务生成） */
     @TableId
     private Long catId;
@@ -28,4 +37,10 @@ public class PartCategoryDetailVO {
 
     /** 分类业务说明 */
     private String remark;
+
+    /** 记录创建时间 */
+    private LocalDateTime createTime;
+
+    /** 记录更新时间 */
+    private LocalDateTime updateTime;
 }

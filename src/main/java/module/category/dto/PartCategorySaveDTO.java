@@ -1,4 +1,4 @@
-package module.template.dto;
+package module.category.dto;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;

@@ -1,10 +1,10 @@
-package module.template.service;
+package module.category.service;
 
 import java.util.List;
 
-import module.template.dto.PartCategorySaveDTO;
-import module.template.vo.PartCategoryDetailVO;
-import module.template.vo.PartCategoryTreeVO;
+import module.category.dto.PartCategorySaveDTO;
+import module.category.vo.PartCategoryDetailVO;
+import module.category.vo.PartCategoryTreeVO;
 
 public interface PartCategoryService {
 

@@ -1,4 +1,4 @@
-package module.template.vo;
+package module.category.vo;
 
 import java.util.List;
 

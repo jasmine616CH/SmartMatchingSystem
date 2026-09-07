@@ -2,12 +2,14 @@ package module.part.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
 
-@Data
-public class PartInfoDTO {
+public class PartInfoUpdateDTO {
 
-    // 外键：part_category.cat_id 所属三级配件分类
+    /** 主键ID（雪花算法，业务生成） */
+    @NotNull(message = "partId 不能为空")
+    private Long partId;
+    
+     // 外键：part_category.cat_id 所属三级配件分类
     @NotNull(message = "catId 不能为空")
     private Long catId;
 
@@ -27,9 +29,9 @@ public class PartInfoDTO {
     @NotBlank(message = "lifeStatus 不能为空")
     private String lifeStatus;
 
-    // 适配无人车平台/车型 
-    @NotBlank(message = "adaptPlatform 不能为空")
-    private String adaptPlatform;
+    // // 适配无人车平台/车型 
+    // @NotBlank(message = "adaptPlatform 不能为空")
+    // private String adaptPlatform;
 
     // 发布状态：0-草稿 1-正式发布，仅发布配件可参与选型
     @NotNull(message = "publishingStatus 不能为空")
