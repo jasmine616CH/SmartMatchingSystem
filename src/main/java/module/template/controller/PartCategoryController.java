@@ -38,6 +38,7 @@ public class PartCategoryController {
      * 查询配件分类树
      * 
      * @return
+     * @author 徐宝福
      */
     @GetMapping("/tree")
     public Result<List<PartCategoryTreeVO>> queryCategoryTree() {
@@ -49,6 +50,7 @@ public class PartCategoryController {
      * 
      * @param catId
      * @return
+     * @author 徐宝福
      */
     @GetMapping("/{catId}")
     public Result<PartCategoryDetailVO> queryCategoryDetail(
@@ -61,6 +63,7 @@ public class PartCategoryController {
     * @param partCategorySaveDTO
     * 
     * @return
+    * @author 徐宝福
     */
     @PostMapping("")
     public Result<?> addCategory(
@@ -74,6 +77,7 @@ public class PartCategoryController {
      * 
      * @param partCategorySaveDTO
      * @return
+     * @author 徐宝福
      */
     @PutMapping("/update")
     public Result<?> updateCategory(
@@ -87,6 +91,7 @@ public class PartCategoryController {
      * 
      * @param catId
      * @return
+     * @author 徐宝福
      */
     @DeleteMapping("/{catId}")
     public Result<?> deleteCategory(

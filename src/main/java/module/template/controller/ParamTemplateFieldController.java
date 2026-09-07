@@ -46,6 +46,7 @@ public class ParamTemplateFieldController {
      *
      * @param templateId
      * @return
+     * @author 徐宝福
      */
     @GetMapping("/{templateId}")
     public Result<List<ParamTemplateFieldListVO>> queryTemplateFieldList(
@@ -58,6 +59,7 @@ public class ParamTemplateFieldController {
      * 
      * @param paramTemplateFieldVO
      * @return
+     * @author 徐宝福
      */
     @GetMapping("/field/{fieldId}")
     public Result<ParamTemplateFieldVO> queryTemplateFieldDetail(
@@ -70,6 +72,7 @@ public class ParamTemplateFieldController {
      * 
      * @param
      * @return
+     * @author 徐宝福
      */
     @GetMapping("/field/{templateId}")
     public Result<List<CurrentTemplateFieldListVO>> queryCurrentTemplateFieldList(
@@ -82,6 +85,7 @@ public class ParamTemplateFieldController {
      * 
      * @param
      * @return
+     * @author 徐宝福
      */
     @GetMapping("/field/enum/{fieldId}")
     public Result<List<DictOptionVO>> queryEnumParamValues(
@@ -91,6 +95,7 @@ public class ParamTemplateFieldController {
 
     /**
      * 获取所有根基准单位（用于“数据库基准单位”下拉）
+     * @author 徐宝福
      */
     @GetMapping("/unit/base-list")
     public Result<List<UnitBaseVO>> getBaseUnitList() {
@@ -99,6 +104,7 @@ public class ParamTemplateFieldController {
 
     /**
      * 根据基准单位编码，获取该基准下的所有单位（用于“页面默认展示单位”下拉）
+     * @author 徐宝福
      */
     @GetMapping("/unit/list-by-base")
     public Result<List<UnitBaseVO>> getUnitListByBase(
@@ -111,6 +117,7 @@ public class ParamTemplateFieldController {
      * 
      * @param paramTemplateFieldDTO
      * @return
+     * @author 徐宝福
      */
     @PostMapping("/{templateId}/field")
     public Result<?> addTemplateField(
@@ -125,6 +132,7 @@ public class ParamTemplateFieldController {
      * 
      * @param paramTemplateFieldUpdateDTO
      * @return
+     * @author 徐宝福
      */
     @PutMapping("/{templateId}/field/{fieldId}")
     public Result<?> updateTemplateField(
@@ -138,6 +146,7 @@ public class ParamTemplateFieldController {
      * 
      * @param fieldId
      * @return
+     * @author 徐宝福
      */
     @DeleteMapping("/field/{fieldId}")
     public Result<?> deleteTemplateField(

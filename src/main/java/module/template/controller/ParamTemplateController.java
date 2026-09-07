@@ -37,6 +37,7 @@ public class ParamTemplateController {
      *
      * @param catId 分类ID
      * @return 参数模板列表
+     * @author 徐宝福
      */
     @GetMapping("/template/{catId}")
     public Result<ParamTemplateBriefVO> queryTemplateList(
@@ -49,6 +50,7 @@ public class ParamTemplateController {
      *
      * @param templateId 参数模板ID
      * @return 参数模板详情
+     * @author 徐宝福
      */
     @GetMapping("/template/{templateId}")
     public Result<ParamTemplateDetailVO> queryTemplateDetail(
@@ -61,6 +63,7 @@ public class ParamTemplateController {
      * 
      * @param paramTemplateSaveDTO
      * @return
+     * @author 徐宝福
      */
     @PostMapping("/template")
     public Result<?> addTemplate(
@@ -74,6 +77,7 @@ public class ParamTemplateController {
      * 
      * @param paramTemplateUpdateDTO
      * @return
+     * @author 徐宝福
      */
     @PutMapping("/template")
     public Result<?> updateTemplate(
@@ -87,6 +91,7 @@ public class ParamTemplateController {
      * 
      * @param templateId
      * @return
+     * @author 徐宝福
      */
     @DeleteMapping("/template/{templateId}")
     public Result<?> deleteTemplate(
@@ -100,6 +105,7 @@ public class ParamTemplateController {
      * 
      * @param templateId
      * @return
+     * @author 徐宝福
      */
     @PostMapping("/submitAudit/{templateId}") // 提交审核：草稿→待审核
     public Result<?> submitAudit(
@@ -113,6 +119,7 @@ public class ParamTemplateController {
      * 
      * @param templateId
      * @return
+     * @author 徐宝福
      */
     @PostMapping("/revoke/{templateId}") // 撤回：已发布→待审核
     public Result<?> revoke(

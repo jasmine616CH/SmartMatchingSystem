@@ -46,5 +46,4 @@ public class priceSearchController {
     public Result<priceDateVO> viewPriceDate(viewPriceDateDTO dto){
         return Result.success(priceSearchService.viewPriceDate(dto));
     }
-
 }

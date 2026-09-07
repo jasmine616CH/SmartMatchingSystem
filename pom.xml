@@ -136,14 +136,7 @@
             <version>5.8.28</version>
         </dependency>
 
-        <!-- 16. 拼音转换依赖 -->
-        <dependency>
-            <groupId>io.github.biezhi</groupId>
-            <artifactId>TinyPinyin</artifactId>
-            <version>2.0.3.RELEASE</version>
-        </dependency>
-
-        <!-- 17. 单位转换依赖 -->
+        <!-- 16. 单位转换依赖 -->
         <dependency>
             <groupId>javax.measure</groupId>
             <artifactId>unit-api</artifactId>
@@ -151,7 +144,7 @@
             <scope>compile</scope>
         </dependency>
 
-        <!-- 18. 单位转换依赖 -->
+        <!-- 17. 单位转换依赖 -->
         <dependency>
             <groupId>tech.units</groupId>
             <artifactId>indriya</artifactId>
@@ -159,7 +152,7 @@
             <scope>compile</scope>
         </dependency>
 
-        <!-- 19 aviator规则引擎-->
+        <!-- 18. aviator规则引擎-->
         <dependency>
             <groupId>com.googlecode.aviator</groupId>
             <artifactId>aviator</artifactId>
@@ -167,14 +160,15 @@
             <scope>compile</scope>
         </dependency>
 
-        <!-- 20 liteflow规则引擎-->
+        <!-- 19. liteflow规则引擎-->
         <dependency>
             <groupId>com.yomahub</groupId>
             <artifactId>liteflow-spring-boot-starter</artifactId>
             <version>2.16.1.2</version>
             <scope>compile</scope>
         </dependency>
-        <!-- 21.JUnit 5（Jupiter） 测试框架的核心组件 -->
+
+        <!-- 20.JUnit 5（Jupiter） 测试框架的核心组件 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -186,12 +180,6 @@
             <artifactId>junit-jupiter-engine</artifactId>
             <version>5.8.2</version>
             <scope>test</scope>
-        </dependency>
-        <!-- 22.PageHelper核心工具 -->
-        <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper-spring-boot-starter</artifactId>
-            <version>4.1.1</version>
         </dependency>
     </dependencies>
 
