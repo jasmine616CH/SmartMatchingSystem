@@ -37,10 +37,6 @@ public class PartInfoUpdateDTO {
     @NotNull(message = "publishingStatus 不能为空")
     private Integer publishingStatus;
 
-    // 配件维护负责人ID
-    @NotNull(message = "maintainUserId 不能为空")
-    private Long maintainUserId;
-
     // 配件备注说明
     @NotBlank(message = "remark 不能为空")
     private String remark;

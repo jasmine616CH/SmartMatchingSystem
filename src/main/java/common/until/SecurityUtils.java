@@ -30,12 +30,20 @@ public class SecurityUtils {
     /**
      * 获取当前登录用户
      */
-    public static LoginUser getLogInUser() {
+    public static LoginUser getLoginUser() {
         Authentication auth = getAuthentication();
         if (auth == null || !(auth.getPrincipal() instanceof LoginUser)) {
             throw new BusinessException(ResultCode.USER_NOT_LOGIN);
         }
         return (LoginUser) auth.getPrincipal();
+    }
+
+    public static Long getCurrentUserId() {
+        LoginUser loginUser = getLoginUser();
+        if(loginUser == null || loginUser.getSysUser() == null){
+            return null;
+        }
+        return loginUser.getSysUser().getUserId();
     }
 
     /**
@@ -44,11 +52,15 @@ public class SecurityUtils {
      * @return 用户名
      */
     public static String getCurrentUserName() {
-        return getLogInUser().getUsername();
+        return getLoginUser().getUsername();
+    }
+
+    public static String getCurrentRealName() {
+        return getLoginUser().getSysUser().getRealName();
     }
 
     public static boolean isStudent() {
-        return getLogInUser().getAuthorities().stream()
+        return getLoginUser().getAuthorities().stream()
                 .anyMatch(auth -> UserType.APPROVER.getAuthority().equals(auth.getAuthority()));
     }
 

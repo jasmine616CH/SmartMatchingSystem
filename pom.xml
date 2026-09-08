@@ -181,6 +181,12 @@
             <version>5.8.2</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- 21. springaop -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

@@ -12,6 +12,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.util.StrUtil;
 import common.aviator.AviatorRuleUtil;
 import common.enums.ParamDataTypeEnum;
 import common.exception.BusinessException;
@@ -128,12 +129,17 @@ public class ParamTemplateFieldServiceImpl implements ParamTemplateFieldService 
         String paramEn = paramTemplateFieldSaveDTO.getParamEn();
 
         QueryWrapper<ParamTemplateField> queryWrapper = new QueryWrapper<>();
-        queryWrapper.and(wrapper -> wrapper
-                        .eq("param_code", paramCode)
-                        .or()
-                        .eq("param_cn", paramCn)
-                        .or()
-                        .eq("param_en", paramEn));
+        queryWrapper.and(wrapper -> {
+            if (StrUtil.isNotBlank(paramCode)) {
+                wrapper.eq("param_code", paramCode);
+            }
+            if (StrUtil.isNotBlank(paramCn)) {
+                wrapper.or().eq("param_cn", paramCn);
+            }
+            if (StrUtil.isNotBlank(paramEn)) {
+                wrapper.or().eq("param_en", paramEn);
+            }
+        });
         long count = paramTemplateFieldMapper.selectCount(queryWrapper);
         if (count > 0) {
             throw new BusinessException(ResultCode.DATA_DUPLICATE, "参数字段重复");
@@ -141,15 +147,18 @@ public class ParamTemplateFieldServiceImpl implements ParamTemplateFieldService 
 
         ParamTemplateField paramTemplateField = new ParamTemplateField();
         BeanUtil.copyProperties(paramTemplateFieldSaveDTO, paramTemplateField);
-        paramTemplateFieldMapper.insert(paramTemplateField);
+        int rows = paramTemplateFieldMapper.insert(paramTemplateField);
+        if (rows == 0) {
+            throw new BusinessException(ResultCode.DATA_NOT_EXIST, "参数字段添加失败");
+        }
 
         List<ParamFieldCheckRuleSaveDTO> checkRuleVoList = paramTemplateFieldSaveDTO.getCheckRuleList();
         if (CollectionUtil.isNotEmpty(checkRuleVoList)) {
             List<ParamFieldCheckRule> paramFieldCheckRules = BeanUtil.copyToList(checkRuleVoList,
                     ParamFieldCheckRule.class);
 
-            AviatorRuleUtil.validateExprSyntax(AviatorRuleUtil.buildCheckExpr(paramFieldCheckRules));        
-            
+            AviatorRuleUtil.validateExprSyntax(AviatorRuleUtil.buildCheckExpr(paramFieldCheckRules));
+
             paramFieldCheckRuleMapper.insert(paramFieldCheckRules);
         }
     }
@@ -164,11 +173,11 @@ public class ParamTemplateFieldServiceImpl implements ParamTemplateFieldService 
         String paramEn = paramTemplateFieldUpdateDTO.getParamEn();
         QueryWrapper<ParamTemplateField> queryWrapper = new QueryWrapper<>();
         queryWrapper.and(wrapper -> wrapper
-                        .eq("param_code", paramCode)
-                        .or()
-                        .eq("param_cn", paramCn)
-                        .or()
-                        .eq("param_en", paramEn));
+                .eq("param_code", paramCode)
+                .or()
+                .eq("param_cn", paramCn)
+                .or()
+                .eq("param_en", paramEn));
         queryWrapper.ne("template_id", paramTemplateFieldUpdateDTO.getTemplateId());
 
         long count = paramTemplateFieldMapper.selectCount(queryWrapper);
@@ -177,7 +186,10 @@ public class ParamTemplateFieldServiceImpl implements ParamTemplateFieldService 
         }
         ParamTemplateField paramTemplateField = new ParamTemplateField();
         BeanUtil.copyProperties(paramTemplateFieldUpdateDTO, paramTemplateField);
-        paramTemplateFieldMapper.update(queryWrapper);
+        int rows = paramTemplateFieldMapper.update(queryWrapper);
+        if (rows == 0) {
+            throw new BusinessException(ResultCode.DATA_NOT_EXIST, "参数字段更新失败");
+        }
 
         List<ParamFieldCheckRuleUpdateDTO> checkRuleVoList = paramTemplateFieldUpdateDTO.getCheckRuleList();
         if (CollectionUtil.isNotEmpty(checkRuleVoList)) {
@@ -193,15 +205,10 @@ public class ParamTemplateFieldServiceImpl implements ParamTemplateFieldService 
         if (fieldId == null) {
             throw new BusinessException(ResultCode.PARAM_IS_NULL);
         }
-
-        QueryWrapper<ParamTemplateField> queryWrapper = new QueryWrapper<>();
-        queryWrapper
-                .eq("field_id", fieldId);
-        long count = paramTemplateFieldMapper.selectCount(null);
-        if (count == 0) {
+        int rows = paramTemplateFieldMapper.deleteById(fieldId);
+        if (rows == 0) {
             throw new BusinessException(ResultCode.DATA_NOT_EXIST, "字段不存在");
         }
-        paramTemplateFieldMapper.deleteById(fieldId);
     }
 
 }

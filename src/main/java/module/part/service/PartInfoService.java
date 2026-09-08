@@ -13,4 +13,6 @@ public interface PartInfoService {
     void addPartInfo(PartInfoSaveDTO partInfoSaveDTO);
     
     void updatePartInfo(PartInfoUpdateDTO partInfoUpdateDTO);
+
+    void deletePartInfo(Long partId);
 }

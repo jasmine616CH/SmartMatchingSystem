@@ -1,7 +1,5 @@
 package module.part.controller;
 
-import java.util.List;
-
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,7 +35,6 @@ public class PartInfoController {
 
     private final PartInfoService partInfoService;
 
-    //TODO 条件查询
     /**
      * 获取配件信息列表
      * 
@@ -79,8 +76,8 @@ public class PartInfoController {
      */
     @PutMapping("/{partId}")
     public Result<?> updatePartInfo(
-        @Valid @RequestBody PartInfoUpdateDTO partInfoUpdateDTO
-    ) {
+        @Valid @RequestBody PartInfoUpdateDTO partInfoUpdateDTO) {
+        partInfoService.updatePartInfo(partInfoUpdateDTO);
         return Result.success();
     }
 
@@ -92,7 +89,9 @@ public class PartInfoController {
      * @author 徐宝福
      */
     @DeleteMapping("/{partId}")
-    public Result<?> deletePartInfo() {
+    public Result<?> deletePartInfo(
+        @NotNull(message = "partId不能为空") @PathVariable("partId") Long partId
+    ) {
         return Result.success();
     }
 

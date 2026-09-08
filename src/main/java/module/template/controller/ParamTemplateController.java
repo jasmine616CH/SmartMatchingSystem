@@ -11,10 +11,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import common.enums.OperateModule;
+import common.enums.OperateType;
 import common.result.Result;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
+import module.system.annotation.OperateLog;
 import module.template.dto.ParamTemplateSaveDTO;
 import module.template.dto.ParamTemplateUpdateDTO;
 import module.template.service.ParamTemplateService;
@@ -66,6 +69,11 @@ public class ParamTemplateController {
      * @author 徐宝福
      */
     @PostMapping("/template")
+    @OperateLog (
+        operateDesc = "新增参数模板",
+        operateType = OperateType.ADD,
+        operateModule = OperateModule.TEMPLATE
+    )
     public Result<?> addTemplate(
         @Valid @RequestBody ParamTemplateSaveDTO paramTemplateSaveDTO) {
         paramTemplateService.addTemplate(paramTemplateSaveDTO);
@@ -80,6 +88,11 @@ public class ParamTemplateController {
      * @author 徐宝福
      */
     @PutMapping("/template")
+    @OperateLog (
+        operateDesc = "修改参数模板",
+        operateType = OperateType.UPDATE,
+        operateModule = OperateModule.TEMPLATE
+    )
     public Result<?> updateTemplate(
         @Valid @RequestBody ParamTemplateUpdateDTO paramTemplateUpdateDTO) {
         paramTemplateService.updateTemplate(paramTemplateUpdateDTO);
