@@ -13,11 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import common.enums.OperateModule;
+import common.enums.OperateType;
 import common.result.Result;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import module.system.annotation.OperateLog;
 import module.system.vo.DictOptionVO;
 import module.template.dto.ParamTemplateFieldSaveDTO;
 import module.template.dto.ParamTemplateFieldUpdateDTO;
@@ -134,6 +137,11 @@ public class ParamTemplateFieldController {
      * @return
      * @author 徐宝福
      */
+    @OperateLog (
+        operateDesc = "修改参数模板参数",
+        operateType = OperateType.UPDATE,
+        operateModule = OperateModule.TEMPLATE
+    )
     @PutMapping("/{templateId}/field/{fieldId}")
     public Result<?> updateTemplateField(
             @Valid @RequestBody ParamTemplateFieldUpdateDTO paramTemplateFieldUpdateDTO) {
@@ -148,6 +156,11 @@ public class ParamTemplateFieldController {
      * @return
      * @author 徐宝福
      */
+    @OperateLog (
+        operateDesc = "删除参数模板参数",
+        operateType = OperateType.DELETE,
+        operateModule = OperateModule.TEMPLATE
+    )
     @DeleteMapping("/field/{fieldId}")
     public Result<?> deleteTemplateField(
             @NotNull(message = "fieldId 不能为空") @PathVariable Long fieldId) {

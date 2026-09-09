@@ -68,12 +68,12 @@ public class ParamTemplateController {
      * @return
      * @author 徐宝福
      */
-    @PostMapping("/template")
     @OperateLog (
         operateDesc = "新增参数模板",
         operateType = OperateType.ADD,
         operateModule = OperateModule.TEMPLATE
     )
+    @PostMapping("/template")
     public Result<?> addTemplate(
         @Valid @RequestBody ParamTemplateSaveDTO paramTemplateSaveDTO) {
         paramTemplateService.addTemplate(paramTemplateSaveDTO);
@@ -87,12 +87,12 @@ public class ParamTemplateController {
      * @return
      * @author 徐宝福
      */
-    @PutMapping("/template")
     @OperateLog (
         operateDesc = "修改参数模板",
         operateType = OperateType.UPDATE,
         operateModule = OperateModule.TEMPLATE
     )
+    @PutMapping("/template")
     public Result<?> updateTemplate(
         @Valid @RequestBody ParamTemplateUpdateDTO paramTemplateUpdateDTO) {
         paramTemplateService.updateTemplate(paramTemplateUpdateDTO);
@@ -106,6 +106,11 @@ public class ParamTemplateController {
      * @return
      * @author 徐宝福
      */
+    @OperateLog (
+        operateDesc = "删除参数模板",
+        operateType = OperateType.DELETE,
+        operateModule = OperateModule.TEMPLATE
+    )
     @DeleteMapping("/template/{templateId}")
     public Result<?> deleteTemplate(
         @NotNull(message = "templateId 不能为空") @PathVariable Long templateId) {

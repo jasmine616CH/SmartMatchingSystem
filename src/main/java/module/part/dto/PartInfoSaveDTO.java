@@ -27,10 +27,6 @@ public class PartInfoSaveDTO {
     @NotBlank(message = "lifeStatus 不能为空")
     private String lifeStatus;
 
-    // // 适配无人车平台/车型 
-    // @NotBlank(message = "adaptPlatform 不能为空")
-    // private String adaptPlatform;
-
     // 发布状态：0-草稿 1-正式发布，仅发布配件可参与选型
     @NotNull(message = "publishingStatus 不能为空")
     private Integer publishingStatus;
