@@ -1,4 +1,4 @@
-package module.part.entity;
+package module.storage.service.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,17 +20,25 @@ public class PartAttachment {
     /** 外键：part_info.part_id 所属配件 */
     private Long partId;
 
+    private Long userId;
+
     /** 文件原始名称 */
     private String fileName;
-
-    /** 文件后缀类型 pdf/dwg/stp等 */
-    private String fileType;
 
     /** 文件大小（字节） */
     private Long fileSize;
 
+    /** 存储路径 */
+    private String objectName;
+
+    /** 桶名称 */
+    private String bucketName;
+
     /** 文件上传时间 */
     private LocalDateTime uploadTime;
+
+    /** 是否软删除（0-未删除，1-已删除） */
+    private int isDeleted;
 
     /** 创建时间 */
     private LocalDateTime createTime;

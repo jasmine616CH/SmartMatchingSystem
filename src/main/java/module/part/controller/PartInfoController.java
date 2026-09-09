@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import common.enums.OperateModule;
+import common.enums.OperateType;
 import common.result.Result;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -22,6 +24,7 @@ import module.part.dto.PartInfoSaveDTO;
 import module.part.dto.PartInfoUpdateDTO;
 import module.part.service.PartInfoService;
 import module.part.vo.PartInfoListVO;
+import module.system.annotation.OperateLog;
 
 /**
  * 配件信息管理控制器
@@ -46,9 +49,9 @@ public class PartInfoController {
      */
     @GetMapping("/{catId}/list")
     public Result<Page<PartInfoListVO>> queryPartInfoList(
-        @NotNull(message = "catId不能为空") @PathVariable("catId") Long catId,
-        @NotNull(message = "pageNum不能为空") @RequestParam(defaultValue = "1") Integer pageNum,
-        @NotNull(message = "pageSize不能为空") @RequestParam(defaultValue = "10") Integer pageSize) {
+            @NotNull(message = "catId不能为空") @PathVariable("catId") Long catId,
+            @NotNull(message = "pageNum不能为空") @RequestParam(defaultValue = "1") Integer pageNum,
+            @NotNull(message = "pageSize不能为空") @RequestParam(defaultValue = "10") Integer pageSize) {
         return Result.success(partInfoService.queryPartInfoList(catId, pageNum, pageSize));
     }
 
@@ -59,9 +62,10 @@ public class PartInfoController {
      * @return
      * @author 徐宝福
      */
+    @OperateLog(operateDesc = "新增配件信息", operateType = OperateType.ADD, operateModule = OperateModule.PART)
     @PostMapping("")
     public Result<?> addPartInfo(
-        @Valid @RequestBody PartInfoSaveDTO partInfoSaveDTO) {
+            @Valid @RequestBody PartInfoSaveDTO partInfoSaveDTO) {
         partInfoService.addPartInfo(partInfoSaveDTO);
         return Result.success();
     }
@@ -74,9 +78,10 @@ public class PartInfoController {
      * @return
      * @author 徐宝福
      */
-    @PutMapping("/{partId}")
+    @OperateLog(operateDesc = "修改配件信息", operateType = OperateType.UPDATE, operateModule = OperateModule.PART)
+    @PutMapping("")
     public Result<?> updatePartInfo(
-        @Valid @RequestBody PartInfoUpdateDTO partInfoUpdateDTO) {
+            @Valid @RequestBody PartInfoUpdateDTO partInfoUpdateDTO) {
         partInfoService.updatePartInfo(partInfoUpdateDTO);
         return Result.success();
     }
@@ -88,10 +93,11 @@ public class PartInfoController {
      * @return
      * @author 徐宝福
      */
+    @OperateLog(operateDesc = "删除配件信息", operateType = OperateType.DELETE, operateModule = OperateModule.PART)
     @DeleteMapping("/{partId}")
     public Result<?> deletePartInfo(
-        @NotNull(message = "partId不能为空") @PathVariable("partId") Long partId) {
+            @NotNull(message = "partId不能为空") @PathVariable("partId") Long partId) {
+        partInfoService.deletePartInfo(partId);
         return Result.success();
     }
-
 }

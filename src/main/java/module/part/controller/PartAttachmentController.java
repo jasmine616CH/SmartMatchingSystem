@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import common.result.Result;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import module.storage.service.StorageService;
 
 /**
  * 附件管理控制器
@@ -21,28 +22,48 @@ import lombok.extern.slf4j.Slf4j;
 @Validated
 @Slf4j
 public class PartAttachmentController {
-    
-    //获取附件列表
-    @GetMapping("/list")
-    public Result<?> queryAttachmentList() {
-        return Result.success();
-    }
 
-    //附件上传
+
+    private final StorageService storageService;
+
+
+    /**
+     * 附件上传接口
+     * 
+     */
     @PostMapping("")
     public Result<?> uploadAttachment(MultipartFile file) {
+        storageService.uploadFile();
         return Result.success();
     }
 
-    //下载附件
-    @GetMapping("/download")
-    public Result<?> downloadAttachment() {
-        return Result.success();
-    }
 
-    //删除附件
-    @DeleteMapping("/delete")
+    /**
+     * 删除附件接口
+     * 
+     */
+    @DeleteMapping("")
     public Result<?> deleteAttachment() {
+        storageService.deleteFile();
         return Result.success();
     }
+
+    /**
+     * 附件预览接口
+     * 
+     */
+    @GetMapping("")
+    public Result<?> previewAttachment() {
+        return null;
+    }
+
+    /**
+     * 附件下载接口
+     * 
+     */
+    @GetMapping("/download/{attachmentId}")
+    public Result<?> downloadAttachment() {
+        return null;
+    }
+
 }
