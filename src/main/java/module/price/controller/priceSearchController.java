@@ -24,8 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class priceSearchController {
 
-    @Autowired
-    private priceSearchService priceSearchService;
+    private final priceSearchService priceSearchService;
 
     /**
      * 根据配件名称分页查询配件价格和供应商

@@ -205,6 +205,14 @@ public class ParamTemplateFieldServiceImpl implements ParamTemplateFieldService 
         if (fieldId == null) {
             throw new BusinessException(ResultCode.PARAM_IS_NULL);
         }
+
+        QueryWrapper<ParamTemplateField> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("field_id", fieldId);
+        long count = paramTemplateFieldMapper.selectCount(null);
+        if (count == 0) {
+            throw new BusinessException(ResultCode.DATA_NOT_EXIST, "字段不存在");
+        }
+        
         int rows = paramTemplateFieldMapper.deleteById(fieldId);
         if (rows == 0) {
             throw new BusinessException(ResultCode.DATA_NOT_EXIST, "字段不存在");

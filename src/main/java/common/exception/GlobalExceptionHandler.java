@@ -4,6 +4,8 @@ import common.result.Result;
 import common.result.ResultCode;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.access.AccessDeniedException;
@@ -179,7 +181,14 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public Result<?> handleUnknownException(Exception e) {
-        log.error("系统内部异常: ", e);
+        log.error("系统内部异常: {}", e.getMessage());
         return Result.error(ResultCode.INTERNAL_ERROR.getCode(), "服务器繁忙，请稍后重试");
+    }
+
+    // 全局异常示例伪代码
+    @ExceptionHandler(DuplicateKeyException.class)
+    public Result<?> handleDuplicateKeyException(DuplicateKeyException e) {
+        log.warn("数据重复异常: {}", e.getMessage());
+        return Result.error(ResultCode.DATA_DUPLICATE.getCode(), "该数据已存在，请勿重复添加");
     }
 }
