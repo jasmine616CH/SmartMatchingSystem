@@ -61,8 +61,8 @@ public class PartInfoController {
      */
     @PostMapping("")
     public Result<?> addPartInfo(
-        @Valid @RequestBody PartInfoSaveDTO partInfoSvaeDTO) {
-        partInfoService.addPartInfo(partInfoSvaeDTO);
+        @Valid @RequestBody PartInfoSaveDTO partInfoSaveDTO) {
+        partInfoService.addPartInfo(partInfoSaveDTO);
         return Result.success();
     }
 
@@ -90,8 +90,7 @@ public class PartInfoController {
      */
     @DeleteMapping("/{partId}")
     public Result<?> deletePartInfo(
-        @NotNull(message = "partId不能为空") @PathVariable("partId") Long partId
-    ) {
+        @NotNull(message = "partId不能为空") @PathVariable("partId") Long partId) {
         return Result.success();
     }
 

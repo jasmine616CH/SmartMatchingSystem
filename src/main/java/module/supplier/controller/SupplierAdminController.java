@@ -31,6 +31,8 @@ public class SupplierAdminController {
     @Autowired
     private SupplierAdminService supplierAdminService;
 
+
+    //TODO
     /**
      * 查找用户
      * @param dto 供应商查找信息
@@ -51,6 +53,18 @@ public class SupplierAdminController {
     public Result<String> deleteSupplier(SupplierCodeDTO dto){
         supplierAdminService.deleteSupplier(dto);
         return Result.success("删除成功");
+    }
+
+    //TODO
+    /**
+     * 查询供应商列表接口
+     * 
+     * @param dto
+     * @return
+     */
+    @GetMapping("/list")
+    public Result<?> querySupplierList(QuerySupplierDTO dto) {
+        return null;
     }
 
     /**
@@ -74,6 +88,8 @@ public class SupplierAdminController {
         return Result.success("修改成功");
     }
 
+
+    //TODO
     /**
      * 新增供应商
      * @param dto 账号信息
