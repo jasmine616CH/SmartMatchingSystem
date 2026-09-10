@@ -1,5 +1,7 @@
 package module.part.controller;
 
+import java.util.List;
+
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +21,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import module.part.dto.PartParamValueSaveDTO;
 import module.part.dto.PartParamValueUpdateDTO;
+import module.part.dto.SaveParamDTO;
 import module.part.service.PartParamValueService;
+import module.part.vo.PartParamFieldVO;
+import module.part.vo.PartParamValueVO;
+import module.part.vo.SaveParamResultVO;
 import module.system.annotation.OperateLog;
 
 /**
@@ -34,11 +40,49 @@ public class PartParamValueController {
 
     private final PartParamValueService partParamValueService;
 
-
-    //TODO
     // 获取配件参数信息详情
-    @GetMapping("/{partId}")
-    public Result<?> queryPartInfoParamValueDetail() {
+    @GetMapping("/{paramValId}")
+    public Result<PartParamValueVO> queryPartInfoParamValueDetail(
+        @NotNull @PathVariable("paramValId") Long paramValId) {
+        return Result.success();
+    }
+
+    
+    /**
+     * 查询配件模板参数列表（动态）
+     *
+     * @param partId
+     * @return
+     */
+    @GetMapping("/{partId}/fields")
+    public Result<List<PartParamFieldVO>> listFields(
+        @NotNull @PathVariable("partId") Long partId) {
+        return Result.success(partParamValueService.listFieldVO(partId));
+    }
+
+    /**
+     * 单条参数保存：有值即新增/覆盖，清空即删除，返回最新列表 + 被自动清除的脏数据
+     */
+    @OperateLog (
+        operateDesc = "保存配件参数值",
+        operateType = OperateType.UPDATE,
+        operateModule = OperateModule.PART
+    )
+    
+    @PostMapping("/{partId}/save")
+    public Result<SaveParamResultVO> saveParamValue(
+            @NotNull @PathVariable("partId") Long partId,
+            @Valid @RequestBody SaveParamDTO saveParamDTO) {
+        return Result.success(partParamValueService.saveSingleParam(partId, saveParamDTO));
+    }
+
+    /**
+     * 整套提交校验：全局必填 + 条件必填双向校验，不通过返回全部错误信息
+     */
+    @PostMapping("/{partId}/submit")
+    public Result<Void> submitParamValue(
+            @NotNull @PathVariable("partId") Long partId) {
+        partParamValueService.submitAll(partId);
         return Result.success();
     }
 

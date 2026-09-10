@@ -3,9 +3,8 @@ package module.price.controller;
 import common.result.Result;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import module.price.dto.updatePriceDTO;
-import module.price.service.updatePriceService;
-import org.springframework.beans.factory.annotation.Autowired;
+import module.price.dto.UpdatePriceDTO;
+import module.price.service.UpdatePriceService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,14 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RestController
 @Slf4j
-public class updatePriceController {
+public class UpdatePriceController {
 
-    @Autowired
-    private updatePriceService updatePriceService;
+    private final UpdatePriceService UpdatePriceService;
 
     @PostMapping("/update")
-    public Result<String> updatePrice(updatePriceDTO dto){
-        updatePriceService.updatePrice(dto);
+    public Result<String> updatePrice(UpdatePriceDTO dto){
+        UpdatePriceService.updatePrice(dto);
         return Result.success("更新成功");
     }
 

@@ -11,6 +11,9 @@ public class PartInfoListVO {
     /** 外键：part_category.cat_id 所属三级配件分类 */
     private Long catId;
 
+    /** 外键：part_template.template_id 所属配件模板 */
+    private Long templateId;
+
     /** 配件品牌 */
     private String brand;
 

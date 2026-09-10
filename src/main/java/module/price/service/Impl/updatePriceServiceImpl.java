@@ -1,8 +1,8 @@
 package module.price.service.impl;
 
-import module.price.dto.updatePriceDTO;
-import module.price.mapper.updatePriceMapper;
-import module.price.service.updatePriceService;
+import module.price.dto.UpdatePriceDTO;
+import module.price.mapper.UpdatePriceMapper;
+import module.price.service.UpdatePriceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,17 +11,17 @@ import org.springframework.stereotype.Service;
  * 实现价格的更新维护
  */
 @Service
-public class updatePriceServiceImpl implements updatePriceService {
+public class UpdatePriceServiceImpl implements UpdatePriceService {
 
     @Autowired
-    private updatePriceMapper updatePriceMapper;
+    private UpdatePriceMapper UpdatePriceMapper;
 
     /**
      * 更新价格信息
      * @param dto 价格信息
      */
     @Override
-    public void updatePrice(updatePriceDTO dto) {
-        updatePriceMapper.updatePrice(dto);
+    public void updatePrice(UpdatePriceDTO dto) {
+        UpdatePriceMapper.updatePrice(dto);
     }
 }

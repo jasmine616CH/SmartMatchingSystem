@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class supplier {
+public class Supplier {
 
     /** 主键ID（雪花算法，业务生成） */
     private Long supplierId;

@@ -4,7 +4,7 @@ import cn.hutool.core.date.DateTime;
 import lombok.Data;
 
 @Data
-public class priceDateVO {
+public class PriceDateVO {
 
     /**
      * 配件

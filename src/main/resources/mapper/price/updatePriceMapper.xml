@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="module.price.mapper.updatePriceMapper">
+<mapper namespace="module.price.mapper.UpdatePriceMapper">
 
     <update id="updatePrice">
         UPDATE ugvc_db.part_supplier_price

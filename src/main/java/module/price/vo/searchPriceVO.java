@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
-public class searchPriceVO {
+public class SearchPriceVO {
 
     /**
      * 配件

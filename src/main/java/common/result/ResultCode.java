@@ -35,6 +35,8 @@ public enum ResultCode {
     AVIATOR_EXPR_SYNTAX_ERROR(40012, "表达式语法错误"),
     /** Aviator表达式编译失败 */
     AVIATOR_EXPR_COMPILE_ERROR(40013, "Aviator表达式编译失败"),
+    /** 参数校验规则不通过 */
+    PARAM_CHECK_ERROR(40014, "参数校验不通过"),
 
     /**
      * user模块

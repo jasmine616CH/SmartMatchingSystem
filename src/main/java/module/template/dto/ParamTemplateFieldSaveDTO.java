@@ -5,7 +5,6 @@ import java.util.List;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import module.template.vo.ParamFieldCheckRuleVO;
 
 @Data
 public class ParamTemplateFieldSaveDTO {
@@ -55,6 +54,12 @@ public class ParamTemplateFieldSaveDTO {
     // 必填类型：0-非必填 1-全局必填 2-条件必填
     @NotNull(message = "requiredType 不能为空")
     private Integer requiredType;
+
+      /**
+     * Aviator条件必填表达式
+     * required_type=2 条件必填时生效，示例：#CHASSIS_STRUCT_TYPE=="truss"
+     */
+    private String requiredExpression;
 
      /**
      * Aviator条件必填表达式

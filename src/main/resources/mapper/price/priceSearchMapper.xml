@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="module.price.mapper.priceSearchMapper">
+<mapper namespace="module.price.mapper.PriceSearchMapper">
 
-    <!-- 定义结果映射，将查询出的字段映射到 searchPriceVO -->
-    <resultMap id="SearchPriceDateMap" type="module.price.vo.searchPriceVO">
+    <!-- 定义结果映射，将查询出的字段映射到 SearchPriceVO -->
+    <resultMap id="SearchPriceDateMap" type="module.price.vo.SearchPriceVO">
         <result property="brand" column="brand"/>
         <result property="supplierName" column="supplier_name"/>
         <result property="priceType" column="price_type"/>
@@ -50,8 +50,8 @@
             </where>
         </select>
 
-    <!-- 定义结果映射，将查询出的字段映射到 priceDateVO -->
-    <resultMap id="ViewPriceDateMap" type="module.price.vo.priceDateVO">
+    <!-- 定义结果映射，将查询出的字段映射到 PriceDateVO -->
+    <resultMap id="ViewPriceDateMap" type="module.price.vo.PriceDateVO">
         <result property="partName" column="part_name"/>
         <result property="partId" column="part_id"/>
         <result property="supplierName" column="supplier_name"/>
@@ -70,8 +70,8 @@
         <result property="createTime" column="create_time"/>
     </resultMap>
 
-    <!-- 多表关联分页查询 -->
-    <select id="viewPrice" resultMap="SearchPriceDateMap">
+    <!-- 多表关联查询详情 -->
+    <select id="viewPrice" resultMap="ViewPriceDateMap">
         SELECT
         pc.cat_id,
         pc.brand,

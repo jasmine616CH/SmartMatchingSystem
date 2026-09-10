@@ -58,6 +58,12 @@ public class ParamTemplateFieldController {
     }
 
     /**
+     * 查询
+     * @param fieldId
+     * @return
+     */
+
+    /**
      * 查询参数模板字段详情
      * 
      * @param paramTemplateFieldVO

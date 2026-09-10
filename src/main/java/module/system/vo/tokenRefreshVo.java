@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class tokenRefreshVo {
+public class TokenRefreshVo {
 
     private String accessToken;
 

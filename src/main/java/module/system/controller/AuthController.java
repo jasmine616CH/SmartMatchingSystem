@@ -9,7 +9,7 @@ import module.system.dto.*;
 import module.system.service.AuthService;
 import module.system.service.RedisService;
 import module.system.vo.LoginVo;
-import module.system.vo.tokenRefreshVo;
+import module.system.vo.TokenRefreshVo;
 import org.springframework.web.bind.annotation.*;
 import common.result.Result;
 
@@ -62,7 +62,7 @@ public class AuthController {
      * 刷新token接口
      */
     @PostMapping("/refresh-token")
-    public Result<tokenRefreshVo> refreshToken(
+    public Result<TokenRefreshVo> refreshToken(
             @Valid @RequestBody TokenRefreshDTO request) {
 
         try {
@@ -76,7 +76,7 @@ public class AuthController {
                     request.getRefreshToken());
 
             // 3. 构建响应
-            tokenRefreshVo vo = tokenRefreshVo.builder()
+            TokenRefreshVo vo = TokenRefreshVo.builder()
                     .accessToken(tokenDTO.getAccessToken())
                     .refreshToken(tokenDTO.getRefreshToken())
                     .expiresIn(tokenDTO.getExpiresIn())

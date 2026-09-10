@@ -13,10 +13,10 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
-import common.aviator.AviatorRuleUtil;
 import common.enums.ParamDataTypeEnum;
 import common.exception.BusinessException;
 import common.result.ResultCode;
+import common.until.AviatorRuleUtil;
 import lombok.RequiredArgsConstructor;
 import module.system.service.SysDictTypeService;
 import module.system.vo.DictOptionVO;
@@ -145,12 +145,7 @@ public class ParamTemplateFieldServiceImpl implements ParamTemplateFieldService 
             throw new BusinessException(ResultCode.DATA_DUPLICATE, "参数字段重复");
         }
 
-        ParamTemplateField paramTemplateField = new ParamTemplateField();
-        BeanUtil.copyProperties(paramTemplateFieldSaveDTO, paramTemplateField);
-        int rows = paramTemplateFieldMapper.insert(paramTemplateField);
-        if (rows == 0) {
-            throw new BusinessException(ResultCode.DATA_NOT_EXIST, "参数字段添加失败");
-        }
+        AviatorRuleUtil.validateExprSyntax(paramTemplateFieldSaveDTO.getRequiredExpression());
 
         List<ParamFieldCheckRuleSaveDTO> checkRuleVoList = paramTemplateFieldSaveDTO.getCheckRuleList();
         if (CollectionUtil.isNotEmpty(checkRuleVoList)) {
@@ -161,6 +156,14 @@ public class ParamTemplateFieldServiceImpl implements ParamTemplateFieldService 
 
             paramFieldCheckRuleMapper.insert(paramFieldCheckRules);
         }
+
+        ParamTemplateField paramTemplateField = new ParamTemplateField();
+        BeanUtil.copyProperties(paramTemplateFieldSaveDTO, paramTemplateField);
+        int rows = paramTemplateFieldMapper.insert(paramTemplateField);
+        if (rows == 0) {
+            throw new BusinessException(ResultCode.DATA_NOT_EXIST, "参数字段添加失败");
+        }
+
     }
 
     @Override
@@ -184,12 +187,8 @@ public class ParamTemplateFieldServiceImpl implements ParamTemplateFieldService 
         if (count > 0) {
             throw new BusinessException(ResultCode.PARAM_DUPLICATE, "参数字段已存在");
         }
-        ParamTemplateField paramTemplateField = new ParamTemplateField();
-        BeanUtil.copyProperties(paramTemplateFieldUpdateDTO, paramTemplateField);
-        int rows = paramTemplateFieldMapper.update(queryWrapper);
-        if (rows == 0) {
-            throw new BusinessException(ResultCode.DATA_NOT_EXIST, "参数字段更新失败");
-        }
+
+        AviatorRuleUtil.validateExprSyntax(paramTemplateFieldUpdateDTO.getRequiredExpression());
 
         List<ParamFieldCheckRuleUpdateDTO> checkRuleVoList = paramTemplateFieldUpdateDTO.getCheckRuleList();
         if (CollectionUtil.isNotEmpty(checkRuleVoList)) {
@@ -198,6 +197,14 @@ public class ParamTemplateFieldServiceImpl implements ParamTemplateFieldService 
             AviatorRuleUtil.validateExprSyntax(AviatorRuleUtil.buildCheckExpr(paramFieldCheckRules));
             paramFieldCheckRuleMapper.updateById(paramFieldCheckRules);
         }
+
+        ParamTemplateField paramTemplateField = new ParamTemplateField();
+        BeanUtil.copyProperties(paramTemplateFieldUpdateDTO, paramTemplateField);
+        int rows = paramTemplateFieldMapper.update(queryWrapper);
+        if (rows == 0) {
+            throw new BusinessException(ResultCode.DATA_NOT_EXIST, "参数字段更新失败");
+        }
+
     }
 
     @Override
@@ -212,7 +219,7 @@ public class ParamTemplateFieldServiceImpl implements ParamTemplateFieldService 
         if (count == 0) {
             throw new BusinessException(ResultCode.DATA_NOT_EXIST, "字段不存在");
         }
-        
+
         int rows = paramTemplateFieldMapper.deleteById(fieldId);
         if (rows == 0) {
             throw new BusinessException(ResultCode.DATA_NOT_EXIST, "字段不存在");

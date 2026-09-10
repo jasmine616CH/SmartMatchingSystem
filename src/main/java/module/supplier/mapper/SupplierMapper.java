@@ -3,7 +3,7 @@ package module.supplier.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import module.supplier.dto.AdminSupplierDTO;
 import module.supplier.dto.SupplierUpdateDateDTO;
-import module.supplier.entity.supplier;
+import module.supplier.entity.Supplier;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Update;
@@ -12,7 +12,7 @@ import org.apache.ibatis.annotations.Update;
  * 对应供应商主体表(supplier)
  */
 @Mapper
-public interface SupplierMapper extends BaseMapper<supplier> {
+public interface SupplierMapper extends BaseMapper<Supplier> {
 
     /**
      * 新增供应商

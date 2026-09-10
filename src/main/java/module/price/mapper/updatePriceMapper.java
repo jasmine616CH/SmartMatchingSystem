@@ -1,6 +1,6 @@
 package module.price.mapper;
 
-import module.price.dto.updatePriceDTO;
+import module.price.dto.UpdatePriceDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -8,12 +8,12 @@ import org.apache.ibatis.annotations.Mapper;
  *  、配件-供应商关联表(part_supplier)、供应商主体表(supplier）
  */
 @Mapper
-public interface updatePriceMapper {
+public interface UpdatePriceMapper {
 
     /**
      * 更新价格
      * @param dto 更改信息
      */
-    void updatePrice(updatePriceDTO dto);
+    void updatePrice(UpdatePriceDTO dto);
 
 }

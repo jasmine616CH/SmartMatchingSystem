@@ -9,7 +9,7 @@ import module.supplier.dto.QuerySupplierDTO;
 import module.supplier.dto.SupplierCodeDTO;
 import module.supplier.dto.SupplierUpdateDateDTO;
 import module.supplier.entity.SupplierContact;
-import module.supplier.entity.supplier;
+import module.supplier.entity.Supplier;
 import module.supplier.mapper.SupplierContactMapper;
 import module.supplier.mapper.SupplierMapper;
 import module.supplier.service.SupplierAdminService;
@@ -47,20 +47,20 @@ public class SupplierAdminServiceImpl implements SupplierAdminService {
     public Page<QuerySupplierVo> searchSupplierList(QuerySupplierDTO dto) {
 
         //1.构造条件构造器
-        LambdaQueryWrapper<supplier> wrapper = new LambdaQueryWrapper<>();
+        LambdaQueryWrapper<Supplier> wrapper = new LambdaQueryWrapper<>();
 
         //2.动态拼接条件
-        wrapper.like(StringUtils.hasText(dto.getSupplierName()),supplier::getSupplierName,dto.getSupplierName())
-                .eq(dto.getCreditCode()!=null,supplier::getCreditCode,dto.getCreditCode())
-                .eq(dto.getStatus()!=null,supplier::getStatus,dto.getStatus());
+        wrapper.like(StringUtils.hasText(dto.getSupplierName()),Supplier::getSupplierName,dto.getSupplierName())
+                .eq(dto.getCreditCode()!=null,Supplier::getCreditCode,dto.getCreditCode())
+                .eq(dto.getStatus()!=null,Supplier::getStatus,dto.getStatus());
 
         //3.构建分页查询
-        Page<supplier> supplierPagepage = new Page<>(dto.getPageNum(),dto.getPageSize());
-        Page<supplier> supplierPageResult = supplierMapper.selectPage(supplierPagepage , wrapper);
+        Page<Supplier> supplierPagepage = new Page<>(dto.getPageNum(),dto.getPageSize());
+        Page<Supplier> supplierPageResult = supplierMapper.selectPage(supplierPagepage , wrapper);
 
         //4.提取supplier表中的supplier_id
         Set<Long> supplierIds = supplierPageResult.getRecords().stream()
-                .map(supplier::getSupplierId)
+                .map(Supplier::getSupplierId)
                 .filter(Objects::nonNull)
                 .collect(Collectors.toSet());
 
@@ -105,8 +105,8 @@ public class SupplierAdminServiceImpl implements SupplierAdminService {
     public void deleteSupplier(SupplierCodeDTO dto) {
 
         //1.判断是否为空
-        LambdaQueryWrapper<supplier> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(StringUtils.hasText(dto.getCreditCode()),supplier::getSupplierId,dto.getCreditCode());
+        LambdaQueryWrapper<Supplier> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(StringUtils.hasText(dto.getCreditCode()),Supplier::getSupplierId,dto.getCreditCode());
         if (!StringUtils.hasText(dto.getCreditCode())){
             throw new BusinessException(ResultCode.SUPPLIER_FAIL_FOUND);
         }
@@ -136,9 +136,9 @@ public class SupplierAdminServiceImpl implements SupplierAdminService {
     public SupplierDateVo viewSupplierDate(SupplierCodeDTO dto) {
 
         //1.查询供应商信息
-        LambdaQueryWrapper<supplier> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(supplier::getCreditCode,dto.getCreditCode());
-        supplier supplier = supplierMapper.selectById(wrapper);
+        LambdaQueryWrapper<Supplier> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(Supplier::getCreditCode,dto.getCreditCode());
+        Supplier supplier = supplierMapper.selectById(wrapper);
 
         //2.查找供应商联系人信息
         LambdaQueryWrapper<SupplierContact> contactWrapper = new LambdaQueryWrapper<>();

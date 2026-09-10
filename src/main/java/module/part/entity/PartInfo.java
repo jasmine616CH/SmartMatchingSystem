@@ -1,5 +1,7 @@
 package module.part.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,10 +17,14 @@ import java.time.LocalDateTime;
 public class PartInfo {
 
     /** 主键ID（雪花算法，业务生成） */
+    @TableId
     private Long partId;
 
     /** 外键：part_category.cat_id 所属三级配件分类 */
     private Long catId;
+
+    /** 外键：part_template.template_id 所属配件模板 */
+    private Long templateId;
 
     /** 全局唯一物料编码 */
     private String partCode;

@@ -1,29 +1,30 @@
 package module.price.service;
 
-import com.github.pagehelper.PageInfo;
-import module.price.dto.searchPriceDateDTO;
-import module.price.dto.viewPriceDateDTO;
-import module.price.vo.priceDateVO;
-import module.price.vo.searchPriceVO;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+
+import module.price.dto.SearchPriceDateDTO;
+import module.price.dto.ViewPriceDateDTO;
+import module.price.vo.PriceDateVO;
+import module.price.vo.SearchPriceVO;
 
 /**
  * 配件价格业务接口
  * 实现价格查看
  */
-public interface priceSearchService {
+public interface PriceSearchService {
 
     /**
      * 查找配件价格信息
      * @param dto 配件信息
      * @return 成功返回相关数据
      */
-    PageInfo<searchPriceVO> searchPriceDate(searchPriceDateDTO dto);
+    Page<SearchPriceVO> searchPriceDate(SearchPriceDateDTO dto);
 
     /**
      * 查看配件价格详情
      * @param dto 配件名字
      * @return 成功返回相关详细信息
      */
-    priceDateVO viewPriceDate(viewPriceDateDTO dto);
+    PriceDateVO viewPriceDate(ViewPriceDateDTO dto);
 
 }

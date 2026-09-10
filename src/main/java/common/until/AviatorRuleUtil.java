@@ -1,5 +1,7 @@
-package common.aviator;
+package common.until;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -14,8 +16,11 @@ import com.googlecode.aviator.exception.ExpressionSyntaxErrorException;
 import cn.hutool.core.collection.CollectionUtil;
 import common.exception.BusinessException;
 import common.result.ResultCode;
+import lombok.extern.slf4j.Slf4j;
 import module.template.entity.ParamFieldCheckRule;
 
+
+@Slf4j 
 public class AviatorRuleUtil {
 
     public static Optional<String> executeFirstErrorMsg(List<ParamFieldCheckRule> ruleList, Map<String, Object> data) {
@@ -33,8 +38,42 @@ public class AviatorRuleUtil {
     }
 
     /**
+     * 返回所有未通过的启用规则（异常安全：表达式执行异常按"不通过"处理，不向上抛）
+     *
+     * @param ruleList 该字段的校验规则
+     * @param data     变量上下文
+     * @return 未通过的规则列表，全部通过时返回空列表
+     */
+    public static List<ParamFieldCheckRule> executeAllFailedRule(List<ParamFieldCheckRule> ruleList,
+            Map<String, Object> data) {
+        if (CollectionUtil.isEmpty(ruleList)) {
+            return new ArrayList<>();
+        }
+        Map<String, Object> env = data == null ? new HashMap<>() : data;
+        return ruleList.stream()
+                .filter(rule -> Integer.valueOf(1).equals(rule.getStatus()))
+                .filter(rule -> !executeSafely(rule.getCheckExpr(), env))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * 执行表达式，任何异常都降级为 false（校验不通过）
+     */
+    private static boolean executeSafely(String expr, Map<String, Object> env) {
+        if (!StringUtils.hasText(expr)) {
+            return true;
+        }
+        try {
+            return Boolean.TRUE.equals(AviatorEvaluator.execute(expr, env));
+        } catch (Exception ex) {
+            log.warn("校验表达式执行失败，按不通过处理: {}", expr, ex);
+            return false;
+        }
+    }
+
+    /**
      * 编译并执行aviator表达式
-     * 
+     *
      * @param expr aviator表达式
      * @param env  变量上下文（key:paramCode / param，value:参数值）
      * @return true=校验通过
@@ -92,4 +131,16 @@ public class AviatorRuleUtil {
             throw new BusinessException(ResultCode.AVIATOR_EXPR_COMPILE_ERROR, e.getMessage());
         }
     }
+
+    public static boolean isRequiredField(String expr, Map<String,Object> paramMap) {
+    if (!StringUtils.hasText(expr)) return false;
+    try {
+        Expression e = AviatorEvaluator.compile(expr, true); 
+        Object r = e.execute(paramMap);
+        return Boolean.TRUE.equals(r);
+    } catch (Exception ex) {
+        log.warn("表达式执行失败: {}", expr, ex);
+        return false;  // ★ 关键：异常不抛出，降级为 false
+    }
+}
 }

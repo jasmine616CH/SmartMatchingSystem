@@ -1,27 +1,25 @@
 package module.price.service.impl;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-import module.price.dto.searchPriceDateDTO;
-import module.price.dto.viewPriceDateDTO;
-import module.price.mapper.priceSearchMapper;
-import module.price.service.priceSearchService;
-import module.price.vo.priceDateVO;
-import module.price.vo.searchPriceVO;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
-import java.util.List;
+import lombok.RequiredArgsConstructor;
+import module.price.dto.SearchPriceDateDTO;
+import module.price.dto.ViewPriceDateDTO;
+import module.price.mapper.PriceSearchMapper;
+import module.price.service.PriceSearchService;
+import module.price.vo.PriceDateVO;
+import module.price.vo.SearchPriceVO;
+import org.springframework.stereotype.Service;
 
 /**
  * 配件价格业务实现类
  * 实现价格查看
  */
+@RequiredArgsConstructor 
 @Service
-public class priceSearchServiceImpl implements priceSearchService {
+public class PriceSearchServiceImpl implements PriceSearchService {
 
-    @Autowired
-    private priceSearchMapper priceSearchMapper;
+    private final PriceSearchMapper PriceSearchMapper;
 
     /**
      * 查找配件价格信息
@@ -29,16 +27,13 @@ public class priceSearchServiceImpl implements priceSearchService {
      * @return 成功返回相关信息
      */
     @Override
-    public PageInfo<searchPriceVO> searchPriceDate(searchPriceDateDTO dto) {
+    public Page<SearchPriceVO> searchPriceDate(SearchPriceDateDTO dto) {
 
-        //1.自动分页
-        PageHelper.startPage(dto.getPageNum(),dto.getPageSize());
+        //1.构造分页对象，Page 作为 Mapper 首个入参交给 PaginationInnerInterceptor 处理
+        Page<SearchPriceVO> page = new Page<>(dto.getPageNum(), dto.getPageSize());
 
-        //2.执行查语句
-        List<searchPriceVO> list = priceSearchMapper.selectPartPrice(dto);
-
-        //3.返回封装
-        return new PageInfo<>(list);
+        //2.执行查询，插件自动改写 SQL 并回填 total/records
+        return PriceSearchMapper.selectPartPrice(page, dto);
     }
 
     /**
@@ -47,7 +42,7 @@ public class priceSearchServiceImpl implements priceSearchService {
      * @return 成功返回详细信息
      */
     @Override
-    public priceDateVO viewPriceDate(viewPriceDateDTO dto) {
-        return priceSearchMapper.viewPrice(dto);
+    public PriceDateVO viewPriceDate(ViewPriceDateDTO dto) {
+        return PriceSearchMapper.viewPrice(dto);
     }
 }

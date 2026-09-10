@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="module.part.mapper.PartParamValueMapper">
+
+    <resultMap id="ParamValueQueryMap"
+               type="module.part.dto.PartParamValueQueryDTO">
+        <result column="param_code"  property="paramCode"/>
+        <result column="data_type"   property="dataType"/>
+        <result column="num_value"   property="numValue"/>
+        <result column="text_value"  property="textValue"/>
+        <result column="num_min"     property="numMin"/>
+        <result column="num_max"     property="numMax"/>
+    </resultMap>
+
+    <select id="selectValueListByPartId" resultMap="ParamValueQueryMap">
+        SELECT
+            f.param_code,
+            f.data_type,
+            v.num_value,
+            v.text_value,
+            v.num_min,
+            v.num_max
+        FROM part_param_value v
+        INNER JOIN param_template_field f ON v.field_id = f.field_id
+        WHERE v.part_id = #{partId}
+    </select>
+
+    <delete id="deleteByPartIdAndFieldId">
+        DELETE FROM part_param_value
+        WHERE part_id = #{partId}
+          AND field_id = #{fieldId}
+    </delete>
+
+</mapper>

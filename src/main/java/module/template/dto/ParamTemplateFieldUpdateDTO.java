@@ -64,6 +64,12 @@ public class ParamTemplateFieldUpdateDTO {
      * Aviator条件必填表达式
      * required_type=2 条件必填时生效，示例：#CHASSIS_STRUCT_TYPE=="truss"
      */
+    private String requiredExpression;
+
+    /**
+     * Aviator条件必填表达式
+     * required_type=2 条件必填时生效，示例：#CHASSIS_STRUCT_TYPE=="truss"
+     */
     private List<ParamFieldCheckRuleUpdateDTO> checkRuleList;
 
     // 前端筛选支持运算符：>=、<=、区间、多选
