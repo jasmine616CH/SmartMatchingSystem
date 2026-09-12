@@ -4,10 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import common.result.Result;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import module.supplier.dto.AdminSupplierDTO;
-import module.supplier.dto.QuerySupplierDTO;
-import module.supplier.dto.SupplierCodeDTO;
-import module.supplier.dto.SupplierUpdateDateDTO;
+import module.supplier.dto.*;
 import module.supplier.service.SupplierAdminService;
 import module.supplier.vo.QuerySupplierVo;
 import module.supplier.vo.SupplierDateVo;
@@ -96,7 +93,7 @@ public class SupplierAdminController {
      * @return 成功返回相关信息
      */
     @PostMapping("/add-supplier")
-    public Result<String> addAccount(AdminSupplierDTO dto){
+    public Result<String> addAccount(AddSupplierDTO dto){
         supplierAdminService.addSupplierAccount(dto);
         return Result.success("增添成功");
     }

@@ -1,10 +1,7 @@
 package module.supplier.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import module.supplier.dto.AdminSupplierDTO;
-import module.supplier.dto.QuerySupplierDTO;
-import module.supplier.dto.SupplierCodeDTO;
-import module.supplier.dto.SupplierUpdateDateDTO;
+import module.supplier.dto.*;
 import module.supplier.vo.QuerySupplierVo;
 import module.supplier.vo.SupplierDateVo;
 
@@ -47,6 +44,6 @@ public interface SupplierAdminService {
      *
      * @param dto 供应商信息
      */
-    void addSupplierAccount(AdminSupplierDTO dto);
+    void addSupplierAccount(AddSupplierDTO dto);
 
 }

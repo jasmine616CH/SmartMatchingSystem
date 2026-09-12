@@ -3,8 +3,6 @@ package module.system.vo;
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.List;
-
 /**
  * 用户登录vo
  */

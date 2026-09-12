@@ -1,7 +1,7 @@
 package module.supplier.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import module.supplier.dto.AdminSupplierDTO;
+import module.supplier.dto.AddSupplierDTO;
 import module.supplier.entity.SupplierContact;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -18,5 +18,5 @@ public interface SupplierContactMapper extends BaseMapper<SupplierContact> {
      */
     @Insert("insert into ugvc_db.supplier_contact(contact_id, supplier_id, name, position, phone, email) " +
             "VALUES (#{contact_id},#{supplier_id},#{name},#{position},#{phone},#{email})")
-    void addSupplierContact(AdminSupplierDTO dto);
+    void addSupplierContact(AddSupplierDTO dto);
 }

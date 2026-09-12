@@ -1,13 +1,10 @@
-package module.supplier.service.impl;
+package module.supplier.service.Impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import common.exception.BusinessException;
 import common.result.ResultCode;
-import module.supplier.dto.AdminSupplierDTO;
-import module.supplier.dto.QuerySupplierDTO;
-import module.supplier.dto.SupplierCodeDTO;
-import module.supplier.dto.SupplierUpdateDateDTO;
+import module.supplier.dto.*;
 import module.supplier.entity.SupplierContact;
 import module.supplier.entity.Supplier;
 import module.supplier.mapper.SupplierContactMapper;
@@ -164,7 +161,7 @@ public class SupplierAdminServiceImpl implements SupplierAdminService {
      * @param dto 供应商信息
      */
     @Override
-    public void addSupplierAccount(AdminSupplierDTO dto) {
+    public void addSupplierAccount(AddSupplierDTO dto) {
         supplierMapper.addSupplier(dto);
         supplierContactMapper.addSupplierContact(dto);
     }
