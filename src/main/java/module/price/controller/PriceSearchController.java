@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 配件价格业务控制器
  * 实现价格查询
  */
-@RequestMapping("/price")
+@RequestMapping("/api/price")
 @RequiredArgsConstructor
 @RestController
 @Validated

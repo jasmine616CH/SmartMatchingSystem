@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 价格更新业务控制器
  * 实现价格的更新维护
  */
-@RequestMapping("/price")
+@RequestMapping("/api/price")
 @RequiredArgsConstructor
 @RestController
 @Slf4j

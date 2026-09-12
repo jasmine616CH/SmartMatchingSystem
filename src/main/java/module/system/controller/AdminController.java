@@ -19,7 +19,7 @@ import java.util.List;
  * 管理员业务接口管理器
  * 处理密码重置、账号冻结解冻等问题
  */
-@RequestMapping("/admin/user")
+@RequestMapping("/api/admin/user")
 @RequiredArgsConstructor
 @RestController
 @Slf4j

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 修改信息业务接口控制器
  * 实现用户信息修改功能
  */
-@RequestMapping("/profile")
+@RequestMapping("/api/profile")
 @RequiredArgsConstructor
 @RestController
 @Slf4j

@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 供应商管理员业务接口控制器
  * 实现对供应商账号的管理
  */
-@RequestMapping("/supplier/admin")
+@RequestMapping("/api/supplier/admin")
 @RequiredArgsConstructor
 @RestController
 @Slf4j

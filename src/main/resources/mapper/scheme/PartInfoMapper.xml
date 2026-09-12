@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="module.scheme.mapper.PartInfoMapper">
+
+    <!-- 查询所有配件id -->
+    <select id="selectPartIdsByCatId" resultType="Long">
+        SELECT part_id FROM ugvc_db.part_info
+        WHERE cat_id = #{cat_id};
+    </select>
+
+    <!-- 查询配件信息 -->
+    <select id="selectPartInfoByIds" resultType="module.scheme.entity.PartInfo">
+        SELECT * FROM ugvc_db.part_info
+        WHERE part_id IN 
+        <foreach collection="partIds" item="partId" open="(" close=")" separator=",">
+            #{partId}
+        </foreach>
+    </select>
+
+</mapper>
