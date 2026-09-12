@@ -1,4 +1,4 @@
-package module.price.service.impl;
+package module.price.service.Impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
