@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="module.price.mapper.PartSupplierPriceMapper">
+
+    <!--
+        报价表的关联链路：part_supplier_price 没有 part_id / supplier_id，
+        必须经由 part_supplier 才能到达配件与供应商。
+        驱动表固定为 part_supplier_price（事实表），part_supplier 用 INNER JOIN
+        （ps_id 非空，缺它则无配件与供应商可显示），其余一律 LEFT JOIN，
+        保证配件或供应商被删也不会吞掉报价行。
+    -->
+    <sql id="priceColumns">
+        SELECT
+            psp.price_id,
+            psp.ps_id,
+            psp.price_type,
+            psp.currency,
+            psp.price_value,
+            psp.moq,
+            psp.lead_time,
+            psp.effect_date,
+            psp.expire_date,
+            psp.create_user_id,
+            psp.create_time,
+            psp.update_time,
+            ps.part_id,
+            ps.supplier_id,
+            ps.supply_type,
+            ps.auth_status,
+            ps.remark AS supply_remark,
+            pi.part_code,
+            pi.brand,
+            pi.model,
+            pi.life_status,
+            pi.publishing_status,
+            pi.cat_id,
+            pi.remark AS part_remark,
+            pc.cat_name,
+            s.supplier_name,
+            s.status AS supplier_status,
+            u.real_name AS create_user_name
+        FROM part_supplier_price psp
+            INNER JOIN part_supplier ps ON ps.ps_id = psp.ps_id
+            LEFT JOIN part_info pi ON pi.part_id = ps.part_id
+            LEFT JOIN part_category pc ON pc.cat_id = pi.cat_id
+            LEFT JOIN supplier s ON s.supplier_id = ps.supplier_id
+            LEFT JOIN sys_user u ON u.user_id = psp.create_user_id
+    </sql>
+
+    <resultMap id="PriceListMap" type="module.price.vo.PartSupplierPriceListVO">
+        <result property="priceId"        column="price_id"/>
+        <result property="psId"           column="ps_id"/>
+        <result property="partId"         column="part_id"/>
+        <result property="partCode"       column="part_code"/>
+        <result property="brand"          column="brand"/>
+        <result property="model"          column="model"/>
+        <result property="lifeStatus"     column="life_status"/>
+        <result property="catId"          column="cat_id"/>
+        <result property="catName"        column="cat_name"/>
+        <result property="supplierId"     column="supplier_id"/>
+        <result property="supplierName"   column="supplier_name"/>
+        <result property="supplierStatus" column="supplier_status"/>
+        <result property="supplyType"     column="supply_type"/>
+        <result property="authStatus"     column="auth_status"/>
+        <result property="priceType"      column="price_type"/>
+        <result property="currency"       column="currency"/>
+        <result property="priceValue"     column="price_value"/>
+        <result property="moq"            column="moq"/>
+        <result property="leadTime"       column="lead_time"/>
+        <result property="effectDate"     column="effect_date"/>
+        <result property="expireDate"     column="expire_date"/>
+        <result property="createUserId"   column="create_user_id"/>
+        <result property="createUserName" column="create_user_name"/>
+        <result property="createTime"     column="create_time"/>
+        <result property="updateTime"     column="update_time"/>
+    </resultMap>
+
+    <!-- 列表：多表关联分页查询，分页插件按 page 入参改写 SQL -->
+    <select id="selectPricePage" resultMap="PriceListMap">
+        <include refid="priceColumns"/>
+        <where>
+            <if test="dto.psId != null">
+                AND psp.ps_id = #{dto.psId}
+            </if>
+            <if test="dto.partId != null">
+                AND ps.part_id = #{dto.partId}
+            </if>
+            <if test="dto.supplierId != null">
+                AND ps.supplier_id = #{dto.supplierId}
+            </if>
+            <if test="dto.catId != null">
+                AND pi.cat_id = #{dto.catId}
+            </if>
+            <if test="dto.supplyType != null and dto.supplyType != ''">
+                AND ps.supply_type = #{dto.supplyType}
+            </if>
+            <if test="dto.authStatus != null">
+                AND ps.auth_status = #{dto.authStatus}
+            </if>
+            <if test="dto.publishingStatus != null">
+                AND pi.publishing_status = #{dto.publishingStatus}
+            </if>
+            <if test="dto.supplierStatus != null">
+                AND s.status = #{dto.supplierStatus}
+            </if>
+            <if test="dto.priceType != null and dto.priceType != ''">
+                AND psp.price_type = #{dto.priceType}
+            </if>
+            <if test="dto.currency != null and dto.currency != ''">
+                AND psp.currency = #{dto.currency}
+            </if>
+            <if test="dto.partCode != null and dto.partCode != ''">
+                AND pi.part_code LIKE CONCAT('%', #{dto.partCode}, '%')
+            </if>
+            <if test="dto.brand != null and dto.brand != ''">
+                AND pi.brand LIKE CONCAT('%', #{dto.brand}, '%')
+            </if>
+            <if test="dto.model != null and dto.model != ''">
+                AND pi.model LIKE CONCAT('%', #{dto.model}, '%')
+            </if>
+            <if test="dto.supplierName != null and dto.supplierName != ''">
+                AND s.supplier_name LIKE CONCAT('%', #{dto.supplierName}, '%')
+            </if>
+            <if test="dto.catName != null and dto.catName != ''">
+                AND pc.cat_name LIKE CONCAT('%', #{dto.catName}, '%')
+            </if>
+            <if test="dto.onlyValid != null and dto.onlyValid">
+                AND psp.effect_date &lt;= CURDATE()
+                AND (psp.expire_date IS NULL OR psp.expire_date &gt;= CURDATE())
+            </if>
+        </where>
+        ORDER BY psp.effect_date DESC, psp.price_id DESC
+    </select>
+
+    <resultMap id="PriceDetailMap" type="module.price.vo.PartSupplierPriceDetailVO">
+        <result property="priceId"          column="price_id"/>
+        <result property="psId"             column="ps_id"/>
+        <result property="partId"           column="part_id"/>
+        <result property="partCode"         column="part_code"/>
+        <result property="brand"            column="brand"/>
+        <result property="model"            column="model"/>
+        <result property="lifeStatus"       column="life_status"/>
+        <result property="publishingStatus" column="publishing_status"/>
+        <result property="catId"            column="cat_id"/>
+        <result property="catName"          column="cat_name"/>
+        <result property="supplierId"       column="supplier_id"/>
+        <result property="supplierName"     column="supplier_name"/>
+        <result property="supplierStatus"   column="supplier_status"/>
+        <result property="supplyType"       column="supply_type"/>
+        <result property="authStatus"       column="auth_status"/>
+        <result property="priceType"        column="price_type"/>
+        <result property="currency"         column="currency"/>
+        <result property="priceValue"       column="price_value"/>
+        <result property="moq"              column="moq"/>
+        <result property="leadTime"         column="lead_time"/>
+        <result property="effectDate"       column="effect_date"/>
+        <result property="expireDate"       column="expire_date"/>
+        <result property="createUserId"     column="create_user_id"/>
+        <result property="createUserName"   column="create_user_name"/>
+        <result property="createTime"       column="create_time"/>
+        <result property="updateTime"       column="update_time"/>
+        <result property="partRemark"       column="part_remark"/>
+        <result property="supplyRemark"     column="supply_remark"/>
+    </resultMap>
+
+    <!-- 详情：关联查询单条报价 -->
+    <select id="selectPriceDetail" resultMap="PriceDetailMap">
+        <include refid="priceColumns"/>
+        WHERE psp.price_id = #{priceId}
+    </select>
+
+    <!--
+        区间重叠校验：闭区间 [e1,x1]（x1 为 NULL 表示正无穷）与新报价 [e2,x2] 重叠
+        等价于 (x1 IS NULL OR x1 >= e2) AND (x2 IS NULL OR e1 <= x2)。
+    -->
+    <select id="countOverlap" resultType="long">
+        SELECT COUNT(1)
+        FROM part_supplier_price
+        WHERE ps_id = #{psId}
+            AND price_type = #{priceType}
+            <if test="excludePriceId != null">
+                AND price_id &lt;&gt; #{excludePriceId}
+            </if>
+            AND (expire_date IS NULL OR expire_date &gt;= #{effectDate})
+            <if test="expireDate != null">
+                AND effect_date &lt;= #{expireDate}
+            </if>
+    </select>
+
+</mapper>
