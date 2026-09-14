@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="module.scheme.mapper.SelectionSchemeMapper">
+
+    <!--
+        单价解析子查询：明细分页与方案聚合都要用，抽成公共片段避免两处规则漂移。
+        优先级规则本身定义在 module.price 的 unitPricePriorityOrder 片段里（跨命名空间引用），
+        这里只负责把「已认证 + 在有效期内」的报价按配件排好序。
+        rn = 1 即每个配件唯一的解析结果，因此 join 不会放大行数。
+    -->
+    <sql id="rankedUnitPrice">
+        (
+            SELECT
+                pi.part_id,
+                sup.supplier_name,
+                ps.supply_type,
+                psp.price_type,
+                psp.price_value,
+                psp.moq,
+                psp.lead_time,
+                ROW_NUMBER() OVER (
+                    PARTITION BY pi.part_id
+                    ORDER BY <include refid="module.price.mapper.PartSupplierPriceMapper.unitPricePriorityOrder"/>
+                ) AS rn
+            FROM part_supplier_price psp
+                INNER JOIN part_supplier ps ON ps.ps_id = psp.ps_id
+                    AND ps.auth_status = 1
+                INNER JOIN part_info pi ON pi.part_id = ps.part_id
+                LEFT JOIN supplier sup ON sup.supplier_id = ps.supplier_id
+            WHERE ps.supply_type IN ('main', 'spare')
+                AND <include refid="module.price.mapper.PartSupplierPriceMapper.unitPriceValidCondition"/>
+        ) price
+    </sql>
+
+    <resultMap id="SchemeBriefMap" type="module.scheme.vo.SchemeBriefVO">
+        <result property="schemeId"     column="scheme_id"/>
+        <result property="schemeName"   column="scheme_name"/>
+        <result property="createTime"   column="create_time"/>
+        <result property="partCount"    column="part_count"/>
+        <result property="totalPrice"   column="total_price"/>
+        <result property="isSelectBom"  column="is_select_bom"/>
+    </resultMap>
+
+    <!-- 方案列表：LEFT JOIN 明细与解析单价，聚合出数量/总价/是否含正式BOM -->
+    <select id="selectSchemePage" resultMap="SchemeBriefMap">
+        SELECT
+            s.scheme_id,
+            s.scheme_name,
+            s.create_time,
+            COUNT(sp.scheme_part_id) AS part_count,
+            SUM(CASE WHEN price.price_value IS NULL THEN 0
+                     ELSE price.price_value * sp.quantity END) AS total_price,
+            CASE WHEN MAX(CASE WHEN sp.is_select_bom = 1 THEN 1 ELSE 0 END) = 1
+                 THEN 1 ELSE 0 END AS is_select_bom
+        FROM selection_scheme s
+            LEFT JOIN scheme_part sp ON sp.scheme_id = s.scheme_id
+            LEFT JOIN <include refid="rankedUnitPrice"/>
+                ON price.part_id = sp.part_id AND price.rn = 1
+        <where>
+            <if test="dto.keyword != null and dto.keyword != ''">
+                AND s.scheme_name LIKE CONCAT('%', #{dto.keyword}, '%')
+            </if>
+        </where>
+        GROUP BY s.scheme_id, s.scheme_name, s.create_time
+        ORDER BY s.create_time DESC, s.scheme_id DESC
+    </select>
+
+    <resultMap id="SchemeDetailMap" type="module.scheme.vo.SchemeDetailVO">
+        <result property="schemeId"     column="scheme_id"/>
+        <result property="schemeName"   column="scheme_name"/>
+        <result property="remark"       column="remark"/>
+        <result property="userId"       column="user_id"/>
+        <result property="userName"     column="user_name"/>
+        <result property="partCount"    column="part_count"/>
+        <result property="totalPrice"   column="total_price"/>
+        <result property="createTime"   column="create_time"/>
+        <result property="updateTime"   column="update_time"/>
+    </resultMap>
+
+    <!--
+        方案详情。故意不在这里取 whole_car_req：它是 TEXT，而 VO 里是 Map，
+        MyBatis 直接映射会类型不匹配。service 侧已经通过 selectById 拿到了原始
+        JSON 字符串，由它用 ObjectMapper 转换后填入。
+        sys_user 的主键列是 user_id、姓名列是 real_name。
+    -->
+    <select id="selectSchemeDetail" resultMap="SchemeDetailMap">
+        SELECT
+            s.scheme_id,
+            s.scheme_name,
+            s.remark,
+            s.user_id,
+            s.create_time,
+            s.update_time,
+            u.real_name AS user_name,
+            COUNT(sp.scheme_part_id) AS part_count,
+            SUM(CASE WHEN price.price_value IS NULL THEN 0
+                     ELSE price.price_value * sp.quantity END) AS total_price
+        FROM selection_scheme s
+            LEFT JOIN sys_user u ON u.user_id = s.user_id
+            LEFT JOIN scheme_part sp ON sp.scheme_id = s.scheme_id
+            LEFT JOIN <include refid="rankedUnitPrice"/>
+                ON price.part_id = sp.part_id AND price.rn = 1
+        WHERE s.scheme_id = #{schemeId}
+        GROUP BY s.scheme_id, s.scheme_name, s.remark,
+                 s.user_id, s.create_time, s.update_time, u.real_name
+    </select>
+
+</mapper>

@@ -48,7 +48,7 @@ public class PartSupplierPriceListVO {
     /** 供应商企业全称 */
     private String supplierName;
 
-    /** 供应商状态：0-停用 1-启用 */
+    /** 供应商状态：0-草稿 1-待审核 2-已发布 */
     private Integer supplierStatus;
 
     /** 供货类型：main-主供 spare-备供 wait-待认证 */

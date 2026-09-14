@@ -1,6 +1,8 @@
 package module.price.mapper;
 
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -13,6 +15,7 @@ import module.price.dto.PartSupplierPriceQueryDTO;
 import module.price.entity.PartSupplierPrice;
 import module.price.vo.PartSupplierPriceDetailVO;
 import module.price.vo.PartSupplierPriceListVO;
+import module.price.vo.PartUnitPriceVO;
 
 /**
  * 配件供应商报价表 (part_supplier_price)
@@ -77,4 +80,24 @@ public interface PartSupplierPriceMapper extends BaseMapper<PartSupplierPrice> {
      */
     @Select("SELECT auth_status FROM part_supplier WHERE ps_id = #{psId}")
     Integer selectAuthStatusByPsId(@Param("psId") Long psId);
+
+    /**
+     * 批量解析多个配件的唯一单价
+     * <p>
+     * 一个配件可能有多家供应商、多条报价，本方法按业务优先级挑出唯一一条：
+     * <ol>
+     *   <li>只取已认证的配件-供应商关联（{@code auth_status = 1}）</li>
+     *   <li>供货类型优先 {@code main}（主供），其次 {@code spare}（备供）</li>
+     *   <li>价格类型优先 {@code standard}（标准价），其次 {@code agreement}（协议框架价）</li>
+     *   <li>报价须在有效期内：{@code effect_date <= 今天} 且（{@code expire_date} 为空 或 {@code >= 今天}）</li>
+     *   <li>多条命中取 {@code effect_date} 最新的一条</li>
+     * </ol>
+     * 命中不到的配件不会出现在结果里，调用方按「暂无报价」处理。
+     * <p>
+     * 一次查完整批配件，避免列表页 N+1。
+     *
+     * @param partIds 配件主键集合，不可为空
+     * @return 每个配件一条解析结果，顺序不保证
+     */
+    List<PartUnitPriceVO> selectUnitPriceByPartIds(@Param("partIds") Collection<Long> partIds);
 }

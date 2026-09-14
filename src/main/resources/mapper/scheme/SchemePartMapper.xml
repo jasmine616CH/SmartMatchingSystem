@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="module.scheme.mapper.SchemePartMapper">
+
+    <resultMap id="SchemePartMap" type="module.scheme.vo.SchemePartVO">
+        <result property="schemePartId" column="scheme_part_id"/>
+        <result property="partId"       column="part_id"/>
+        <result property="partCode"     column="part_code"/>
+        <result property="catId"        column="cat_id"/>
+        <result property="catName"      column="cat_name"/>
+        <result property="systemName"   column="system_name"/>
+        <result property="brand"        column="brand"/>
+        <result property="model"        column="model"/>
+        <result property="quantity"     column="quantity"/>
+        <result property="unitPrice"    column="unit_price"/>
+        <result property="supplierName" column="supplier_name"/>
+        <result property="moq"          column="moq"/>
+        <result property="leadTime"     column="lead_time"/>
+        <result property="matchScore"   column="match_score"/>
+        <result property="isSelectBom"  column="is_select_bom"/>
+    </resultMap>
+
+    <!--
+        方案配件明细的公共列。单价来自 SelectionSchemeMapper 里定义的 rankedUnitPrice
+        子查询（跨命名空间引用），优先级规则定义在 module.price，三处共用同一份定义。
+
+        systemName 由三级分类回溯一级系统：part_category 是自关联表，
+        父链固定为 三级 → 二级 → 一级，逐级 LEFT JOIN 上去即可。
+    -->
+    <sql id="schemePartColumns">
+        SELECT
+            sp.scheme_part_id,
+            sp.part_id,
+            sp.quantity,
+            sp.match_score,
+            sp.is_select_bom,
+            pi.part_code,
+            pi.brand,
+            pi.model,
+            pi.cat_id,
+            pc.cat_name,
+            lv1.cat_name AS system_name,
+            price.price_value AS unit_price,
+            price.supplier_name,
+            price.moq,
+            price.lead_time
+        FROM scheme_part sp
+            LEFT JOIN part_info pi ON pi.part_id = sp.part_id
+            LEFT JOIN part_category pc ON pc.cat_id = pi.cat_id
+            LEFT JOIN part_category lv2 ON lv2.cat_id = pc.parent_cat_id
+            LEFT JOIN part_category lv1 ON lv1.cat_id = lv2.parent_cat_id
+            LEFT JOIN <include refid="module.scheme.mapper.SelectionSchemeMapper.rankedUnitPrice"/>
+                ON price.part_id = sp.part_id AND price.rn = 1
+    </sql>
+
+    <!--
+        排序字段白名单：前端只能传 quantity / unitPrice / matchScore（DTO 已用 @Pattern 限定），
+        这里再映射成真实列名后拼入，避免 ORDER BY 注入。
+    -->
+    <select id="selectSchemePartPage" resultMap="SchemePartMap">
+        <include refid="schemePartColumns"/>
+        WHERE sp.scheme_id = #{schemeId}
+        <if test="dto.keyword != null and dto.keyword != ''">
+            AND (pi.part_code LIKE CONCAT('%', #{dto.keyword}, '%')
+                 OR pi.brand LIKE CONCAT('%', #{dto.keyword}, '%')
+                 OR pi.model LIKE CONCAT('%', #{dto.keyword}, '%'))
+        </if>
+        <if test="dto.catName != null and dto.catName != ''">
+            AND pc.cat_name LIKE CONCAT('%', #{dto.catName}, '%')
+        </if>
+        <if test="dto.brand != null and dto.brand != ''">
+            AND pi.brand LIKE CONCAT('%', #{dto.brand}, '%')
+        </if>
+        <choose>
+            <when test="dto.sortField == 'quantity'">
+                ORDER BY sp.quantity
+            </when>
+            <when test="dto.sortField == 'unitPrice'">
+                ORDER BY price.price_value
+            </when>
+            <when test="dto.sortField == 'matchScore'">
+                ORDER BY sp.match_score
+            </when>
+            <otherwise>
+                ORDER BY sp.scheme_part_id
+            </otherwise>
+        </choose>
+        <choose>
+            <when test="dto.sortOrder == 'asc'">ASC</when>
+            <otherwise>DESC</otherwise>
+        </choose>
+    </select>
+
+    <!-- 导出 BOM：只取纳入正式BOM的明细，不分页 -->
+    <select id="selectBomParts" resultMap="SchemePartMap">
+        <include refid="schemePartColumns"/>
+        WHERE sp.scheme_id = #{schemeId}
+            AND sp.is_select_bom = 1
+        ORDER BY pc.cat_name, sp.scheme_part_id
+    </select>
+
+    <select id="countBySchemeId" resultType="int">
+        SELECT COUNT(1) FROM scheme_part WHERE scheme_id = #{schemeId}
+    </select>
+
+</mapper>

@@ -1,5 +1,8 @@
 package module.scheme.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,9 +15,11 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@TableName("vehicle_param_def")
 public class VehicleParamDef {
 
     /** 主键雪花ID */
+    @TableId
     private Long id;
 
     /** 参数唯一编码，存入whole_car_req JSON的key */

@@ -1,5 +1,7 @@
 package module.supplier.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +18,7 @@ import java.time.LocalDateTime;
 public class SupplierQualification {
 
     /** 主键ID（雪花算法，业务生成） */
+    @TableId
     private Long qfId;
 
     /** 外键：supplier.supplier_id 所属供应商 */
@@ -36,8 +39,14 @@ public class SupplierQualification {
     /** 证书扫描件文件地址 */
     private String fileUrl;
 
-    /** 状态：0-过期 1-有效 */
+    /**
+     * 状态：0-草稿 1-待审核 2-有效
+     * <p>3-过期 由 expire_date 读时派生，不落库，见 SupplierQualificationStatus#resolveDisplayStatus
+     */
     private Integer status;
+
+    /** 外键：sys_user.user_id 审批人用户ID，草稿状态为空 */
+    private Long auditUserId;
 
     /** 创建时间 */
     private LocalDateTime createTime;

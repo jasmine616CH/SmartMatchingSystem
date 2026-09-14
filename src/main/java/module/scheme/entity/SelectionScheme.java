@@ -1,5 +1,8 @@
 package module.scheme.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,9 +15,11 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@TableName("selection_scheme")
 public class SelectionScheme {
 
     /** 主键ID（雪花算法，业务生成） */
+    @TableId
     private Long schemeId;
 
     /** 外键：user.user_id 创建方案的工程师ID */

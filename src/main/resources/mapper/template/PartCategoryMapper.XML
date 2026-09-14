@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="module.template.mapper.ParamTemplateMapper">
 
-    <select id="getTemplateDetailWithAuditName" resultType="com.xxx.entity.ParamTemplate">
+    <select id="getTemplateDetailWithAuditName" resultType="module.template.entity.ParamTemplate">
         SELECT
-        t.*, u.user_name AS audit_user_name
+        t.*, u.real_name AS audit_user_name
         FROM param_template t 
         LEFT JOIN sys_user u 
         ON
-        t.audit_user_id = u.id WHERE t.template_id = #{templateId} 
+        t.audit_user_id = u.user_id WHERE t.template_id = #{templateId} 
     </select>
 </mapper>

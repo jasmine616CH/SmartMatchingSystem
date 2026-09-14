@@ -1,5 +1,8 @@
 package module.scheme.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,9 +15,11 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@TableName("scheme_conflict_log")
 public class SchemeConflictLog {
 
     /** 主键ID（雪花算法，业务生成） */
+    @TableId
     private Long conflictId;
 
     /** 外键：selection_scheme.scheme_id 所属方案 */

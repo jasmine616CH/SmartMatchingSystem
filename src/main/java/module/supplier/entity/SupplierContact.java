@@ -1,5 +1,7 @@
 package module.supplier.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,6 +19,7 @@ import java.time.LocalDateTime;
 public class SupplierContact {
 
     /** 主键ID（雪花算法，业务生成） */
+    @TableId
     private Long contactId;
 
     /** 外键：supplier.supplier_id 所属供应商 */

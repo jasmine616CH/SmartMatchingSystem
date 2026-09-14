@@ -1,30 +1,34 @@
 package module.supplier.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import module.supplier.dto.AddSupplierDTO;
-import module.supplier.dto.SupplierUpdateDateDTO;
-import module.supplier.entity.Supplier;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.Param;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+
+import module.supplier.dto.SupplierQueryDTO;
+import module.supplier.entity.Supplier;
+import module.supplier.vo.SupplierListVO;
 
 /**
  * 对应供应商主体表(supplier)
+ * <p>
+ * 原实现用注解写了 @Insert / @Update，存在列名与参数名不匹配、硬编码库名、
+ * 一个方法挂两个 @Update 等问题，已全部移除：单表增删改走 BaseMapper，
+ * 列表联查（需要 sys_user 取审批人姓名）走 XML。
  */
 @Mapper
 public interface SupplierMapper extends BaseMapper<Supplier> {
 
     /**
-     * 新增供应商
-     * @param dto 供应商信息
+     * 分页查询供应商列表（联表带出审批人姓名，支持按联系人姓名筛选）
+     * <p>
+     * page 必须是首个入参，分页插件据此改写 SQL 并回填 total。
+     *
+     * @param page 分页对象
+     * @param dto  查询条件，全部可选
+     * @return 分页结果
      */
-    @Insert("insert into ugvc_db.supplier(supplier_id, supplier_name, supply_scope, credit_code, address, status, remark) " +
-            "VALUES (#{supplier_id},#{supplier_name},#{supplier_scope},#{credit_code},#{address},1,#{remark})")
-    void addSupplier(AddSupplierDTO dto);
-
-    @Update("update ugvc_db.supplier set supplier_name=#{supplier_id}, credit_code=#{credit_code}, address=#{address}, supply_scope=#{supplier_scope}, remark=#{remark} " +
-            "where supplier_id=#{supplier_id}")
-    @Update("update ugvc_db.supplier_contact set name=#{name}, position=#{position}, phone=#{phone}, email=#{email} " +
-            "where supplier_id=#{supplier_id}")
-    void updateSupplierDate(SupplierUpdateDateDTO dto);
+    Page<SupplierListVO> selectSupplierPage(Page<SupplierListVO> page,
+            @Param("dto") SupplierQueryDTO dto);
 }

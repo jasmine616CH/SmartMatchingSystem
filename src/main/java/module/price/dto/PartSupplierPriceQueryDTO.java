@@ -43,7 +43,7 @@ public class PartSupplierPriceQueryDTO {
     /** 配件发布状态：0-草稿 1-正式发布；不传即不过滤 */
     private Integer publishingStatus;
 
-    /** 供应商状态：0-停用 1-启用；不传即不过滤 */
+    /** 供应商状态：0-草稿 1-待审核 2-已发布；不传即不过滤 */
     private Integer supplierStatus;
 
     // ==================== 模糊匹配 ====================

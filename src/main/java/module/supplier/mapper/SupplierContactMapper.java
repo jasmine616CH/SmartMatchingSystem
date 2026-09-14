@@ -1,22 +1,17 @@
 package module.supplier.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import module.supplier.dto.AddSupplierDTO;
-import module.supplier.entity.SupplierContact;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import module.supplier.entity.SupplierContact;
+
 /**
- * 对应供应商联系人表(supplier-contact)
+ * 对应供应商联系人表(supplier_contact)
+ * <p>
+ * 原实现的 @Insert 使用 #{contact_id} / #{supplier_id} 下划线占位符，
+ * 与 DTO 的驼峰属性对不上，且硬编码了 ugvc_db. 库名，已移除，统一走 BaseMapper。
  */
 @Mapper
 public interface SupplierContactMapper extends BaseMapper<SupplierContact> {
-
-    /**
-     * 新增供应商联系方式
-     * @param dto 供应商联系人信息
-     */
-    @Insert("insert into ugvc_db.supplier_contact(contact_id, supplier_id, name, position, phone, email) " +
-            "VALUES (#{contact_id},#{supplier_id},#{name},#{position},#{phone},#{email})")
-    void addSupplierContact(AddSupplierDTO dto);
 }
