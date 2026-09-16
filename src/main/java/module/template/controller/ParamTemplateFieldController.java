@@ -51,7 +51,7 @@ public class ParamTemplateFieldController {
      * @return
      * @author 徐宝福
      */
-    @GetMapping("/{templateId}")
+    @GetMapping("/field/list/{templateId}")
     public Result<List<ParamTemplateFieldListVO>> queryTemplateFieldList(
             @NotNull(message = "templateId 不能为空") @PathVariable Long templateId) {
         return Result.success(paramTemplateFieldService.queryTemplateFieldList(templateId));
@@ -83,7 +83,10 @@ public class ParamTemplateFieldController {
      * @return
      * @author 徐宝福
      */
-    @GetMapping("/field/{templateId}")
+    // 原路径是 /field/{templateId}，与上面的 /field/{fieldId} 是同一个模式（Spring 按字符串比较
+    // 认作不同模式所以启动不报错，但请求进来时会 Ambiguous handler methods → 500）。
+    // 这里补上区分段：查询「当前模板」的字段列表
+    @GetMapping("/field/current/{templateId}")
     public Result<List<CurrentTemplateFieldListVO>> queryCurrentTemplateFieldList(
             @NotNull(message = "templateId 不能为空") @PathVariable Long templateId) {
         return Result.success(paramTemplateFieldService.queryCurrentTemplateFieldList(templateId));

@@ -1,18 +1,12 @@
 package module.system.dto;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 @Data
 public class AddAccountDTO {
 
-    /**
-     * 雪花ID
-     */
-    @TableId(value = "user_id", type = IdType.ASSIGN_ID)
-    private Long userId;
+
 
     /**
      * 用户名

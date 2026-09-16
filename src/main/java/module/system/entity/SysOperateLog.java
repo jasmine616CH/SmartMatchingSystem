@@ -1,5 +1,8 @@
 package module.system.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,14 +13,16 @@ import common.enums.OperateModule;
 import common.enums.OperateType;
 
 /**
- * 审计日志表 (sys_audit_log)
+ * 操作日志表 (sys_operate_log)
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@TableName("sys_operate_log")
 public class SysOperateLog {
 
     /** 主键ID（雪花算法，业务生成） */
+    @TableId
     private Long logId;
 
     /** 外键：user.user_id 操作人ID */

@@ -2,12 +2,15 @@ package module.scheme.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import module.scheme.dto.SchemeCompareQueryDTO;
+import module.scheme.dto.SchemeCopyDTO;
 import module.scheme.dto.SchemePartQuantityDTO;
 import module.scheme.dto.SchemePartQueryDTO;
 import module.scheme.dto.SchemeQueryDTO;
 import module.scheme.dto.SchemeSaveSelectionDTO;
 import module.scheme.dto.SchemeUpdateDTO;
 import module.scheme.vo.SchemeBriefVO;
+import module.scheme.vo.SchemeCompareVO;
 import module.scheme.vo.SchemeDetailVO;
 import module.scheme.vo.SchemePartVO;
 import module.scheme.vo.SchemeSummaryVO;
@@ -90,4 +93,24 @@ public interface SelectionSchemeService {
      * @return 校验结果
      */
     SchemeValidateResultVO validateScheme(Long schemeId);
+
+    /**
+     * 候选件并排比较
+     * <p>
+     * 返回「参数 × 配件」矩阵，每个格子标注满足/临界/不满足/缺失。
+     *
+     * @param dto 比较入参
+     * @return 比较矩阵
+     */
+    SchemeCompareVO compareSchemes(SchemeCompareQueryDTO dto);
+
+    /**
+     * 复制方案（历史方案复用）
+     * <p>明细整体复制，原方案不受影响。
+     *
+     * @param schemeId 被复制的方案ID
+     * @param dto      新方案信息
+     * @return 新方案ID
+     */
+    Long copyScheme(Long schemeId, SchemeCopyDTO dto);
 }

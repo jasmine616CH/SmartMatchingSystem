@@ -34,4 +34,10 @@ public class ParamFieldCheckRuleSaveDTO {
      * 0禁用 1启用
      */
     private Integer status;
+
+    /**
+     * 约束强度：0-硬性约束（不满足即判为不满足） 1-偏好条件（不满足判为临界，参与匹配度计算）
+     * <p>不传按 0-硬性约束 处理（与库中默认值一致）。
+     */
+    private Integer severity;
 }

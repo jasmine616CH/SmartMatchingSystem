@@ -19,6 +19,10 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import module.compat.service.ConflictCheckService;
+import module.compat.vo.ConflictResultVO;
+import module.scheme.dto.SchemeCompareQueryDTO;
+import module.scheme.dto.SchemeCopyDTO;
 import module.scheme.dto.SchemePartQuantityDTO;
 import module.scheme.dto.SchemePartQueryDTO;
 import module.scheme.dto.SchemeQueryDTO;
@@ -26,6 +30,7 @@ import module.scheme.dto.SchemeSaveSelectionDTO;
 import module.scheme.dto.SchemeUpdateDTO;
 import module.scheme.service.SelectionSchemeService;
 import module.scheme.vo.SchemeBriefVO;
+import module.scheme.vo.SchemeCompareVO;
 import module.scheme.vo.SchemeDetailVO;
 import module.scheme.vo.SchemePartVO;
 import module.scheme.vo.SchemeSummaryVO;
@@ -44,6 +49,8 @@ import module.system.annotation.OperateLog;
 public class SelectionSchemeController {
 
     private final SelectionSchemeService selectionSchemeService;
+
+    private final ConflictCheckService conflictCheckService;
 
     /**
      * 保存选配结果为方案
@@ -164,5 +171,50 @@ public class SelectionSchemeController {
     public Result<SchemeValidateResultVO> validateScheme(
             @NotNull(message = "schemeId不能为空") @PathVariable("schemeId") Long schemeId) {
         return Result.success(selectionSchemeService.validateScheme(schemeId));
+    }
+
+    /**
+     * 跨配件兼容性冲突检测
+     * <p>
+     * 检测结果覆盖式写入 scheme_conflict_log，重复调用不会累积重复记录。
+     *
+     * @param schemeId 方案主键ID
+     * @return 检测结果
+     */
+    @OperateLog(operateDesc = "方案兼容性冲突检测", operateType = OperateType.AUDIT, operateModule = OperateModule.COMPATIBLE_RULE)
+    @PostMapping("/{schemeId}/conflict-check")
+    public Result<ConflictResultVO> checkConflict(
+            @NotNull(message = "schemeId不能为空") @PathVariable("schemeId") Long schemeId) {
+        return Result.success(conflictCheckService.checkScheme(schemeId));
+    }
+
+    /**
+     * 候选件并排比较
+     * <p>
+     * 返回「参数 × 配件」矩阵，每个格子标注满足/临界/不满足/缺失。
+     * 不传 partIds 时取该分类下全部已发布配件（最多 10 个）。
+     *
+     * @param dto 比较入参
+     * @return 比较矩阵
+     */
+    @GetMapping("/compare")
+    public Result<SchemeCompareVO> compareSchemes(
+            @Valid SchemeCompareQueryDTO dto) {
+        return Result.success(selectionSchemeService.compareSchemes(dto));
+    }
+
+    /**
+     * 复制方案（历史方案复用）
+     *
+     * @param schemeId 被复制的方案ID
+     * @param dto      新方案信息
+     * @return 新方案ID
+     */
+    @OperateLog(operateDesc = "复制选型方案", operateType = OperateType.ADD, operateModule = OperateModule.SCHEME)
+    @PostMapping("/{schemeId}/copy")
+    public Result<Long> copyScheme(
+            @NotNull(message = "schemeId不能为空") @PathVariable("schemeId") Long schemeId,
+            @Valid @RequestBody SchemeCopyDTO dto) {
+        return Result.success(selectionSchemeService.copyScheme(schemeId, dto));
     }
 }

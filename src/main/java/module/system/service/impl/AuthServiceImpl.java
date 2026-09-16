@@ -2,6 +2,7 @@ package module.system.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import common.enums.UserType;
 import common.exception.BusinessException;
 import common.result.ResultCode;
 import config.token.JwtTokenProvider;
@@ -10,6 +11,7 @@ import module.system.dto.RegisterDTO;
 import module.system.dto.LoginDTO;
 import module.system.entity.SysUser;
 import module.system.mapper.SysUserMapper;
+import module.system.service.AccountService;
 import module.system.service.RedisService;
 import module.system.vo.LoginVo;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -30,6 +32,8 @@ public class AuthServiceImpl implements AuthService {
     private final JwtTokenProvider jwtTokenProvider;
     private final RedisService redisService;
     private final PasswordEncoder passwordEncoder;
+
+    private final AccountService accountService;
     private final StringRedisTemplate stringRedisTemplate;
 
     /**
@@ -40,12 +44,12 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public LoginVo login(LoginDTO loginDTO) {
 
-        //1.根据学号/教职工查询
+        //1.按登录账号查询（sys_user 的账号列是 username，原来写的 "ID" 这张表没有）
         QueryWrapper<SysUser> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("ID" , loginDTO.getUsername());
+        queryWrapper.eq("username", loginDTO.getUsername());
+        // 不写 select 白名单：原实现漏选了 user_id，导致后续按 userId 查角色永远查不到
 
         //2.条件查询用户信息
-        queryWrapper.select("username" , "real_name" , "user_type" , "password" , "status");
         SysUser user = userMapper.selectOne(queryWrapper);
 
         //3.检验用户是否存在
@@ -53,14 +57,14 @@ public class AuthServiceImpl implements AuthService {
             throw new BusinessException(ResultCode.USER_NOT_FOUND);
         }
 
-        //4.检验用户是否在黑名单
-        if (user.getStatus() == 0){
+        //4.检验账号是否被冻结（status 是 Integer，直接 == 0 拆箱会 NPE）
+        if (Integer.valueOf(0).equals(user.getStatus())){
             throw new BusinessException(ResultCode.USER_LOGOUT_FAIL);
         }
 
-        //5.检验用户密码
-        String rawPassword = user.getPassword();
-        if(!passwordEncoder.matches(rawPassword, user.getPassword())) {
+        //5.校验密码：用前端传的明文跟库里的哈希比。
+        //  原实现把 user.getPassword() 同时当明文和哈希传进去，等于拿哈希跟哈希比，永远 false
+        if(!passwordEncoder.matches(loginDTO.getPassword(), user.getPassword())) {
             throw new BusinessException(ResultCode.PASSWORD_ERROR);
         }
 
@@ -94,14 +98,13 @@ public class AuthServiceImpl implements AuthService {
             throw new BusinessException(ResultCode.USER_ALREADY_EXISTS);
         }
 
-        SysUser user = SysUser.builder()
-                .username(registerDTO.getPhone())
-                .realName(registerDTO.getRealName())
-                .phone(registerDTO.getPhone())
-                .email(registerDTO.getEmail())
-                .password(passwordEncoder.encode(registerDTO.getPassword()))
-                .build();
-
-        userMapper.insert(user);
+        // 自助注册一律是方案工程师，角色由后端硬编码，RegisterDTO 不接受角色字段（杜绝提权）
+        accountService.createAccount(
+                registerDTO.getPhone(),          // 登录账号沿用手机号
+                registerDTO.getRealName(),
+                registerDTO.getPhone(),
+                registerDTO.getEmail(),
+                registerDTO.getPassword(),
+                UserType.SELF_REGISTER_TYPE);
     }
 }

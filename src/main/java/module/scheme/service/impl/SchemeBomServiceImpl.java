@@ -68,7 +68,7 @@ public class SchemeBomServiceImpl implements SchemeBomService {
     private static final int IS_SELECT_BOM = 1;
 
     /** 配件参与选型的状态值 */
-    private static final int PUBLISHING_STATUS_PUBLISHED = 1;
+    private static final int PUBLISHING_STATUS_PUBLISHED = 2;
 
     /**
      * 导出方案 BOM 为 Excel

@@ -8,7 +8,7 @@ import lombok.Getter;
  * 1-待审核 PENDING_AUDIT
  * 2-已发布 PUBLISHED
  * <p>
- * 与 {@link TemplateStatus} 保持同构，便于审批流共用同一套状态守卫写法。
+ * 与 {@link PublishStatus} 状态值同构（0草稿/1待审核/2已发布），便于审批流共用同一套状态守卫写法。
  */
 @Getter
 public enum SupplierStatus {

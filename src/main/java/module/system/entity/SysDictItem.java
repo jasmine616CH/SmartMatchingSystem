@@ -1,5 +1,8 @@
 package module.system.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +18,7 @@ import java.time.LocalDateTime;
 public class SysDictItem {
 
     /** 主键ID（雪花算法，业务生成） */
+    @TableId
     private Long dictItemId;
 
     /** 外键：sys_dict_type.dict_type_id 字典分类主键 */

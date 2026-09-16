@@ -16,7 +16,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 public enum BizType implements IEnum<String> {
 
     SUPPLIER("SUPPLIER", "供应商主体"),
-    SUPPLIER_QUALIFICATION("SUPPLIER_QUALIFICATION", "供应商资质");
+    SUPPLIER_QUALIFICATION("SUPPLIER_QUALIFICATION", "供应商资质"),
+    PARAM_TEMPLATE("PARAM_TEMPLATE", "配件参数模板"),
+    PART_INFO("PART_INFO", "配件档案"),
+    PART_CATEGORY("PART_CATEGORY", "配件分类");
 
     /** 数据库存储编码 */
     private final String code;

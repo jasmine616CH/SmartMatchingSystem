@@ -1,5 +1,7 @@
 package module.system.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,6 +20,7 @@ import java.time.LocalDateTime;
 public class SysUser{
 
     /** 主键ID（雪花算法，业务生成） */
+    @TableId
     private Long userId;
 
     /** 登录账号，全局唯一 */

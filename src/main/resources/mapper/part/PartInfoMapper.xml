@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="module.part.mapper.PartInfoMapper">
+
+    <!--
+        配件档案详情：联出分类名、模板名、维护人与审批人姓名。
+        sys_user 的主键列是 user_id、姓名列是 real_name。
+    -->
+    <resultMap id="PartInfoDetailMap" type="module.part.vo.PartInfoDetailVO">
+        <result property="partId"               column="part_id"/>
+        <result property="partCode"             column="part_code"/>
+        <result property="catId"                column="cat_id"/>
+        <result property="catName"              column="cat_name"/>
+        <result property="catCode"              column="cat_code"/>
+        <result property="templateId"           column="template_id"/>
+        <result property="templateName"         column="template_name"/>
+        <result property="brand"                column="brand"/>
+        <result property="model"                column="model"/>
+        <result property="lifeStatus"           column="life_status"/>
+        <result property="adaptPlatform"        column="adapt_platform"/>
+        <result property="publishingStatus"     column="publishing_status"/>
+        <result property="maintainUserId"       column="maintain_user_id"/>
+        <result property="maintainUserName"     column="maintain_user_name"/>
+        <result property="auditUserId"          column="audit_user_id"/>
+        <result property="auditUserName"        column="audit_user_name"/>
+        <result property="remark"               column="remark"/>
+        <result property="createTime"           column="create_time"/>
+        <result property="updateTime"           column="update_time"/>
+    </resultMap>
+
+    <select id="selectPartDetail" resultMap="PartInfoDetailMap">
+        SELECT
+            pi.part_id,
+            pi.part_code,
+            pi.cat_id,
+            pi.template_id,
+            pi.brand,
+            pi.model,
+            pi.life_status,
+            pi.adapt_platform,
+            pi.publishing_status,
+            pi.maintain_user_id,
+            pi.audit_user_id,
+            pi.remark,
+            pi.create_time,
+            pi.update_time,
+            pc.cat_name,
+            pc.cat_code,
+            pt.template_name,
+            mu.real_name AS maintain_user_name,
+            au.real_name AS audit_user_name
+        FROM part_info pi
+            LEFT JOIN part_category pc ON pc.cat_id = pi.cat_id
+            LEFT JOIN param_template pt ON pt.template_id = pi.template_id
+            LEFT JOIN sys_user mu ON mu.user_id = pi.maintain_user_id
+            LEFT JOIN sys_user au ON au.user_id = pi.audit_user_id
+        WHERE pi.part_id = #{partId}
+    </select>
+
+    <!-- 配件列表：联出分类名与维护人姓名（BaseMapper 的单表查询取不到这两项） -->
+    <resultMap id="PartInfoListMap" type="module.part.vo.PartInfoListVO">
+        <result property="partId"               column="part_id"/>
+        <result property="partCode"             column="part_code"/>
+        <result property="catId"                column="cat_id"/>
+        <result property="catName"              column="cat_name"/>
+        <result property="templateId"           column="template_id"/>
+        <result property="brand"                column="brand"/>
+        <result property="model"                column="model"/>
+        <result property="lifeStatus"           column="life_status"/>
+        <result property="adaptPlatform"        column="adapt_platform"/>
+        <result property="publishingStatus"     column="publishing_status"/>
+        <result property="maintainUserId"       column="maintain_user_id"/>
+        <result property="maintainUserName"     column="maintain_user_name"/>
+        <result property="auditUserId"          column="audit_user_id"/>
+        <result property="remark"               column="remark"/>
+    </resultMap>
+
+    <select id="selectPartPage" resultMap="PartInfoListMap">
+        SELECT
+            pi.part_id,
+            pi.part_code,
+            pi.cat_id,
+            pi.template_id,
+            pi.brand,
+            pi.model,
+            pi.life_status,
+            pi.adapt_platform,
+            pi.publishing_status,
+            pi.maintain_user_id,
+            pi.audit_user_id,
+            pi.remark,
+            pc.cat_name,
+            mu.real_name AS maintain_user_name
+        FROM part_info pi
+            LEFT JOIN part_category pc ON pc.cat_id = pi.cat_id
+            LEFT JOIN sys_user mu ON mu.user_id = pi.maintain_user_id
+        WHERE pi.cat_id = #{catId}
+        ORDER BY pi.part_id DESC
+    </select>
+
+</mapper>

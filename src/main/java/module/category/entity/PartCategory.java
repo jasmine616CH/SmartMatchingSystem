@@ -35,6 +35,12 @@ public class PartCategory {
     /** 树形展示排序 */
     private Integer sort;
 
+    /** 状态：0-草稿 1-待审核 2-已发布 */
+    private Integer status;
+
+    /** 外键：sys_user.user_id 审批人用户ID，草稿状态为空 */
+    private Long auditUserId;
+
     /** 分类业务说明 */
     private String remark;
 

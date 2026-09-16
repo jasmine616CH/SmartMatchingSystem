@@ -38,6 +38,10 @@ public class SecurityConfig {
                         .requestMatchers("/actuator/**").permitAll()
                         // 放行登录注册
                         .requestMatchers("/api/user/**").permitAll()
+                        // 认证接口必须匿名可达：否则「登录需要先登录」形成死锁，
+                        // 任何人都拿不到 token。这里只放行这三个，logout 仍需携带 token。
+                        .requestMatchers("/api/auth/login", "/api/auth/register",
+                                "/api/auth/refresh-token").permitAll()
                         // 放行WebSocket
                         .requestMatchers("/ws/**").permitAll()
                         // 放行文档

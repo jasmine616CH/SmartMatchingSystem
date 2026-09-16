@@ -38,11 +38,14 @@ public class PartInfo {
     /** 生命周期：new-新品 mass-量产 stop-停产 */
     private String lifeStatus;
 
-    // /** 适配无人车平台/车型 */
-    // private String adaptPlatform;
+    /** 适配无人车平台/车型，多个用逗号分隔 */
+    private String adaptPlatform;
 
-    /** 发布状态：0-草稿 1-正式发布，仅发布配件可参与选型 */
+    /** 发布状态：0-草稿 1-待审核 2-已发布，仅已发布配件可参与选型 */
     private Integer publishingStatus;
+
+    /** 外键：sys_user.user_id 审批人用户ID，草稿状态为空 */
+    private Long auditUserId;
 
     /** 配件维护负责人ID */
     private Long maintainUserId;

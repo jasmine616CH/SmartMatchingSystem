@@ -1,6 +1,7 @@
 package module.scheme.service.impl;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -21,6 +22,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import common.exception.BusinessException;
+import common.enums.ParamMatchStatus;
+import common.enums.RuleSeverity;
 import common.result.ResultCode;
 import common.until.AviatorRuleUtil;
 import common.until.SecurityUtils;
@@ -28,8 +31,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import module.part.dto.PartParamValueQueryDTO;
 import module.part.entity.PartInfo;
+import module.category.entity.PartCategory;
+import module.category.mapper.PartCategoryMapper;
 import module.part.mapper.PartInfoMapper;
 import module.part.mapper.PartParamValueMapper;
+import module.scheme.dto.SchemeCompareQueryDTO;
+import module.scheme.dto.SchemeCopyDTO;
 import module.scheme.dto.SchemePartQuantityDTO;
 import module.scheme.dto.SchemePartQueryDTO;
 import module.scheme.dto.SchemeQueryDTO;
@@ -42,7 +49,14 @@ import module.scheme.mapper.SchemeConflictLogMapper;
 import module.scheme.mapper.SchemePartMapper;
 import module.scheme.mapper.SelectionSchemeMapper;
 import module.scheme.service.SelectionSchemeService;
+import module.price.mapper.PartSupplierPriceMapper;
+import module.price.vo.PartUnitPriceVO;
 import module.scheme.support.SchemePartVoFiller;
+import module.scheme.vo.CompareCellVO;
+import module.scheme.vo.ComparePartVO;
+import module.scheme.vo.CompareRowVO;
+import module.scheme.vo.MissingParamVO;
+import module.scheme.vo.SchemeCompareVO;
 import module.scheme.vo.SchemeBriefVO;
 import module.scheme.vo.SchemeDetailVO;
 import module.scheme.vo.SchemePartVO;
@@ -77,13 +91,29 @@ public class SelectionSchemeServiceImpl implements SelectionSchemeService {
 
     private final ParamFieldCheckRuleMapper paramFieldCheckRuleMapper;
 
+    private final PartCategoryMapper partCategoryMapper;
+
+    private final PartSupplierPriceMapper partSupplierPriceMapper;
+
     private final ObjectMapper objectMapper;
 
     /** 配件参与选型的状态值：仅正式发布的配件可以进入方案 */
-    private static final int PUBLISHING_STATUS_PUBLISHED = 1;
+    private static final int PUBLISHING_STATUS_PUBLISHED = 2;
 
     /** 正式 BOM 标记 */
     private static final int IS_SELECT_BOM = 1;
+
+    /** 并排比较一次最多参与的候选件数 */
+    private static final int MAX_CANDIDATES = 10;
+
+    /** 必填类型：非必填 */
+    private static final int REQUIRED_TYPE_NONE = 0;
+
+    /** 必填类型：全局必填 */
+    private static final int REQUIRED_TYPE_ALWAYS = 1;
+
+    /** 必填类型：条件必填 */
+    private static final int REQUIRED_TYPE_CONDITION = 2;
 
     /**
      * 保存选配结果为方案
@@ -256,9 +286,18 @@ public class SelectionSchemeServiceImpl implements SelectionSchemeService {
     /**
      * 方案参数合法性校验
      * <p>
-     * 逐条执行校验规则且不中断，收集全部失败项一并返回。
+     * 每个参数落到四种判定态之一：满足 / 临界 / 不满足 / 缺失。
+     * <ul>
+     *   <li>硬性约束（severity=0）未通过 → 不满足，计入 failCount，直接影响 pass</li>
+     *   <li>偏好条件（severity=1）未通过 → 临界，只计入 softFailCount，不影响 pass</li>
+     *   <li>必填参数未录入 → 缺失，计入 missingCount，直接影响 pass</li>
+     * </ul>
+     * 逐条执行不中断，收集全部问题一并返回。
+     * <p>
+     * 同时把算出的参数匹配度写回 {@code scheme_part.match_score}，供明细分页按匹配度排序。
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public SchemeValidateResultVO validateScheme(Long schemeId) {
         getSchemeOrThrow(schemeId);
 
@@ -269,6 +308,8 @@ public class SelectionSchemeServiceImpl implements SelectionSchemeService {
         List<SchemePartValidateVO> results = new ArrayList<>();
         int ruleCount = 0;
         int failCount = 0;
+        int softFailCount = 0;
+        int missingCount = 0;
 
         if (!schemeParts.isEmpty()) {
             // 一次性把配件信息、模板字段、校验规则都取出来，避免逐条查库
@@ -286,45 +327,92 @@ public class SelectionSchemeServiceImpl implements SelectionSchemeService {
                     continue;
                 }
                 List<ParamTemplateField> fields = fieldMap.getOrDefault(part.getTemplateId(), List.of());
-                Map<Long, Object> valueMap = loadParamValues(schemePart.getPartId(),
+                PartParamContext paramContext = loadParamContext(schemePart.getPartId(),
                         codeToFieldMap.getOrDefault(part.getTemplateId(), Map.of()));
 
                 List<ValidateFailItemVO> failItems = new ArrayList<>();
+                List<ValidateFailItemVO> warnItems = new ArrayList<>();
+                List<MissingParamVO> missingItems = new ArrayList<>();
+                // 偏好条件的通过数，用于算匹配度
+                int preferenceTotal = 0;
+                int preferencePassed = 0;
+
                 for (ParamTemplateField field : fields) {
                     List<ParamFieldCheckRule> rules = ruleMap.getOrDefault(field.getFieldId(), List.of());
+                    Object value = paramContext.byFieldId().get(field.getFieldId());
+
+                    // 缺失：必填（含条件必填成立）但没录入值
+                    if (value == null) {
+                        ruleCount += rules.size();
+                        if (isRequired(field, paramContext.byCode())) {
+                            missingCount++;
+                            missingItems.add(toMissingItem(field, rules.size()));
+                        }
+                        continue;
+                    }
                     if (rules.isEmpty()) {
                         continue;
                     }
                     ruleCount += rules.size();
 
-                    Object value = valueMap.get(field.getFieldId());
-                    // 区间参数不参与表达式校验（与 module.part 既有语义一致）
-                    if (value == null) {
-                        continue;
-                    }
-                    List<ParamFieldCheckRule> failed =
-                            AviatorRuleUtil.executeAllFailedRule(rules, buildAviatorEnv(field, value));
-                    failCount += failed.size();
-                    for (ParamFieldCheckRule rule : failed) {
+                    // 按约束强度拆开跑：硬性不过 = 不满足，偏好不过 = 临界
+                    List<ParamFieldCheckRule> hardRules = rules.stream()
+                            .filter(r -> RuleSeverity.isHard(r.getSeverity()))
+                            .toList();
+                    List<ParamFieldCheckRule> softRules = rules.stream()
+                            .filter(r -> !RuleSeverity.isHard(r.getSeverity()))
+                            .toList();
+
+                    Map<String, Object> env = buildAviatorEnv(field, value);
+                    for (ParamFieldCheckRule rule : AviatorRuleUtil.executeAllFailedRule(hardRules, env)) {
                         failItems.add(toFailItem(field, rule, value));
                     }
+                    List<ParamFieldCheckRule> softFailed =
+                            AviatorRuleUtil.executeAllFailedRule(softRules, env);
+                    for (ParamFieldCheckRule rule : softFailed) {
+                        warnItems.add(toFailItem(field, rule, value));
+                    }
+                    preferenceTotal += softRules.size();
+                    preferencePassed += softRules.size() - softFailed.size();
                 }
 
-                if (!failItems.isEmpty()) {
+                failCount += failItems.size();
+                softFailCount += warnItems.size();
+
+                // 匹配度 = 通过的偏好条件 / 偏好条件总数；没有偏好条件则不写库（保持 0 = 未计算）
+                BigDecimal matchScore = null;
+                if (preferenceTotal > 0) {
+                    matchScore = BigDecimal.valueOf(preferencePassed)
+                            .multiply(BigDecimal.valueOf(100))
+                            .divide(BigDecimal.valueOf(preferenceTotal), 2, RoundingMode.HALF_UP);
+                    SchemePart update = new SchemePart();
+                    update.setSchemePartId(schemePart.getSchemePartId());
+                    update.setMatchScore(matchScore);
+                    schemePartMapper.updateById(update);
+                }
+
+                if (!failItems.isEmpty() || !warnItems.isEmpty() || !missingItems.isEmpty()) {
                     SchemePartValidateVO partResult = new SchemePartValidateVO();
                     partResult.setSchemePartId(schemePart.getSchemePartId());
                     partResult.setPartId(schemePart.getPartId());
+                    partResult.setPartCode(part.getPartCode());
                     partResult.setPartName(SchemePartVoFiller.buildPartName(null, part.getModel()));
                     partResult.setFailItems(failItems);
+                    partResult.setWarnItems(warnItems);
+                    partResult.setMissingItems(missingItems);
+                    partResult.setMatchScore(matchScore);
                     results.add(partResult);
                 }
             }
         }
 
         SchemeValidateResultVO vo = new SchemeValidateResultVO();
-        vo.setPass(failCount == 0);
+        // 硬性约束全过且必填齐全才算通过；偏好条件不满足不影响 pass
+        vo.setPass(failCount == 0 && missingCount == 0);
         vo.setRuleCount(ruleCount);
         vo.setFailCount(failCount);
+        vo.setSoftFailCount(softFailCount);
+        vo.setMissingCount(missingCount);
         vo.setResults(results);
         return vo;
     }
@@ -498,6 +586,16 @@ public class SelectionSchemeServiceImpl implements SelectionSchemeService {
     }
 
     /**
+     * 一个配件已录入的参数值，同时提供两种索引
+     * <ul>
+     *   <li>byFieldId —— 按模板字段ID索引，用于把值喂给校验表达式</li>
+     *   <li>byCode —— 按 paramCode 索引，用于给条件必填表达式求值（表达式里写的是参数编码）</li>
+     * </ul>
+     */
+    private record PartParamContext(Map<Long, Object> byFieldId, Map<String, Object> byCode) {
+    }
+
+    /**
      * 取某配件已录入的参数值，key 为 fieldId
      * <p>
      * selectValueListByPartId 返回的是 paramCode，需要经调用方预先构建好的
@@ -507,14 +605,15 @@ public class SelectionSchemeServiceImpl implements SelectionSchemeService {
      * @param partId       配件主键ID
      * @param codeToField  该配件所属模板的 paramCode → fieldId 映射
      */
-    private Map<Long, Object> loadParamValues(Long partId, Map<String, Long> codeToField) {
-        Map<Long, Object> map = new HashMap<>();
+    private PartParamContext loadParamContext(Long partId, Map<String, Long> codeToField) {
+        Map<Long, Object> byFieldId = new HashMap<>();
+        Map<String, Object> byCode = new HashMap<>();
         if (partId == null || codeToField.isEmpty()) {
-            return map;
+            return new PartParamContext(byFieldId, byCode);
         }
         List<PartParamValueQueryDTO> values = partParamValueMapper.selectValueListByPartId(partId);
         if (values == null || values.isEmpty()) {
-            return map;
+            return new PartParamContext(byFieldId, byCode);
         }
         for (PartParamValueQueryDTO value : values) {
             Long fieldId = codeToField.get(value.getParamCode());
@@ -523,10 +622,50 @@ public class SelectionSchemeServiceImpl implements SelectionSchemeService {
             }
             Object resolved = resolveParamValue(value);
             if (resolved != null) {
-                map.put(fieldId, resolved);
+                byFieldId.put(fieldId, resolved);
+                byCode.put(value.getParamCode(), resolved);
             }
         }
-        return map;
+        return new PartParamContext(byFieldId, byCode);
+    }
+
+    /**
+     * 判断参数是否为「当前必须填写」
+     * <p>
+     * 与 module.part 的既有语义保持一致：required_type 为空或 0 视为非必填；
+     * 1 为全局必填；2 为条件必填，条件表达式为真时才算必填。
+     *
+     * @param field    模板参数字段
+     * @param paramMap 该配件已录入的参数（key 为 paramCode），条件表达式据此求值
+     */
+    private boolean isRequired(ParamTemplateField field, Map<String, Object> paramMap) {
+        Integer type = field.getRequiredType();
+        if (type == null || REQUIRED_TYPE_NONE == type) {
+            return false;
+        }
+        if (REQUIRED_TYPE_ALWAYS == type) {
+            return true;
+        }
+        if (REQUIRED_TYPE_CONDITION == type) {
+            return AviatorRuleUtil.isRequiredField(field.getRequiredExpression(), paramMap);
+        }
+        // 未知取值一律按非必填处理，避免脏数据把整个方案判成缺失
+        return false;
+    }
+
+    /**
+     * 组装一条缺失项
+     */
+    private MissingParamVO toMissingItem(ParamTemplateField field, int ruleCount) {
+        MissingParamVO item = new MissingParamVO();
+        item.setFieldId(field.getFieldId());
+        item.setParamCode(field.getParamCode());
+        item.setParamCn(field.getParamCn());
+        item.setUnit(field.getUnit());
+        item.setRequiredType(field.getRequiredType());
+        item.setRequiredTypeName(REQUIRED_TYPE_ALWAYS == field.getRequiredType() ? "全局必填" : "条件必填");
+        item.setRuleCount(ruleCount);
+        return item;
     }
 
     /**
@@ -615,5 +754,257 @@ public class SelectionSchemeServiceImpl implements SelectionSchemeService {
             log.warn("整车需求反序列化失败，按空对象处理: {}", json, e);
             return new HashMap<>();
         }
+    }
+
+    /**
+     * 候选件并排比较
+     * <p>
+     * 判定口径与 {@link #validateScheme(Long)} 完全一致（同一套规则、同一套 Aviator），
+     * 区别只是输出形状：校验接口按配件聚合，这里展开成「参数 × 配件」矩阵，
+     * 便于前端把同一参数在不同候选件上的表现横向摆开对比。
+     */
+    @Override
+    public SchemeCompareVO compareSchemes(SchemeCompareQueryDTO dto) {
+        if (dto == null || dto.getCatId() == null) {
+            throw new BusinessException(ResultCode.PARAM_IS_NULL, "catId 不能为空");
+        }
+        PartCategory category = partCategoryMapper.selectById(dto.getCatId());
+        if (category == null) {
+            throw new BusinessException(ResultCode.DATA_NOT_EXIST, "配件分类不存在");
+        }
+
+        List<PartInfo> parts = loadCompareParts(dto);
+        SchemeCompareVO result = new SchemeCompareVO();
+        result.setCatId(dto.getCatId());
+        result.setCatName(category.getCatName());
+        if (parts.isEmpty()) {
+            result.setParts(List.of());
+            result.setRows(List.of());
+            return result;
+        }
+
+        // 参与比较的配件必须同属一个模板，否则参数行对不齐，比较没有意义
+        Set<Long> templateIds = parts.stream()
+                .map(PartInfo::getTemplateId).filter(Objects::nonNull).collect(Collectors.toSet());
+        if (templateIds.size() > 1) {
+            throw new BusinessException(ResultCode.PARAM_VALUE_INVALID,
+                    "所选配件使用了不同的参数模板，无法并排比较");
+        }
+
+        Long templateId = templateIds.isEmpty() ? null : templateIds.iterator().next();
+        Map<Long, List<ParamTemplateField>> fieldMap = templateId == null
+                ? Map.of() : loadFieldsByTemplate(parts);
+        List<ParamTemplateField> fields = fieldMap.getOrDefault(templateId, List.of());
+        Map<Long, List<ParamFieldCheckRule>> ruleMap = loadRulesByField(List.of(fields));
+        Map<String, Long> codeToField = templateId == null ? Map.of()
+                : buildCodeToFieldMap(Map.of(templateId, fields)).getOrDefault(templateId, Map.of());
+
+        // 列头：配件基本信息 + 解析后的单价
+        List<Long> partIds = parts.stream().map(PartInfo::getPartId).toList();
+        Map<Long, PartUnitPriceVO> priceMap = partIds.isEmpty() ? Map.of()
+                : partSupplierPriceMapper.selectUnitPriceByPartIds(partIds).stream()
+                        .collect(Collectors.toMap(PartUnitPriceVO::getPartId, p -> p, (a, b) -> a));
+
+        List<ComparePartVO> partVOs = new ArrayList<>();
+        List<Map<Long, Object>> valueMaps = new ArrayList<>();
+        for (PartInfo part : parts) {
+            ComparePartVO pv = new ComparePartVO();
+            pv.setPartId(part.getPartId());
+            pv.setPartCode(part.getPartCode());
+            pv.setPartName(SchemePartVoFiller.buildPartName(category.getCatName(), part.getModel()));
+            pv.setBrand(part.getBrand());
+            pv.setModel(part.getModel());
+            // 金额固定人民币，与方案明细保持一致
+            pv.setCurrency(SchemePartVoFiller.CURRENCY_CNY);
+            PartUnitPriceVO price = priceMap.get(part.getPartId());
+            if (price != null && price.getPriceValue() != null) {
+                pv.setHasPrice(true);
+                pv.setUnitPrice(price.getPriceValue());
+            } else {
+                pv.setHasPrice(false);
+            }
+            pv.setViolatedCount(0);
+            pv.setWarningCount(0);
+            pv.setMissingCount(0);
+            partVOs.add(pv);
+            valueMaps.add(loadParamContext(part.getPartId(), codeToField).byFieldId());
+        }
+
+        // 参数行：逐参数逐配件判定
+        List<CompareRowVO> rows = new ArrayList<>();
+        for (ParamTemplateField field : fields) {
+            CompareRowVO row = new CompareRowVO();
+            row.setFieldId(field.getFieldId());
+            row.setParamCode(field.getParamCode());
+            row.setParamCn(field.getParamCn());
+            row.setUnit(field.getUnit());
+            row.setDataType(field.getDataType());
+            row.setRequiredType(field.getRequiredType());
+
+            List<ParamFieldCheckRule> rules = ruleMap.getOrDefault(field.getFieldId(), List.of());
+            List<ParamFieldCheckRule> hardRules = rules.stream()
+                    .filter(r -> RuleSeverity.isHard(r.getSeverity())).toList();
+            List<ParamFieldCheckRule> softRules = rules.stream()
+                    .filter(r -> !RuleSeverity.isHard(r.getSeverity())).toList();
+
+            List<CompareCellVO> cells = new ArrayList<>();
+            for (int i = 0; i < parts.size(); i++) {
+                cells.add(buildCell(parts.get(i).getPartId(), field,
+                        hardRules, softRules, valueMaps.get(i).get(field.getFieldId())));
+            }
+            row.setCells(cells);
+            rows.add(row);
+        }
+        result.setParts(partVOs);
+        result.setRows(rows);
+
+        // 汇总每列的判定计数
+        Map<Long, ComparePartVO> partIndex = partVOs.stream()
+                .collect(Collectors.toMap(ComparePartVO::getPartId, p -> p, (a, b) -> a));
+        for (CompareRowVO row : rows) {
+            for (CompareCellVO cell : row.getCells()) {
+                ComparePartVO target = partIndex.get(cell.getPartId());
+                if (target == null) {
+                    continue;
+                }
+                if (ParamMatchStatus.VIOLATED.getCode().equals(cell.getStatus())) {
+                    target.setViolatedCount(target.getViolatedCount() + 1);
+                } else if (ParamMatchStatus.WARNING.getCode().equals(cell.getStatus())) {
+                    target.setWarningCount(target.getWarningCount() + 1);
+                } else if (ParamMatchStatus.MISSING.getCode().equals(cell.getStatus())) {
+                    target.setMissingCount(target.getMissingCount() + 1);
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * 复制方案（历史方案复用）
+     * <p>明细整体复制，原方案不受影响。
+     */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public Long copyScheme(Long schemeId, SchemeCopyDTO dto) {
+        SelectionScheme source = getSchemeOrThrow(schemeId);
+        if (dto == null) {
+            throw new BusinessException(ResultCode.PARAM_IS_NULL, "数据为空");
+        }
+        checkSchemeNameDuplicate(dto.getSchemeName(), null);
+
+        SelectionScheme target = new SelectionScheme();
+        target.setSchemeName(dto.getSchemeName());
+        target.setUserId(SecurityUtils.getCurrentUserId());
+        // 整车需求就是筛选条件，一并复制才是「复用」的意义
+        target.setWholeCarReq(source.getWholeCarReq());
+        target.setRemark(StringUtils.hasText(dto.getRemark()) ? dto.getRemark() : source.getRemark());
+        if (selectionSchemeMapper.insert(target) == 0) {
+            throw new BusinessException(ResultCode.ERROR, "复制方案失败");
+        }
+
+        LambdaQueryWrapper<SchemePart> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(SchemePart::getSchemeId, schemeId).orderByAsc(SchemePart::getSchemePartId);
+        for (SchemePart src : schemePartMapper.selectList(wrapper)) {
+            SchemePart copy = new SchemePart();
+            copy.setSchemeId(target.getSchemeId());
+            copy.setPartId(src.getPartId());
+            copy.setQuantity(src.getQuantity());
+            copy.setMatchScore(src.getMatchScore());
+            copy.setIsSelectBom(src.getIsSelectBom());
+            schemePartMapper.insert(copy);
+        }
+        return target.getSchemeId();
+    }
+
+    /**
+     * 构造一个判定格子
+     */
+    private CompareCellVO buildCell(Long partId, ParamTemplateField field,
+            List<ParamFieldCheckRule> hardRules, List<ParamFieldCheckRule> softRules, Object value) {
+        CompareCellVO cell = new CompareCellVO();
+        cell.setPartId(partId);
+        cell.setMessages(new ArrayList<>());
+
+        if (value == null) {
+            cell.setValue(null);
+            setStatus(cell, ParamMatchStatus.MISSING);
+            return cell;
+        }
+        cell.setValue(formatValue(value));
+
+        Map<String, Object> env = buildAviatorEnv(field, value);
+        List<ParamFieldCheckRule> hardFailed = hardRules.isEmpty()
+                ? List.of() : AviatorRuleUtil.executeAllFailedRule(hardRules, env);
+        List<ParamFieldCheckRule> softFailed = softRules.isEmpty()
+                ? List.of() : AviatorRuleUtil.executeAllFailedRule(softRules, env);
+
+        for (ParamFieldCheckRule rule : hardFailed) {
+            cell.getMessages().add(rule.getErrorMsg());
+        }
+        for (ParamFieldCheckRule rule : softFailed) {
+            cell.getMessages().add(rule.getErrorMsg());
+        }
+        if (!hardFailed.isEmpty()) {
+            setStatus(cell, ParamMatchStatus.VIOLATED);
+        } else if (!softFailed.isEmpty()) {
+            setStatus(cell, ParamMatchStatus.WARNING);
+        } else {
+            setStatus(cell, ParamMatchStatus.SATISFIED);
+        }
+        return cell;
+    }
+
+    private void setStatus(CompareCellVO cell, ParamMatchStatus status) {
+        cell.setStatus(status.getCode());
+        cell.setStatusName(status.getDesc());
+    }
+
+    /**
+     * 把参数取值转成展示字符串
+     * <p>num_value 是 decimal(18,4)，直接 toString 会得到「48.0000」，去掉多余的零。
+     */
+    private String formatValue(Object value) {
+        if (value == null) {
+            return null;
+        }
+        if (value instanceof BigDecimal decimal) {
+            return decimal.stripTrailingZeros().toPlainString();
+        }
+        return String.valueOf(value);
+    }
+
+    /**
+     * 取参与比较的配件
+     * <p>显式传入 partIds 时保留传入顺序（列序即前端想要的顺序）；
+     * 未传时取该分类下全部已发布配件，最多 {@code MAX_CANDIDATES} 个。
+     */
+    private List<PartInfo> loadCompareParts(SchemeCompareQueryDTO dto) {
+        if (dto.getPartIds() != null && !dto.getPartIds().isEmpty()) {
+            if (dto.getPartIds().size() > MAX_CANDIDATES) {
+                throw new BusinessException(ResultCode.PARAM_RANGE_ERROR,
+                        "一次最多比较 " + MAX_CANDIDATES + " 个配件");
+            }
+            Map<Long, PartInfo> found = partInfoMapper.selectByIds(dto.getPartIds()).stream()
+                    .collect(Collectors.toMap(PartInfo::getPartId, p -> p, (a, b) -> a));
+            List<PartInfo> ordered = new ArrayList<>();
+            for (Long id : dto.getPartIds()) {
+                PartInfo part = found.get(id);
+                if (part == null) {
+                    throw new BusinessException(ResultCode.DATA_NOT_EXIST, "配件不存在：[" + id + "]");
+                }
+                if (!dto.getCatId().equals(part.getCatId())) {
+                    throw new BusinessException(ResultCode.PARAM_VALUE_INVALID,
+                            "配件【" + part.getPartCode() + "】不属于所选分类");
+                }
+                ordered.add(part);
+            }
+            return ordered;
+        }
+        LambdaQueryWrapper<PartInfo> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(PartInfo::getCatId, dto.getCatId())
+                .eq(PartInfo::getPublishingStatus, PUBLISHING_STATUS_PUBLISHED)
+                .orderByAsc(PartInfo::getPartId)
+                .last("LIMIT " + MAX_CANDIDATES);
+        return partInfoMapper.selectList(wrapper);
     }
 }

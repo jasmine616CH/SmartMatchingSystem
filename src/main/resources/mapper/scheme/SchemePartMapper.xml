@@ -78,6 +78,9 @@
             <when test="dto.sortField == 'unitPrice'">
                 ORDER BY price.price_value
             </when>
+            <when test="dto.sortField == 'leadTime'">
+                ORDER BY price.lead_time
+            </when>
             <when test="dto.sortField == 'matchScore'">
                 ORDER BY sp.match_score
             </when>

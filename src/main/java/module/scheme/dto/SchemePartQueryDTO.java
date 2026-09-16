@@ -22,10 +22,10 @@ public class SchemePartQueryDTO {
 
     /**
      * 排序字段
-     * <p>只允许 quantity / unitPrice / matchScore 三个白名单值，
+     * <p>只允许 quantity / unitPrice / leadTime / matchScore 四个白名单值，
      * 服务端映射成真实列名后再拼进 SQL，避免排序字段注入。
      */
-    @Pattern(regexp = "^(quantity|unitPrice|matchScore)$", message = "sortField 只支持 quantity、unitPrice、matchScore")
+    @Pattern(regexp = "^(quantity|unitPrice|leadTime|matchScore)$", message = "sortField 只支持 quantity、unitPrice、leadTime、matchScore")
     private String sortField;
 
     /** 排序方向：asc / desc，不传默认 desc */

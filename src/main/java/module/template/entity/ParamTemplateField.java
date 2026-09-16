@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 
 /**
@@ -47,7 +48,13 @@ public class ParamTemplateField {
      */
     private String stdUnitCode;
 
-    /** 数值小数精度 */
+    /**
+     * 数值小数精度
+     * <p>
+     * precision 是 MySQL 8 的保留字，MyBatis-Plus 生成列清单时不会自动加引号，
+     * 不加反引号会导致 SELECT 语法错误，故在此显式引用。
+     */
+    @TableField("`precision`")
     private Integer precision;
 
     /** 参数容差范围，如±3% */
