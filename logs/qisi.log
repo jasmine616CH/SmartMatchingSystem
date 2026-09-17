@@ -1,0 +1,1214 @@
+2026-09-16 19:37:39.987 [main] INFO  o.e.s.SmartMatchSystemApplication - Starting SmartMatchSystemApplication using Java 21.0.7 with PID 35700 (C:\Users\Lenovo\Desktop\UGVC-System\SmartMatchingSystem\target\classes started by Lenovo in C:\Users\Lenovo\Desktop\UGVC-System\SmartMatchingSystem)
+2026-09-16 19:37:39.993 [main] INFO  o.e.s.SmartMatchSystemApplication - The following 1 profile is active: "xutest"
+2026-09-16 19:37:40.730 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-09-16 19:37:40.730 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-09-16 19:37:40.761 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+2026-09-16 19:37:41.110 [main] WARN  o.s.c.a.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'com.yomahub.liteflow.springboot.config.LiteflowMainAutoConfiguration' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static' and/or marking the containing configuration class as 'proxyBeanMethods=false'.
+2026-09-16 19:37:41.508 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.yomahub.liteflow.springboot.config.LiteflowPropertyAutoConfiguration' of type [com.yomahub.liteflow.springboot.config.LiteflowPropertyAutoConfiguration$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 19:37:41.518 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflow-com.yomahub.liteflow.springboot.LiteflowProperty' of type [com.yomahub.liteflow.springboot.LiteflowProperty] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 19:37:41.518 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflow.monitor-com.yomahub.liteflow.springboot.LiteflowMonitorProperty' of type [com.yomahub.liteflow.springboot.LiteflowMonitorProperty] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 19:37:41.529 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflowConfig' of type [com.yomahub.liteflow.property.LiteflowConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 19:37:41.530 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.yomahub.liteflow.spi.spring.SpringAware' of type [com.yomahub.liteflow.spi.spring.SpringAware] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 19:37:41.536 [main] INFO  c.yomahub.liteflow.util.LOGOPrinter - 
+================================================================================================
+		 _     ___ _____ _____      _____ _     _____        __
+		| |   |_ _|_   _| ____|    |  ___| |   / _ \ \      / /
+		| |    | |  | | |  _| _____| |_  | |  | | | \ \ /\ / / 
+		| |___ | |  | | | |__|_____|  _| | |__| |_| |\ V  V /  
+		|_____|___| |_| |_____|    |_|   |_____\___/  \_/\_/   
+
+		Version: 2.16.1.2
+		Make your code amazing.
+		website：https://liteflow.cc
+================================================================================================
+
+2026-09-16 19:37:41.729 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-09-16 19:37:41.812 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1773 ms
+2026-09-16 19:37:42.188 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.system.entity.SysUser".
+2026-09-16 19:37:42.188 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.system.entity.SysUser ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 19:37:42.452 [main] INFO  m.review.spi.BizAuditHandlerRegistry - 通用审批中心已注册业务类型 2 个：[SUPPLIER, SUPPLIER_QUALIFICATION]
+2026-09-16 19:37:42.798 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.system.entity.SysDictType".
+2026-09-16 19:37:42.799 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.system.entity.SysDictType ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 19:37:42.808 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.system.entity.SysDictItem".
+2026-09-16 19:37:42.809 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.system.entity.SysDictItem ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 19:37:42.895 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2026-09-16 19:37:43.146 [main] INFO  c.b.m.e.s.MybatisPlusApplicationContextAware - Register ApplicationContext instances org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5669c5fb
+2026-09-16 19:37:43.275 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.storage.service.entity.PartAttachment".
+2026-09-16 19:37:43.275 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.storage.service.entity.PartAttachment ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 19:37:43.283 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.part.entity.PartInterface".
+2026-09-16 19:37:43.283 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.part.entity.PartInterface ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 19:37:43.304 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.system.entity.SysMenu".
+2026-09-16 19:37:43.304 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.system.entity.SysMenu ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 19:37:43.310 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.system.entity.SysRole".
+2026-09-16 19:37:43.310 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.system.entity.SysRole ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 19:37:43.397 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-09-16 19:37:43.404 [main] INFO  o.e.s.SmartMatchSystemApplication - Started SmartMatchSystemApplication in 3.816 seconds (process running for 4.138)
+2026-09-16 19:37:48.564 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-09-16 19:37:48.565 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-09-16 19:37:48.657 [http-nio-8080-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+common.exception.BusinessException: Token已过期
+	at config.token.JwtTokenProvider.parseClaims(JwtTokenProvider.java:98)
+	at config.token.JwtTokenProvider.getUserNameFromToken(JwtTokenProvider.java:54)
+	at config.filter.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:44)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1774)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-09-16 19:38:12.800 [http-nio-8080-exec-2] ERROR c.exception.GlobalExceptionHandler - 系统内部异常: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'precision,tolerance,required_type,required_expression,filter_operator,env_limit,' at line 1
+### The error may exist in module/template/mapper/ParamTemplateFieldMapper.java (best guess)
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT  field_id,template_id,param_code,param_cn,param_en,data_type,rel_dict_code,unit,std_unit_code,precision,tolerance,required_type,required_expression,filter_operator,env_limit,sort,create_time,update_time  FROM param_template_field      WHERE  (template_id IN (?)) ORDER BY sort ASC
+### Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'precision,tolerance,required_type,required_expression,filter_operator,env_limit,' at line 1
+; bad SQL grammar []
+2026-09-16 19:39:11.328 [main] INFO  o.e.s.SmartMatchSystemApplication - Starting SmartMatchSystemApplication using Java 21.0.7 with PID 61308 (C:\Users\Lenovo\Desktop\UGVC-System\SmartMatchingSystem\target\classes started by Lenovo in C:\Users\Lenovo\Desktop\UGVC-System\SmartMatchingSystem)
+2026-09-16 19:39:11.331 [main] INFO  o.e.s.SmartMatchSystemApplication - The following 1 profile is active: "xutest"
+2026-09-16 19:39:12.369 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-09-16 19:39:12.371 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-09-16 19:39:12.397 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 10 ms. Found 0 Redis repository interfaces.
+2026-09-16 19:39:12.835 [main] WARN  o.s.c.a.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'com.yomahub.liteflow.springboot.config.LiteflowMainAutoConfiguration' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static' and/or marking the containing configuration class as 'proxyBeanMethods=false'.
+2026-09-16 19:39:13.197 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.yomahub.liteflow.springboot.config.LiteflowPropertyAutoConfiguration' of type [com.yomahub.liteflow.springboot.config.LiteflowPropertyAutoConfiguration$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 19:39:13.220 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflow-com.yomahub.liteflow.springboot.LiteflowProperty' of type [com.yomahub.liteflow.springboot.LiteflowProperty] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 19:39:13.226 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflow.monitor-com.yomahub.liteflow.springboot.LiteflowMonitorProperty' of type [com.yomahub.liteflow.springboot.LiteflowMonitorProperty] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 19:39:13.232 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflowConfig' of type [com.yomahub.liteflow.property.LiteflowConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 19:39:13.236 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.yomahub.liteflow.spi.spring.SpringAware' of type [com.yomahub.liteflow.spi.spring.SpringAware] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 19:39:13.247 [main] INFO  c.yomahub.liteflow.util.LOGOPrinter - 
+================================================================================================
+		 _     ___ _____ _____      _____ _     _____        __
+		| |   |_ _|_   _| ____|    |  ___| |   / _ \ \      / /
+		| |    | |  | | |  _| _____| |_  | |  | | | \ \ /\ / / 
+		| |___ | |  | | | |__|_____|  _| | |__| |_| |\ V  V /  
+		|_____|___| |_| |_____|    |_|   |_____\___/  \_/\_/   
+
+		Version: 2.16.1.2
+		Make your code amazing.
+		website：https://liteflow.cc
+================================================================================================
+
+2026-09-16 19:39:13.556 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-09-16 19:39:13.740 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2373 ms
+2026-09-16 19:39:14.453 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.system.entity.SysUser".
+2026-09-16 19:39:14.454 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.system.entity.SysUser ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 19:39:15.100 [main] INFO  m.review.spi.BizAuditHandlerRegistry - 通用审批中心已注册业务类型 2 个：[SUPPLIER, SUPPLIER_QUALIFICATION]
+2026-09-16 19:39:15.715 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.system.entity.SysDictType".
+2026-09-16 19:39:15.716 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.system.entity.SysDictType ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 19:39:15.735 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.system.entity.SysDictItem".
+2026-09-16 19:39:15.735 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.system.entity.SysDictItem ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 19:39:15.911 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2026-09-16 19:39:16.408 [main] INFO  c.b.m.e.s.MybatisPlusApplicationContextAware - Register ApplicationContext instances org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5669c5fb
+2026-09-16 19:39:16.689 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.storage.service.entity.PartAttachment".
+2026-09-16 19:39:16.690 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.storage.service.entity.PartAttachment ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 19:39:16.708 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.part.entity.PartInterface".
+2026-09-16 19:39:16.708 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.part.entity.PartInterface ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 19:39:16.738 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.system.entity.SysMenu".
+2026-09-16 19:39:16.738 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.system.entity.SysMenu ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 19:39:16.752 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.system.entity.SysRole".
+2026-09-16 19:39:16.753 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.system.entity.SysRole ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 19:39:16.906 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-09-16 19:39:16.916 [main] INFO  o.e.s.SmartMatchSystemApplication - Started SmartMatchSystemApplication in 6.051 seconds (process running for 6.436)
+2026-09-16 19:39:18.646 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-09-16 19:39:18.647 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-09-16 19:39:32.638 [http-nio-8080-exec-5] WARN  c.exception.GlobalExceptionHandler - 请求体解析失败: JSON parse error: Invalid UTF-8 start byte 0xb3
+2026-09-16 19:40:03.063 [http-nio-8080-exec-10] WARN  c.exception.GlobalExceptionHandler - 参数校验失败: sortField: sortField 只支持 quantity、unitPrice、leadTime、matchScore
+2026-09-16 20:05:49.416 [main] INFO  o.e.s.SmartMatchSystemApplication - Starting SmartMatchSystemApplication using Java 21.0.7 with PID 49984 (C:\Users\Lenovo\Desktop\UGVC-System\SmartMatchingSystem\target\classes started by Lenovo in C:\Users\Lenovo\Desktop\UGVC-System\SmartMatchingSystem)
+2026-09-16 20:05:49.417 [main] INFO  o.e.s.SmartMatchSystemApplication - The following 1 profile is active: "xutest"
+2026-09-16 20:05:50.205 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-09-16 20:05:50.209 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-09-16 20:05:50.235 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+2026-09-16 20:05:50.663 [main] WARN  o.s.c.a.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'com.yomahub.liteflow.springboot.config.LiteflowMainAutoConfiguration' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static' and/or marking the containing configuration class as 'proxyBeanMethods=false'.
+2026-09-16 20:05:51.024 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.yomahub.liteflow.springboot.config.LiteflowPropertyAutoConfiguration' of type [com.yomahub.liteflow.springboot.config.LiteflowPropertyAutoConfiguration$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 20:05:51.039 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflow-com.yomahub.liteflow.springboot.LiteflowProperty' of type [com.yomahub.liteflow.springboot.LiteflowProperty] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 20:05:51.043 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflow.monitor-com.yomahub.liteflow.springboot.LiteflowMonitorProperty' of type [com.yomahub.liteflow.springboot.LiteflowMonitorProperty] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 20:05:51.044 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflowConfig' of type [com.yomahub.liteflow.property.LiteflowConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 20:05:51.046 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.yomahub.liteflow.spi.spring.SpringAware' of type [com.yomahub.liteflow.spi.spring.SpringAware] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 20:05:51.053 [main] INFO  c.yomahub.liteflow.util.LOGOPrinter - 
+================================================================================================
+		 _     ___ _____ _____      _____ _     _____        __
+		| |   |_ _|_   _| ____|    |  ___| |   / _ \ \      / /
+		| |    | |  | | |  _| _____| |_  | |  | | | \ \ /\ / / 
+		| |___ | |  | | | |__|_____|  _| | |__| |_| |\ V  V /  
+		|_____|___| |_| |_____|    |_|   |_____\___/  \_/\_/   
+
+		Version: 2.16.1.2
+		Make your code amazing.
+		website：https://liteflow.cc
+================================================================================================
+
+2026-09-16 20:05:51.316 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-09-16 20:05:51.457 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2004 ms
+2026-09-16 20:05:52.191 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.system.entity.SysUser".
+2026-09-16 20:05:52.192 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.system.entity.SysUser ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 20:05:52.789 [main] INFO  m.review.spi.BizAuditHandlerRegistry - 通用审批中心已注册业务类型 2 个：[SUPPLIER, SUPPLIER_QUALIFICATION]
+2026-09-16 20:05:53.826 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2026-09-16 20:05:54.370 [main] INFO  c.b.m.e.s.MybatisPlusApplicationContextAware - Register ApplicationContext instances org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5669c5fb
+2026-09-16 20:05:54.658 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.storage.service.entity.PartAttachment".
+2026-09-16 20:05:54.659 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.storage.service.entity.PartAttachment ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 20:05:54.675 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.part.entity.PartInterface".
+2026-09-16 20:05:54.676 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.part.entity.PartInterface ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 20:05:54.707 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.system.entity.SysMenu".
+2026-09-16 20:05:54.707 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.system.entity.SysMenu ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 20:05:54.722 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.system.entity.SysRole".
+2026-09-16 20:05:54.722 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.system.entity.SysRole ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 20:05:54.837 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-09-16 20:05:54.844 [main] INFO  o.e.s.SmartMatchSystemApplication - Started SmartMatchSystemApplication in 5.847 seconds (process running for 6.276)
+2026-09-16 20:06:05.449 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-09-16 20:06:05.451 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-09-16 20:06:06.171 [http-nio-8080-exec-2] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+org.springframework.security.core.userdetails.UsernameNotFoundException: 用户名不存在
+	at config.security.UserDetailsServiceImpl.loadUserByUsername(UserDetailsServiceImpl.java:27)
+	at config.filter.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:47)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1774)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-09-16 20:06:07.034 [http-nio-8080-exec-9] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+org.springframework.security.core.userdetails.UsernameNotFoundException: 用户名不存在
+	at config.security.UserDetailsServiceImpl.loadUserByUsername(UserDetailsServiceImpl.java:27)
+	at config.filter.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:47)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1774)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-09-16 20:06:08.461 [http-nio-8080-exec-5] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+org.springframework.security.core.userdetails.UsernameNotFoundException: 用户名不存在
+	at config.security.UserDetailsServiceImpl.loadUserByUsername(UserDetailsServiceImpl.java:27)
+	at config.filter.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:47)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1774)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-09-16 20:06:09.296 [http-nio-8080-exec-7] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+org.springframework.security.core.userdetails.UsernameNotFoundException: 用户名不存在
+	at config.security.UserDetailsServiceImpl.loadUserByUsername(UserDetailsServiceImpl.java:27)
+	at config.filter.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:47)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1774)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-09-16 20:07:33.660 [http-nio-8080-exec-1] WARN  c.exception.GlobalExceptionHandler - 业务异常: code=42203, message=该字典下还有 1 个字典项，请先删除字典项
+2026-09-16 20:10:36.936 [main] INFO  o.e.s.SmartMatchSystemApplication - Starting SmartMatchSystemApplication using Java 21.0.7 with PID 37232 (C:\Users\Lenovo\Desktop\UGVC-System\SmartMatchingSystem\target\classes started by Lenovo in C:\Users\Lenovo\Desktop\UGVC-System\SmartMatchingSystem)
+2026-09-16 20:10:36.938 [main] INFO  o.e.s.SmartMatchSystemApplication - The following 1 profile is active: "xutest"
+2026-09-16 20:10:38.065 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-09-16 20:10:38.070 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-09-16 20:10:38.101 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 12 ms. Found 0 Redis repository interfaces.
+2026-09-16 20:10:38.543 [main] WARN  o.s.c.a.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'com.yomahub.liteflow.springboot.config.LiteflowMainAutoConfiguration' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static' and/or marking the containing configuration class as 'proxyBeanMethods=false'.
+2026-09-16 20:10:38.921 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.yomahub.liteflow.springboot.config.LiteflowPropertyAutoConfiguration' of type [com.yomahub.liteflow.springboot.config.LiteflowPropertyAutoConfiguration$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 20:10:38.938 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflow-com.yomahub.liteflow.springboot.LiteflowProperty' of type [com.yomahub.liteflow.springboot.LiteflowProperty] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 20:10:38.942 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflow.monitor-com.yomahub.liteflow.springboot.LiteflowMonitorProperty' of type [com.yomahub.liteflow.springboot.LiteflowMonitorProperty] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 20:10:38.944 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflowConfig' of type [com.yomahub.liteflow.property.LiteflowConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 20:10:38.947 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.yomahub.liteflow.spi.spring.SpringAware' of type [com.yomahub.liteflow.spi.spring.SpringAware] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 20:10:38.960 [main] INFO  c.yomahub.liteflow.util.LOGOPrinter - 
+================================================================================================
+		 _     ___ _____ _____      _____ _     _____        __
+		| |   |_ _|_   _| ____|    |  ___| |   / _ \ \      / /
+		| |    | |  | | |  _| _____| |_  | |  | | | \ \ /\ / / 
+		| |___ | |  | | | |__|_____|  _| | |__| |_| |\ V  V /  
+		|_____|___| |_| |_____|    |_|   |_____\___/  \_/\_/   
+
+		Version: 2.16.1.2
+		Make your code amazing.
+		website：https://liteflow.cc
+================================================================================================
+
+2026-09-16 20:10:39.314 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-09-16 20:10:39.503 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2530 ms
+2026-09-16 20:10:40.330 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.system.entity.SysUser".
+2026-09-16 20:10:40.333 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.system.entity.SysUser ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 20:10:40.875 [main] INFO  m.review.spi.BizAuditHandlerRegistry - 通用审批中心已注册业务类型 2 个：[SUPPLIER, SUPPLIER_QUALIFICATION]
+2026-09-16 20:10:42.031 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2026-09-16 20:10:42.621 [main] INFO  c.b.m.e.s.MybatisPlusApplicationContextAware - Register ApplicationContext instances org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5669c5fb
+2026-09-16 20:10:42.808 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.storage.service.entity.PartAttachment".
+2026-09-16 20:10:42.809 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.storage.service.entity.PartAttachment ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 20:10:42.825 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.part.entity.PartInterface".
+2026-09-16 20:10:42.826 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.part.entity.PartInterface ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 20:10:42.861 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.system.entity.SysMenu".
+2026-09-16 20:10:42.861 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.system.entity.SysMenu ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 20:10:42.880 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.system.entity.SysRole".
+2026-09-16 20:10:42.881 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.system.entity.SysRole ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 20:10:43.068 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-09-16 20:10:43.078 [main] INFO  o.e.s.SmartMatchSystemApplication - Started SmartMatchSystemApplication in 6.556 seconds (process running for 6.986)
+2026-09-16 20:10:59.911 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-09-16 20:10:59.912 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-09-16 20:11:00.137 [http-nio-8080-exec-2] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+common.exception.BusinessException: Token格式不对
+	at config.token.JwtTokenProvider.parseClaims(JwtTokenProvider.java:102)
+	at config.token.JwtTokenProvider.getUserNameFromToken(JwtTokenProvider.java:54)
+	at config.filter.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:44)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1774)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-09-16 20:11:12.224 [http-nio-8080-exec-5] WARN  c.exception.GlobalExceptionHandler - 业务异常: code=42201, message=该字典编码不存在或已停用
+2026-09-16 20:11:12.698 [http-nio-8080-exec-7] WARN  c.exception.GlobalExceptionHandler - 业务异常: code=42201, message=该字典编码不存在或已停用
+2026-09-16 20:12:09.496 [main] INFO  o.e.s.SmartMatchSystemApplication - Starting SmartMatchSystemApplication using Java 21.0.7 with PID 51324 (C:\Users\Lenovo\Desktop\UGVC-System\SmartMatchingSystem\target\classes started by Lenovo in C:\Users\Lenovo\Desktop\UGVC-System\SmartMatchingSystem)
+2026-09-16 20:12:09.498 [main] INFO  o.e.s.SmartMatchSystemApplication - The following 1 profile is active: "xutest"
+2026-09-16 20:12:10.263 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-09-16 20:12:10.266 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-09-16 20:12:10.287 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 9 ms. Found 0 Redis repository interfaces.
+2026-09-16 20:12:10.740 [main] WARN  o.s.c.a.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'com.yomahub.liteflow.springboot.config.LiteflowMainAutoConfiguration' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static' and/or marking the containing configuration class as 'proxyBeanMethods=false'.
+2026-09-16 20:12:11.168 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.yomahub.liteflow.springboot.config.LiteflowPropertyAutoConfiguration' of type [com.yomahub.liteflow.springboot.config.LiteflowPropertyAutoConfiguration$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 20:12:11.188 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflow-com.yomahub.liteflow.springboot.LiteflowProperty' of type [com.yomahub.liteflow.springboot.LiteflowProperty] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 20:12:11.193 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflow.monitor-com.yomahub.liteflow.springboot.LiteflowMonitorProperty' of type [com.yomahub.liteflow.springboot.LiteflowMonitorProperty] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 20:12:11.195 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflowConfig' of type [com.yomahub.liteflow.property.LiteflowConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 20:12:11.198 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.yomahub.liteflow.spi.spring.SpringAware' of type [com.yomahub.liteflow.spi.spring.SpringAware] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 20:12:11.205 [main] INFO  c.yomahub.liteflow.util.LOGOPrinter - 
+================================================================================================
+		 _     ___ _____ _____      _____ _     _____        __
+		| |   |_ _|_   _| ____|    |  ___| |   / _ \ \      / /
+		| |    | |  | | |  _| _____| |_  | |  | | | \ \ /\ / / 
+		| |___ | |  | | | |__|_____|  _| | |__| |_| |\ V  V /  
+		|_____|___| |_| |_____|    |_|   |_____\___/  \_/\_/   
+
+		Version: 2.16.1.2
+		Make your code amazing.
+		website：https://liteflow.cc
+================================================================================================
+
+2026-09-16 20:12:11.400 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-09-16 20:12:11.494 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1962 ms
+2026-09-16 20:12:11.881 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.system.entity.SysUser".
+2026-09-16 20:12:11.882 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.system.entity.SysUser ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 20:12:12.201 [main] INFO  m.review.spi.BizAuditHandlerRegistry - 通用审批中心已注册业务类型 2 个：[SUPPLIER, SUPPLIER_QUALIFICATION]
+2026-09-16 20:12:12.761 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2026-09-16 20:12:13.107 [main] INFO  c.b.m.e.s.MybatisPlusApplicationContextAware - Register ApplicationContext instances org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5669c5fb
+2026-09-16 20:12:13.263 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.storage.service.entity.PartAttachment".
+2026-09-16 20:12:13.263 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.storage.service.entity.PartAttachment ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 20:12:13.273 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.part.entity.PartInterface".
+2026-09-16 20:12:13.274 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.part.entity.PartInterface ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 20:12:13.293 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.system.entity.SysMenu".
+2026-09-16 20:12:13.294 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.system.entity.SysMenu ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 20:12:13.305 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.system.entity.SysRole".
+2026-09-16 20:12:13.305 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.system.entity.SysRole ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 20:12:13.395 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-09-16 20:12:13.402 [main] INFO  o.e.s.SmartMatchSystemApplication - Started SmartMatchSystemApplication in 4.331 seconds (process running for 4.707)
+2026-09-16 20:12:14.163 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-09-16 20:12:14.165 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2026-09-16 20:12:15.304 [http-nio-8080-exec-4] WARN  c.exception.GlobalExceptionHandler - 业务异常: code=42201, message=该字典编码不存在或已停用
+2026-09-16 20:12:15.799 [http-nio-8080-exec-5] WARN  c.exception.GlobalExceptionHandler - 业务异常: code=42203, message=该字典下还有 3 个字典项，请先删除字典项
+2026-09-16 20:42:19.490 [main] INFO  o.e.s.SmartMatchSystemApplication - Starting SmartMatchSystemApplication using Java 21.0.7 with PID 37060 (C:\Users\Lenovo\Desktop\UGVC-System\SmartMatchingSystem\target\classes started by Lenovo in C:\Users\Lenovo\Desktop\UGVC-System\SmartMatchingSystem)
+2026-09-16 20:42:19.492 [main] INFO  o.e.s.SmartMatchSystemApplication - The following 1 profile is active: "xutest"
+2026-09-16 20:42:20.280 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-09-16 20:42:20.283 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-09-16 20:42:20.307 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+2026-09-16 20:42:20.669 [main] WARN  o.s.c.a.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'com.yomahub.liteflow.springboot.config.LiteflowMainAutoConfiguration' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static' and/or marking the containing configuration class as 'proxyBeanMethods=false'.
+2026-09-16 20:42:21.040 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.yomahub.liteflow.springboot.config.LiteflowPropertyAutoConfiguration' of type [com.yomahub.liteflow.springboot.config.LiteflowPropertyAutoConfiguration$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 20:42:21.057 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflow-com.yomahub.liteflow.springboot.LiteflowProperty' of type [com.yomahub.liteflow.springboot.LiteflowProperty] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 20:42:21.063 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflow.monitor-com.yomahub.liteflow.springboot.LiteflowMonitorProperty' of type [com.yomahub.liteflow.springboot.LiteflowMonitorProperty] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 20:42:21.064 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflowConfig' of type [com.yomahub.liteflow.property.LiteflowConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 20:42:21.067 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.yomahub.liteflow.spi.spring.SpringAware' of type [com.yomahub.liteflow.spi.spring.SpringAware] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 20:42:21.074 [main] INFO  c.yomahub.liteflow.util.LOGOPrinter - 
+================================================================================================
+		 _     ___ _____ _____      _____ _     _____        __
+		| |   |_ _|_   _| ____|    |  ___| |   / _ \ \      / /
+		| |    | |  | | |  _| _____| |_  | |  | | | \ \ /\ / / 
+		| |___ | |  | | | |__|_____|  _| | |__| |_| |\ V  V /  
+		|_____|___| |_| |_____|    |_|   |_____\___/  \_/\_/   
+
+		Version: 2.16.1.2
+		Make your code amazing.
+		website：https://liteflow.cc
+================================================================================================
+
+2026-09-16 20:42:21.283 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-09-16 20:42:21.368 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1834 ms
+2026-09-16 20:42:21.738 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.system.entity.SysUser".
+2026-09-16 20:42:21.738 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.system.entity.SysUser ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 20:42:21.959 [main] INFO  m.review.spi.BizAuditHandlerRegistry - 通用审批中心已注册业务类型 5 个：[SUPPLIER, SUPPLIER_QUALIFICATION, PARAM_TEMPLATE, PART_INFO, PART_CATEGORY]
+2026-09-16 20:42:22.527 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2026-09-16 20:42:22.791 [main] INFO  c.b.m.e.s.MybatisPlusApplicationContextAware - Register ApplicationContext instances org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5669c5fb
+2026-09-16 20:42:22.936 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.storage.service.entity.PartAttachment".
+2026-09-16 20:42:22.936 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.storage.service.entity.PartAttachment ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 20:42:22.945 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.part.entity.PartInterface".
+2026-09-16 20:42:22.945 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.part.entity.PartInterface ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 20:42:22.962 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.system.entity.SysMenu".
+2026-09-16 20:42:22.962 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.system.entity.SysMenu ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 20:42:22.970 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.system.entity.SysRole".
+2026-09-16 20:42:22.971 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.system.entity.SysRole ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 20:42:23.043 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-09-16 20:42:23.050 [main] INFO  o.e.s.SmartMatchSystemApplication - Started SmartMatchSystemApplication in 3.971 seconds (process running for 4.307)
+2026-09-16 20:42:34.632 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-09-16 20:42:34.633 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2026-09-16 20:42:34.962 [http-nio-8080-exec-1] WARN  c.exception.GlobalExceptionHandler - 业务异常: code=42203, message=仅草稿状态的模板允许提交审核
+2026-09-16 20:42:47.753 [http-nio-8080-exec-7] WARN  c.exception.GlobalExceptionHandler - 业务异常: code=42203, message=仅草稿状态的模板允许提交审核
+2026-09-16 20:42:47.928 [http-nio-8080-exec-3] WARN  c.exception.GlobalExceptionHandler - 请求体解析失败: JSON parse error: Unexpected character ('a' (code 97)): was expecting double-quote to start field name
+2026-09-16 20:42:47.975 [http-nio-8080-exec-4] WARN  c.exception.GlobalExceptionHandler - 业务异常: code=42203, message=仅已发布状态的模板可执行撤回操作
+2026-09-16 20:42:48.136 [http-nio-8080-exec-8] WARN  c.exception.GlobalExceptionHandler - 请求体解析失败: JSON parse error: Unexpected character ('a' (code 97)): was expecting double-quote to start field name
+2026-09-16 20:42:48.279 [http-nio-8080-exec-1] WARN  c.exception.GlobalExceptionHandler - 请求体解析失败: JSON parse error: Unexpected character ('a' (code 97)): was expecting double-quote to start field name
+2026-09-16 20:42:48.351 [http-nio-8080-exec-2] WARN  c.exception.GlobalExceptionHandler - 业务异常: code=42203, message=上级分类【驱动电机】未发布，请先发布上级分类
+2026-09-16 20:43:02.119 [http-nio-8080-exec-4] WARN  c.exception.GlobalExceptionHandler - 业务异常: code=42203, message=业务数据状态已变更，审批失败，请刷新后重试
+2026-09-16 20:43:02.538 [http-nio-8080-exec-10] WARN  c.exception.GlobalExceptionHandler - 业务异常: code=42203, message=业务数据状态已变更，审批失败，请刷新后重试
+2026-09-16 20:43:18.174 [http-nio-8080-exec-8] WARN  c.exception.GlobalExceptionHandler - 业务异常: code=42203, message=该数据已存在待审核任务，请勿重复提交
+2026-09-16 20:43:18.292 [http-nio-8080-exec-6] WARN  c.exception.GlobalExceptionHandler - 业务异常: code=42203, message=业务数据状态已变更，审批失败，请刷新后重试
+2026-09-16 20:43:18.365 [http-nio-8080-exec-2] WARN  c.exception.GlobalExceptionHandler - 业务异常: code=42203, message=仅已发布状态的模板可执行撤回操作
+2026-09-16 20:43:18.434 [http-nio-8080-exec-4] WARN  c.exception.GlobalExceptionHandler - 业务异常: code=42203, message=该数据已存在待审核任务，请勿重复提交
+2026-09-16 20:43:18.492 [http-nio-8080-exec-10] WARN  c.exception.GlobalExceptionHandler - 业务异常: code=42203, message=业务数据状态已变更，审批失败，请刷新后重试
+2026-09-16 20:43:18.545 [http-nio-8080-exec-8] WARN  c.exception.GlobalExceptionHandler - 业务异常: code=42203, message=仅已发布状态的配件允许撤回
+2026-09-16 20:43:18.616 [http-nio-8080-exec-6] WARN  c.exception.GlobalExceptionHandler - 业务异常: code=42203, message=该数据已存在待审核任务，请勿重复提交
+2026-09-16 20:43:18.669 [http-nio-8080-exec-2] WARN  c.exception.GlobalExceptionHandler - 业务异常: code=42203, message=业务数据状态已变更，审批失败，请刷新后重试
+2026-09-16 20:43:18.734 [http-nio-8080-exec-4] WARN  c.exception.GlobalExceptionHandler - 业务异常: code=42203, message=该数据已存在待审核任务，请勿重复提交
+2026-09-16 20:43:18.792 [http-nio-8080-exec-10] WARN  c.exception.GlobalExceptionHandler - 业务异常: code=42203, message=业务数据状态已变更，驳回失败，请刷新后重试
+2026-09-16 20:43:39.274 [http-nio-8080-exec-2] WARN  c.exception.GlobalExceptionHandler - 业务异常: code=42203, message=配件【MOT-PMSM-04】未发布，不能参与选型
+2026-09-16 21:00:45.803 [main] INFO  o.e.s.SmartMatchSystemApplication - Starting SmartMatchSystemApplication using Java 21.0.7 with PID 54460 (C:\Users\Lenovo\Desktop\UGVC-System\SmartMatchingSystem\target\classes started by Lenovo in C:\Users\Lenovo\Desktop\UGVC-System\SmartMatchingSystem)
+2026-09-16 21:00:45.805 [main] INFO  o.e.s.SmartMatchSystemApplication - The following 1 profile is active: "xutest"
+2026-09-16 21:00:46.707 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-09-16 21:00:46.709 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-09-16 21:00:46.745 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 11 ms. Found 0 Redis repository interfaces.
+2026-09-16 21:00:47.150 [main] WARN  o.s.c.a.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'com.yomahub.liteflow.springboot.config.LiteflowMainAutoConfiguration' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static' and/or marking the containing configuration class as 'proxyBeanMethods=false'.
+2026-09-16 21:00:47.528 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.yomahub.liteflow.springboot.config.LiteflowPropertyAutoConfiguration' of type [com.yomahub.liteflow.springboot.config.LiteflowPropertyAutoConfiguration$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:00:47.547 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflow-com.yomahub.liteflow.springboot.LiteflowProperty' of type [com.yomahub.liteflow.springboot.LiteflowProperty] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:00:47.553 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflow.monitor-com.yomahub.liteflow.springboot.LiteflowMonitorProperty' of type [com.yomahub.liteflow.springboot.LiteflowMonitorProperty] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:00:47.555 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflowConfig' of type [com.yomahub.liteflow.property.LiteflowConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:00:47.557 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.yomahub.liteflow.spi.spring.SpringAware' of type [com.yomahub.liteflow.spi.spring.SpringAware] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:00:47.565 [main] INFO  c.yomahub.liteflow.util.LOGOPrinter - 
+================================================================================================
+		 _     ___ _____ _____      _____ _     _____        __
+		| |   |_ _|_   _| ____|    |  ___| |   / _ \ \      / /
+		| |    | |  | | |  _| _____| |_  | |  | | | \ \ /\ / / 
+		| |___ | |  | | | |__|_____|  _| | |__| |_| |\ V  V /  
+		|_____|___| |_| |_____|    |_|   |_____\___/  \_/\_/   
+
+		Version: 2.16.1.2
+		Make your code amazing.
+		website：https://liteflow.cc
+================================================================================================
+
+2026-09-16 21:00:47.781 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-09-16 21:00:47.869 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2029 ms
+2026-09-16 21:00:48.440 [main] INFO  m.review.spi.BizAuditHandlerRegistry - 通用审批中心已注册业务类型 5 个：[SUPPLIER, SUPPLIER_QUALIFICATION, PARAM_TEMPLATE, PART_INFO, PART_CATEGORY]
+2026-09-16 21:00:49.027 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2026-09-16 21:00:49.291 [main] INFO  c.b.m.e.s.MybatisPlusApplicationContextAware - Register ApplicationContext instances org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5669c5fb
+2026-09-16 21:00:49.422 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.storage.service.entity.PartAttachment".
+2026-09-16 21:00:49.422 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.storage.service.entity.PartAttachment ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 21:00:49.430 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.part.entity.PartInterface".
+2026-09-16 21:00:49.430 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.part.entity.PartInterface ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 21:00:49.445 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.system.entity.SysMenu".
+2026-09-16 21:00:49.445 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.system.entity.SysMenu ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 21:00:49.501 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-09-16 21:00:49.506 [main] INFO  o.e.s.SmartMatchSystemApplication - Started SmartMatchSystemApplication in 4.116 seconds (process running for 4.465)
+2026-09-16 21:00:52.039 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-09-16 21:00:52.040 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-09-16 21:00:52.058 [http-nio-8080-exec-1] WARN  c.security.SecurityHandlerConfig - [认证失败] ip: 127.0.0.1, 原因: 未授权，请先登录
+2026-09-16 21:01:29.566 [main] INFO  o.e.s.SmartMatchSystemApplication - Starting SmartMatchSystemApplication using Java 21.0.7 with PID 33404 (C:\Users\Lenovo\Desktop\UGVC-System\SmartMatchingSystem\target\classes started by Lenovo in C:\Users\Lenovo\Desktop\UGVC-System\SmartMatchingSystem)
+2026-09-16 21:01:29.568 [main] INFO  o.e.s.SmartMatchSystemApplication - The following 1 profile is active: "xutest"
+2026-09-16 21:01:30.421 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-09-16 21:01:30.423 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-09-16 21:01:30.447 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 10 ms. Found 0 Redis repository interfaces.
+2026-09-16 21:01:30.804 [main] WARN  o.s.c.a.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'com.yomahub.liteflow.springboot.config.LiteflowMainAutoConfiguration' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static' and/or marking the containing configuration class as 'proxyBeanMethods=false'.
+2026-09-16 21:01:31.117 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.yomahub.liteflow.springboot.config.LiteflowPropertyAutoConfiguration' of type [com.yomahub.liteflow.springboot.config.LiteflowPropertyAutoConfiguration$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:01:31.135 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflow-com.yomahub.liteflow.springboot.LiteflowProperty' of type [com.yomahub.liteflow.springboot.LiteflowProperty] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:01:31.140 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflow.monitor-com.yomahub.liteflow.springboot.LiteflowMonitorProperty' of type [com.yomahub.liteflow.springboot.LiteflowMonitorProperty] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:01:31.141 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflowConfig' of type [com.yomahub.liteflow.property.LiteflowConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:01:31.144 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.yomahub.liteflow.spi.spring.SpringAware' of type [com.yomahub.liteflow.spi.spring.SpringAware] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:01:31.151 [main] INFO  c.yomahub.liteflow.util.LOGOPrinter - 
+================================================================================================
+		 _     ___ _____ _____      _____ _     _____        __
+		| |   |_ _|_   _| ____|    |  ___| |   / _ \ \      / /
+		| |    | |  | | |  _| _____| |_  | |  | | | \ \ /\ / / 
+		| |___ | |  | | | |__|_____|  _| | |__| |_| |\ V  V /  
+		|_____|___| |_| |_____|    |_|   |_____\___/  \_/\_/   
+
+		Version: 2.16.1.2
+		Make your code amazing.
+		website：https://liteflow.cc
+================================================================================================
+
+2026-09-16 21:01:31.353 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-09-16 21:01:31.427 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1821 ms
+2026-09-16 21:01:32.016 [main] INFO  m.review.spi.BizAuditHandlerRegistry - 通用审批中心已注册业务类型 5 个：[SUPPLIER, SUPPLIER_QUALIFICATION, PARAM_TEMPLATE, PART_INFO, PART_CATEGORY]
+2026-09-16 21:01:32.593 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2026-09-16 21:01:32.867 [main] INFO  c.b.m.e.s.MybatisPlusApplicationContextAware - Register ApplicationContext instances org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5669c5fb
+2026-09-16 21:01:32.995 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.storage.service.entity.PartAttachment".
+2026-09-16 21:01:32.995 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.storage.service.entity.PartAttachment ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 21:01:33.002 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.part.entity.PartInterface".
+2026-09-16 21:01:33.002 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.part.entity.PartInterface ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 21:01:33.018 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.system.entity.SysMenu".
+2026-09-16 21:01:33.018 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.system.entity.SysMenu ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 21:01:33.077 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-09-16 21:01:33.084 [main] INFO  o.e.s.SmartMatchSystemApplication - Started SmartMatchSystemApplication in 3.896 seconds (process running for 4.237)
+2026-09-16 21:01:33.488 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-09-16 21:01:33.488 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2026-09-16 21:01:34.367 [http-nio-8080-exec-6] WARN  c.exception.GlobalExceptionHandler - 业务异常: code=40405, message=该手机号已注册，请勿重复注册
+2026-09-16 21:01:35.426 [http-nio-8080-exec-2] ERROR c.exception.GlobalExceptionHandler - 系统内部异常: Unable to connect to Redis
+2026-09-16 21:02:17.657 [http-nio-8080-exec-8] WARN  c.exception.GlobalExceptionHandler - 业务异常: code=40008, message=账号角色不合法，可选值：data_admin(ROLE_DATA_ADMIN)、supplier_admin(ROLE_SUPPLIER_ADMIN)、approver(ROLE_APPROVER)、purchase(ROLE_PURCHASE)
+2026-09-16 21:02:18.328 [http-nio-8080-exec-3] WARN  c.exception.GlobalExceptionHandler - 业务异常: code=40008, message=账号角色不合法，可选值：data_admin(ROLE_DATA_ADMIN)、supplier_admin(ROLE_SUPPLIER_ADMIN)、approver(ROLE_APPROVER)、purchase(ROLE_PURCHASE)
+2026-09-16 21:02:18.995 [http-nio-8080-exec-10] WARN  c.exception.GlobalExceptionHandler - 业务异常: code=40008, message=账号角色不合法，可选值：data_admin(ROLE_DATA_ADMIN)、supplier_admin(ROLE_SUPPLIER_ADMIN)、approver(ROLE_APPROVER)、purchase(ROLE_PURCHASE)
+2026-09-16 21:02:19.679 [http-nio-8080-exec-4] WARN  c.exception.GlobalExceptionHandler - 业务异常: code=40008, message=账号角色不合法，可选值：data_admin(ROLE_DATA_ADMIN)、supplier_admin(ROLE_SUPPLIER_ADMIN)、approver(ROLE_APPROVER)、purchase(ROLE_PURCHASE)
+2026-09-16 21:02:20.427 [http-nio-8080-exec-7] WARN  c.exception.GlobalExceptionHandler - 权限不足: Access Denied
+2026-09-16 21:02:38.239 [http-nio-8080-exec-9] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+common.exception.BusinessException: Token格式不对
+	at config.token.JwtTokenProvider.parseClaims(JwtTokenProvider.java:102)
+	at config.token.JwtTokenProvider.getUserNameFromToken(JwtTokenProvider.java:54)
+	at config.filter.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:44)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1774)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-09-16 21:02:46.174 [http-nio-8080-exec-3] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+common.exception.BusinessException: Token格式不对
+	at config.token.JwtTokenProvider.parseClaims(JwtTokenProvider.java:102)
+	at config.token.JwtTokenProvider.getUserNameFromToken(JwtTokenProvider.java:54)
+	at config.filter.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:44)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1774)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-09-16 21:02:48.254 [http-nio-8080-exec-10] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+common.exception.BusinessException: Token格式不对
+	at config.token.JwtTokenProvider.parseClaims(JwtTokenProvider.java:102)
+	at config.token.JwtTokenProvider.getUserNameFromToken(JwtTokenProvider.java:54)
+	at config.filter.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:44)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1774)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-09-16 21:04:17.636 [main] INFO  o.e.s.SmartMatchSystemApplication - Starting SmartMatchSystemApplication using Java 21.0.7 with PID 5744 (C:\Users\Lenovo\Desktop\UGVC-System\SmartMatchingSystem\target\classes started by Lenovo in C:\Users\Lenovo\Desktop\UGVC-System\SmartMatchingSystem)
+2026-09-16 21:04:17.637 [main] INFO  o.e.s.SmartMatchSystemApplication - The following 1 profile is active: "xutest"
+2026-09-16 21:04:18.351 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-09-16 21:04:18.353 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-09-16 21:04:18.376 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+2026-09-16 21:04:18.750 [main] WARN  o.s.c.a.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'com.yomahub.liteflow.springboot.config.LiteflowMainAutoConfiguration' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static' and/or marking the containing configuration class as 'proxyBeanMethods=false'.
+2026-09-16 21:04:19.124 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.yomahub.liteflow.springboot.config.LiteflowPropertyAutoConfiguration' of type [com.yomahub.liteflow.springboot.config.LiteflowPropertyAutoConfiguration$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:04:19.138 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflow-com.yomahub.liteflow.springboot.LiteflowProperty' of type [com.yomahub.liteflow.springboot.LiteflowProperty] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:04:19.143 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflow.monitor-com.yomahub.liteflow.springboot.LiteflowMonitorProperty' of type [com.yomahub.liteflow.springboot.LiteflowMonitorProperty] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:04:19.145 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflowConfig' of type [com.yomahub.liteflow.property.LiteflowConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:04:19.148 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.yomahub.liteflow.spi.spring.SpringAware' of type [com.yomahub.liteflow.spi.spring.SpringAware] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:04:19.154 [main] INFO  c.yomahub.liteflow.util.LOGOPrinter - 
+================================================================================================
+		 _     ___ _____ _____      _____ _     _____        __
+		| |   |_ _|_   _| ____|    |  ___| |   / _ \ \      / /
+		| |    | |  | | |  _| _____| |_  | |  | | | \ \ /\ / / 
+		| |___ | |  | | | |__|_____|  _| | |__| |_| |\ V  V /  
+		|_____|___| |_| |_____|    |_|   |_____\___/  \_/\_/   
+
+		Version: 2.16.1.2
+		Make your code amazing.
+		website：https://liteflow.cc
+================================================================================================
+
+2026-09-16 21:04:19.346 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-09-16 21:04:19.420 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1747 ms
+2026-09-16 21:04:19.982 [main] INFO  m.review.spi.BizAuditHandlerRegistry - 通用审批中心已注册业务类型 5 个：[SUPPLIER, SUPPLIER_QUALIFICATION, PARAM_TEMPLATE, PART_INFO, PART_CATEGORY]
+2026-09-16 21:04:20.514 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2026-09-16 21:04:20.768 [main] INFO  c.b.m.e.s.MybatisPlusApplicationContextAware - Register ApplicationContext instances org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5669c5fb
+2026-09-16 21:04:20.899 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.storage.service.entity.PartAttachment".
+2026-09-16 21:04:20.900 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.storage.service.entity.PartAttachment ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 21:04:20.908 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.part.entity.PartInterface".
+2026-09-16 21:04:20.908 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.part.entity.PartInterface ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 21:04:20.928 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.system.entity.SysMenu".
+2026-09-16 21:04:20.928 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.system.entity.SysMenu ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 21:04:20.984 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-09-16 21:04:20.990 [main] INFO  o.e.s.SmartMatchSystemApplication - Started SmartMatchSystemApplication in 3.727 seconds (process running for 4.034)
+2026-09-16 21:04:30.665 [http-nio-8080-exec-3] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-09-16 21:04:30.667 [http-nio-8080-exec-3] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-09-16 21:04:33.728 [http-nio-8080-exec-8] WARN  c.exception.GlobalExceptionHandler - 业务异常: code=40008, message=不允许分配【超级管理员】角色，可选值：data_admin(数据管理员)、supplier_admin(供应商管理员)、approver(审批人)、purchase(采购人)
+2026-09-16 21:04:34.658 [http-nio-8080-exec-9] WARN  c.exception.GlobalExceptionHandler - 业务异常: code=40008, message=不允许分配【设计工程师】角色，可选值：data_admin(数据管理员)、supplier_admin(供应商管理员)、approver(审批人)、purchase(采购人)
+2026-09-16 21:04:35.590 [http-nio-8080-exec-3] WARN  c.exception.GlobalExceptionHandler - 权限不足: Access Denied
+2026-09-16 21:06:34.066 [main] INFO  o.e.s.SmartMatchSystemApplication - Starting SmartMatchSystemApplication using Java 21.0.7 with PID 59496 (C:\Users\Lenovo\Desktop\UGVC-System\SmartMatchingSystem\target\classes started by Lenovo in C:\Users\Lenovo\Desktop\UGVC-System\SmartMatchingSystem)
+2026-09-16 21:06:34.068 [main] INFO  o.e.s.SmartMatchSystemApplication - The following 1 profile is active: "xutest"
+2026-09-16 21:06:34.954 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-09-16 21:06:34.958 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-09-16 21:06:34.988 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 9 ms. Found 0 Redis repository interfaces.
+2026-09-16 21:06:35.424 [main] WARN  o.s.c.a.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'com.yomahub.liteflow.springboot.config.LiteflowMainAutoConfiguration' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static' and/or marking the containing configuration class as 'proxyBeanMethods=false'.
+2026-09-16 21:06:35.812 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.yomahub.liteflow.springboot.config.LiteflowPropertyAutoConfiguration' of type [com.yomahub.liteflow.springboot.config.LiteflowPropertyAutoConfiguration$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:06:35.828 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflow-com.yomahub.liteflow.springboot.LiteflowProperty' of type [com.yomahub.liteflow.springboot.LiteflowProperty] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:06:35.834 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflow.monitor-com.yomahub.liteflow.springboot.LiteflowMonitorProperty' of type [com.yomahub.liteflow.springboot.LiteflowMonitorProperty] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:06:35.835 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflowConfig' of type [com.yomahub.liteflow.property.LiteflowConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:06:35.837 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.yomahub.liteflow.spi.spring.SpringAware' of type [com.yomahub.liteflow.spi.spring.SpringAware] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:06:35.850 [main] INFO  c.yomahub.liteflow.util.LOGOPrinter - 
+================================================================================================
+		 _     ___ _____ _____      _____ _     _____        __
+		| |   |_ _|_   _| ____|    |  ___| |   / _ \ \      / /
+		| |    | |  | | |  _| _____| |_  | |  | | | \ \ /\ / / 
+		| |___ | |  | | | |__|_____|  _| | |__| |_| |\ V  V /  
+		|_____|___| |_| |_____|    |_|   |_____\___/  \_/\_/   
+
+		Version: 2.16.1.2
+		Make your code amazing.
+		website：https://liteflow.cc
+================================================================================================
+
+2026-09-16 21:06:36.053 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-09-16 21:06:36.136 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2028 ms
+2026-09-16 21:06:36.734 [main] INFO  m.review.spi.BizAuditHandlerRegistry - 通用审批中心已注册业务类型 5 个：[SUPPLIER, SUPPLIER_QUALIFICATION, PARAM_TEMPLATE, PART_INFO, PART_CATEGORY]
+2026-09-16 21:06:37.311 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2026-09-16 21:06:37.588 [main] INFO  c.b.m.e.s.MybatisPlusApplicationContextAware - Register ApplicationContext instances org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5669c5fb
+2026-09-16 21:06:37.727 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.storage.service.entity.PartAttachment".
+2026-09-16 21:06:37.728 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.storage.service.entity.PartAttachment ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 21:06:37.749 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.part.entity.PartInterface".
+2026-09-16 21:06:37.749 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.part.entity.PartInterface ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 21:06:37.762 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.system.entity.SysMenu".
+2026-09-16 21:06:37.763 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.system.entity.SysMenu ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 21:06:37.820 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-09-16 21:06:37.825 [main] INFO  o.e.s.SmartMatchSystemApplication - Started SmartMatchSystemApplication in 4.152 seconds (process running for 4.486)
+2026-09-16 21:07:20.776 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-09-16 21:07:20.777 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2026-09-16 21:07:22.127 [http-nio-8080-exec-9] WARN  c.exception.GlobalExceptionHandler - 参数 partId 类型不匹配，期望 Long
+2026-09-16 21:07:28.642 [http-nio-8080-exec-5] ERROR c.exception.GlobalExceptionHandler - 系统内部异常: Ambiguous handler methods mapped for '/api/param/template/field/5': {public common.result.Result module.template.controller.ParamTemplateFieldController.queryCurrentTemplateFieldList(java.lang.Long), public common.result.Result module.template.controller.ParamTemplateFieldController.queryTemplateFieldDetail(java.lang.Long)}
+2026-09-16 21:08:28.916 [main] INFO  o.e.s.SmartMatchSystemApplication - Starting SmartMatchSystemApplication using Java 21.0.7 with PID 56780 (C:\Users\Lenovo\Desktop\UGVC-System\SmartMatchingSystem\target\classes started by Lenovo in C:\Users\Lenovo\Desktop\UGVC-System\SmartMatchingSystem)
+2026-09-16 21:08:28.917 [main] INFO  o.e.s.SmartMatchSystemApplication - The following 1 profile is active: "xutest"
+2026-09-16 21:08:29.653 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-09-16 21:08:29.661 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-09-16 21:08:29.681 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+2026-09-16 21:08:30.035 [main] WARN  o.s.c.a.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'com.yomahub.liteflow.springboot.config.LiteflowMainAutoConfiguration' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static' and/or marking the containing configuration class as 'proxyBeanMethods=false'.
+2026-09-16 21:08:30.404 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.yomahub.liteflow.springboot.config.LiteflowPropertyAutoConfiguration' of type [com.yomahub.liteflow.springboot.config.LiteflowPropertyAutoConfiguration$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:08:30.419 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflow-com.yomahub.liteflow.springboot.LiteflowProperty' of type [com.yomahub.liteflow.springboot.LiteflowProperty] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:08:30.424 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflow.monitor-com.yomahub.liteflow.springboot.LiteflowMonitorProperty' of type [com.yomahub.liteflow.springboot.LiteflowMonitorProperty] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:08:30.426 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflowConfig' of type [com.yomahub.liteflow.property.LiteflowConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:08:30.429 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.yomahub.liteflow.spi.spring.SpringAware' of type [com.yomahub.liteflow.spi.spring.SpringAware] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:08:30.440 [main] INFO  c.yomahub.liteflow.util.LOGOPrinter - 
+================================================================================================
+		 _     ___ _____ _____      _____ _     _____        __
+		| |   |_ _|_   _| ____|    |  ___| |   / _ \ \      / /
+		| |    | |  | | |  _| _____| |_  | |  | | | \ \ /\ / / 
+		| |___ | |  | | | |__|_____|  _| | |__| |_| |\ V  V /  
+		|_____|___| |_| |_____|    |_|   |_____\___/  \_/\_/   
+
+		Version: 2.16.1.2
+		Make your code amazing.
+		website：https://liteflow.cc
+================================================================================================
+
+2026-09-16 21:08:30.628 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-09-16 21:08:30.706 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1756 ms
+2026-09-16 21:08:31.249 [main] INFO  m.review.spi.BizAuditHandlerRegistry - 通用审批中心已注册业务类型 5 个：[SUPPLIER, SUPPLIER_QUALIFICATION, PARAM_TEMPLATE, PART_INFO, PART_CATEGORY]
+2026-09-16 21:08:31.771 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2026-09-16 21:08:32.047 [main] INFO  c.b.m.e.s.MybatisPlusApplicationContextAware - Register ApplicationContext instances org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5669c5fb
+2026-09-16 21:08:32.173 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.storage.service.entity.PartAttachment".
+2026-09-16 21:08:32.173 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.storage.service.entity.PartAttachment ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 21:08:32.181 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.part.entity.PartInterface".
+2026-09-16 21:08:32.181 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.part.entity.PartInterface ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 21:08:32.197 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.system.entity.SysMenu".
+2026-09-16 21:08:32.197 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.system.entity.SysMenu ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 21:08:32.267 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-09-16 21:08:32.274 [main] INFO  o.e.s.SmartMatchSystemApplication - Started SmartMatchSystemApplication in 3.71 seconds (process running for 4.008)
+2026-09-16 21:08:34.938 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-09-16 21:08:34.939 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-09-16 21:22:32.001 [main] INFO  o.e.s.SmartMatchSystemApplication - Starting SmartMatchSystemApplication using Java 21.0.7 with PID 62372 (C:\Users\Lenovo\Desktop\UGVC-System\SmartMatchingSystem\target\classes started by Lenovo in C:\Users\Lenovo\Desktop\UGVC-System\SmartMatchingSystem)
+2026-09-16 21:22:32.002 [main] INFO  o.e.s.SmartMatchSystemApplication - The following 1 profile is active: "xutest"
+2026-09-16 21:22:32.781 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-09-16 21:22:32.784 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-09-16 21:22:32.814 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 11 ms. Found 0 Redis repository interfaces.
+2026-09-16 21:22:33.213 [main] WARN  o.s.c.a.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'com.yomahub.liteflow.springboot.config.LiteflowMainAutoConfiguration' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static' and/or marking the containing configuration class as 'proxyBeanMethods=false'.
+2026-09-16 21:22:33.557 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.yomahub.liteflow.springboot.config.LiteflowPropertyAutoConfiguration' of type [com.yomahub.liteflow.springboot.config.LiteflowPropertyAutoConfiguration$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:22:33.574 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflow-com.yomahub.liteflow.springboot.LiteflowProperty' of type [com.yomahub.liteflow.springboot.LiteflowProperty] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:22:33.579 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflow.monitor-com.yomahub.liteflow.springboot.LiteflowMonitorProperty' of type [com.yomahub.liteflow.springboot.LiteflowMonitorProperty] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:22:33.581 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflowConfig' of type [com.yomahub.liteflow.property.LiteflowConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:22:33.583 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.yomahub.liteflow.spi.spring.SpringAware' of type [com.yomahub.liteflow.spi.spring.SpringAware] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:22:33.595 [main] INFO  c.yomahub.liteflow.util.LOGOPrinter - 
+================================================================================================
+		 _     ___ _____ _____      _____ _     _____        __
+		| |   |_ _|_   _| ____|    |  ___| |   / _ \ \      / /
+		| |    | |  | | |  _| _____| |_  | |  | | | \ \ /\ / / 
+		| |___ | |  | | | |__|_____|  _| | |__| |_| |\ V  V /  
+		|_____|___| |_| |_____|    |_|   |_____\___/  \_/\_/   
+
+		Version: 2.16.1.2
+		Make your code amazing.
+		website：https://liteflow.cc
+================================================================================================
+
+2026-09-16 21:22:33.801 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-09-16 21:22:33.882 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1845 ms
+2026-09-16 21:22:34.465 [main] INFO  m.review.spi.BizAuditHandlerRegistry - 通用审批中心已注册业务类型 5 个：[SUPPLIER, SUPPLIER_QUALIFICATION, PARAM_TEMPLATE, PART_INFO, PART_CATEGORY]
+2026-09-16 21:22:35.055 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2026-09-16 21:22:35.355 [main] INFO  c.b.m.e.s.MybatisPlusApplicationContextAware - Register ApplicationContext instances org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5669c5fb
+2026-09-16 21:22:35.493 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.storage.service.entity.PartAttachment".
+2026-09-16 21:22:35.493 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.storage.service.entity.PartAttachment ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 21:22:35.500 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.part.entity.PartInterface".
+2026-09-16 21:22:35.501 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.part.entity.PartInterface ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 21:22:35.521 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.system.entity.SysMenu".
+2026-09-16 21:22:35.521 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.system.entity.SysMenu ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 21:22:35.597 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-09-16 21:22:35.602 [main] INFO  o.e.s.SmartMatchSystemApplication - Started SmartMatchSystemApplication in 4.01 seconds (process running for 4.367)
+2026-09-16 21:22:47.534 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-09-16 21:22:47.535 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2026-09-16 21:22:47.998 [http-nio-8080-exec-2] WARN  c.exception.GlobalExceptionHandler - 参数校验失败: remark: remark 不能为空
+2026-09-16 21:24:24.262 [main] INFO  o.e.s.SmartMatchSystemApplication - Starting SmartMatchSystemApplication using Java 21.0.7 with PID 59916 (C:\Users\Lenovo\Desktop\UGVC-System\SmartMatchingSystem\target\classes started by Lenovo in C:\Users\Lenovo\Desktop\UGVC-System\SmartMatchingSystem)
+2026-09-16 21:24:24.264 [main] INFO  o.e.s.SmartMatchSystemApplication - The following 1 profile is active: "xutest"
+2026-09-16 21:24:25.031 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-09-16 21:24:25.033 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-09-16 21:24:25.057 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+2026-09-16 21:24:25.450 [main] WARN  o.s.c.a.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'com.yomahub.liteflow.springboot.config.LiteflowMainAutoConfiguration' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static' and/or marking the containing configuration class as 'proxyBeanMethods=false'.
+2026-09-16 21:24:25.849 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.yomahub.liteflow.springboot.config.LiteflowPropertyAutoConfiguration' of type [com.yomahub.liteflow.springboot.config.LiteflowPropertyAutoConfiguration$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:24:25.868 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflow-com.yomahub.liteflow.springboot.LiteflowProperty' of type [com.yomahub.liteflow.springboot.LiteflowProperty] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:24:25.873 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflow.monitor-com.yomahub.liteflow.springboot.LiteflowMonitorProperty' of type [com.yomahub.liteflow.springboot.LiteflowMonitorProperty] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:24:25.874 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'liteflowConfig' of type [com.yomahub.liteflow.property.LiteflowConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:24:25.878 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'com.yomahub.liteflow.spi.spring.SpringAware' of type [com.yomahub.liteflow.spi.spring.SpringAware] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [componentScanner]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-09-16 21:24:25.885 [main] INFO  c.yomahub.liteflow.util.LOGOPrinter - 
+================================================================================================
+		 _     ___ _____ _____      _____ _     _____        __
+		| |   |_ _|_   _| ____|    |  ___| |   / _ \ \      / /
+		| |    | |  | | |  _| _____| |_  | |  | | | \ \ /\ / / 
+		| |___ | |  | | | |__|_____|  _| | |__| |_| |\ V  V /  
+		|_____|___| |_| |_____|    |_|   |_____\___/  \_/\_/   
+
+		Version: 2.16.1.2
+		Make your code amazing.
+		website：https://liteflow.cc
+================================================================================================
+
+2026-09-16 21:24:26.093 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-09-16 21:24:26.175 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1877 ms
+2026-09-16 21:24:26.751 [main] INFO  m.review.spi.BizAuditHandlerRegistry - 通用审批中心已注册业务类型 5 个：[SUPPLIER, SUPPLIER_QUALIFICATION, PARAM_TEMPLATE, PART_INFO, PART_CATEGORY]
+2026-09-16 21:24:27.325 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2026-09-16 21:24:27.590 [main] INFO  c.b.m.e.s.MybatisPlusApplicationContextAware - Register ApplicationContext instances org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5669c5fb
+2026-09-16 21:24:27.747 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.storage.service.entity.PartAttachment".
+2026-09-16 21:24:27.747 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.storage.service.entity.PartAttachment ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 21:24:27.759 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.part.entity.PartInterface".
+2026-09-16 21:24:27.760 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.part.entity.PartInterface ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 21:24:27.777 [main] WARN  c.b.m.core.metadata.TableInfoHelper - Can not find table primary key in Class: "module.system.entity.SysMenu".
+2026-09-16 21:24:27.777 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class module.system.entity.SysMenu ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-09-16 21:24:27.852 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-09-16 21:24:27.858 [main] INFO  o.e.s.SmartMatchSystemApplication - Started SmartMatchSystemApplication in 3.992 seconds (process running for 4.34)
+2026-09-16 21:24:30.980 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-09-16 21:24:30.981 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms

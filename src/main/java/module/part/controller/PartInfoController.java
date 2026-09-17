@@ -23,6 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 import module.part.dto.PartInfoSaveDTO;
 import module.part.dto.PartInfoUpdateDTO;
 import module.part.service.PartInfoService;
+import module.part.vo.PartInfoDetailVO;
 import module.part.vo.PartInfoListVO;
 import module.system.annotation.OperateLog;
 
@@ -53,6 +54,19 @@ public class PartInfoController {
             @NotNull(message = "pageNum不能为空") @RequestParam(defaultValue = "1") Integer pageNum,
             @NotNull(message = "pageSize不能为空") @RequestParam(defaultValue = "10") Integer pageSize) {
         return Result.success(partInfoService.queryPartInfoList(catId, pageNum, pageSize));
+    }
+
+    /**
+     * 查询配件档案详情
+     *
+     * @param partId 配件主键ID
+     * @return 配件详情
+     * @author 徐宝福
+     */
+    @GetMapping("/{partId}")
+    public Result<PartInfoDetailVO> queryPartInfoDetail(
+            @NotNull(message = "partId不能为空") @PathVariable("partId") Long partId) {
+        return Result.success(partInfoService.queryPartInfoDetail(partId));
     }
 
     /**
@@ -98,6 +112,51 @@ public class PartInfoController {
     public Result<?> deletePartInfo(
             @NotNull(message = "partId不能为空") @PathVariable("partId") Long partId) {
         partInfoService.deletePartInfo(partId);
+        return Result.success();
+    }
+
+    /**
+     * 提交审核：草稿 → 待审核
+     *
+     * @param partId 配件主键ID
+     * @return 提交结果
+     * @author 徐宝福
+     */
+    @OperateLog(operateDesc = "提交配件审核", operateType = OperateType.AUDIT, operateModule = OperateModule.AUDIT)
+    @PostMapping("/{partId}/submitAudit")
+    public Result<?> submitAudit(
+            @NotNull(message = "partId不能为空") @PathVariable("partId") Long partId) {
+        partInfoService.submitAudit(partId);
+        return Result.success();
+    }
+
+    /**
+     * 撤回：已发布 → 草稿
+     *
+     * @param partId 配件主键ID
+     * @return 撤回结果
+     * @author 徐宝福
+     */
+    @OperateLog(operateDesc = "撤回已发布的配件", operateType = OperateType.AUDIT, operateModule = OperateModule.AUDIT)
+    @PostMapping("/{partId}/revoke")
+    public Result<?> revoke(
+            @NotNull(message = "partId不能为空") @PathVariable("partId") Long partId) {
+        partInfoService.revoke(partId);
+        return Result.success();
+    }
+
+    /**
+     * 撤销申请：待审核 → 草稿
+     *
+     * @param partId 配件主键ID
+     * @return 撤销结果
+     * @author 徐宝福
+     */
+    @OperateLog(operateDesc = "撤销配件审核申请", operateType = OperateType.AUDIT, operateModule = OperateModule.AUDIT)
+    @PostMapping("/{partId}/cancelSubmit")
+    public Result<?> cancelSubmit(
+            @NotNull(message = "partId不能为空") @PathVariable("partId") Long partId) {
+        partInfoService.cancelSubmit(partId);
         return Result.success();
     }
 }

@@ -15,7 +15,15 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
+/**
+ * JWT 认证过滤器
+ * <p>
+ * 由 SecurityConfig 构造器注入并挂到过滤器链上，因此必须本身是一个 Bean；
+ * 此前缺少 @Component，SecurityConfig 未被加载时暴露不出来。
+ */
+@Component
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 

@@ -70,14 +70,20 @@ public class Result<T> {
 
     /**
      * 基于 BusinessException
+     * <p>
+     * 消息取异常自身的 message 而不是枚举的固定文案：
+     * BusinessException(ResultCode) 的构造器已把 message 设为枚举文案，
+     * 而 BusinessException(ResultCode, String) 带的是调用方写的具体原因
+     * （如「统一社会信用代码【xxx】已存在」）。若这里取枚举文案，后者会被静默丢弃。
      */
     public static <T> Result<T> error(BusinessException e) {
         ResultCode resultCode = e.getResultCode();
-        if (resultCode != null) {
-            return new Result<>(resultCode.getCode(), resultCode.getMessage(), null);
-        } else {
-            // 降级处理：使用异常自带消息
+        if (resultCode == null) {
             return new Result<>(500, e.getMessage(), null);
         }
+        String message = e.getMessage();
+        return new Result<>(resultCode.getCode(),
+                message == null || message.isEmpty() ? resultCode.getMessage() : message,
+                null);
     }
 }

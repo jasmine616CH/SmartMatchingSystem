@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="module.supplier.mapper.SupplierMapper">
+
+    <resultMap id="SupplierListMap" type="module.supplier.vo.SupplierListVO">
+        <result property="supplierId"     column="supplier_id"/>
+        <result property="supplierName"   column="supplier_name"/>
+        <result property="creditCode"     column="credit_code"/>
+        <result property="address"        column="address"/>
+        <result property="supplyScope"    column="supply_scope"/>
+        <result property="status"         column="status"/>
+        <result property="auditUserId"    column="audit_user_id"/>
+        <result property="auditUserName"  column="audit_user_name"/>
+        <result property="remark"         column="remark"/>
+        <result property="createTime"     column="create_time"/>
+        <result property="updateTime"     column="update_time"/>
+    </resultMap>
+
+    <!--
+        供应商列表。sys_user 的主键列是 user_id、姓名列是 real_name，
+        不是 id / user_name。
+    -->
+    <select id="selectSupplierPage" resultMap="SupplierListMap">
+        SELECT
+            s.supplier_id,
+            s.supplier_name,
+            s.credit_code,
+            s.address,
+            s.supply_scope,
+            s.status,
+            s.audit_user_id,
+            s.remark,
+            s.create_time,
+            s.update_time,
+            u.real_name AS audit_user_name
+        FROM supplier s
+            LEFT JOIN sys_user u ON u.user_id = s.audit_user_id
+        <where>
+            <if test="dto.supplierName != null and dto.supplierName != ''">
+                AND s.supplier_name LIKE CONCAT('%', #{dto.supplierName}, '%')
+            </if>
+            <if test="dto.creditCode != null and dto.creditCode != ''">
+                AND s.credit_code LIKE CONCAT('%', #{dto.creditCode}, '%')
+            </if>
+            <if test="dto.status != null">
+                AND s.status = #{dto.status}
+            </if>
+            <!-- 按联系人姓名筛选：用 EXISTS 而非 JOIN，避免多联系人时把主表行放大 -->
+            <if test="dto.contactName != null and dto.contactName != ''">
+                AND EXISTS (
+                    SELECT 1 FROM supplier_contact sc
+                    WHERE sc.supplier_id = s.supplier_id
+                        AND sc.name LIKE CONCAT('%', #{dto.contactName}, '%')
+                )
+            </if>
+        </where>
+        ORDER BY s.supplier_id DESC
+    </select>
+
+</mapper>

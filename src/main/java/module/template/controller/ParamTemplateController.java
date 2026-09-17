@@ -42,7 +42,7 @@ public class ParamTemplateController {
      * @return 参数模板列表
      * @author 徐宝福
      */
-    @GetMapping("/template/{catId}")
+    @GetMapping("/template/list/{catId}")
     public Result<ParamTemplateBriefVO> queryTemplateList(
             @NotNull(message = "catId 不能为空") @PathVariable Long catId) {
         return Result.success(paramTemplateService.queryTemplateList(catId));
@@ -143,6 +143,20 @@ public class ParamTemplateController {
     public Result<?> revoke(
         @NotNull(message = "templateId 不能为空") @PathVariable Long templateId) {
         paramTemplateService.revoke(templateId);
+        return Result.success();
+    }
+
+    /**
+     * 撤销申请：待审核 → 草稿
+     *
+     * @param templateId 参数模板ID
+     * @return 撤销结果
+     * @author 徐宝福
+     */
+    @PostMapping("/cancelSubmit/{templateId}") // 撤销申请：待审核→草稿
+    public Result<?> cancelSubmit(
+        @NotNull(message = "templateId 不能为空") @PathVariable Long templateId) {
+        paramTemplateService.cancelSubmit(templateId);
         return Result.success();
     }
 }

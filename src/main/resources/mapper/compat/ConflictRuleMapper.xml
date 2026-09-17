@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="module.compat.mapper.ConflictRuleMapper">
+
+    <!--
+        规则两侧都挂在 part_category 的二级子系统上，需要 join 同一张表两次
+        取两侧名称，故用两个不同别名 ca / cb。
+    -->
+    <sql id="ruleColumns">
+        SELECT
+            r.rule_id,
+            r.rule_name,
+            r.cat_a_id,
+            r.cat_b_id,
+            r.param_code_a,
+            r.param_code_b,
+            r.check_expr,
+            r.severity,
+            r.error_msg,
+            r.solve_suggest,
+            r.status,
+            r.sort,
+            r.create_time,
+            r.update_time,
+            ca.cat_name AS cat_a_name,
+            cb.cat_name AS cat_b_name
+        FROM conflict_rule r
+            LEFT JOIN part_category ca ON ca.cat_id = r.cat_a_id
+            LEFT JOIN part_category cb ON cb.cat_id = r.cat_b_id
+    </sql>
+
+    <resultMap id="ConflictRuleMap" type="module.compat.vo.ConflictRuleVO">
+        <result property="ruleId"       column="rule_id"/>
+        <result property="ruleName"     column="rule_name"/>
+        <result property="catAId"       column="cat_a_id"/>
+        <result property="catAName"     column="cat_a_name"/>
+        <result property="catBId"       column="cat_b_id"/>
+        <result property="catBName"     column="cat_b_name"/>
+        <result property="paramCodeA"   column="param_code_a"/>
+        <result property="paramCodeB"   column="param_code_b"/>
+        <result property="checkExpr"    column="check_expr"/>
+        <result property="severity"     column="severity"/>
+        <result property="errorMsg"     column="error_msg"/>
+        <result property="solveSuggest" column="solve_suggest"/>
+        <result property="status"       column="status"/>
+        <result property="sort"         column="sort"/>
+        <result property="createTime"   column="create_time"/>
+        <result property="updateTime"   column="update_time"/>
+    </resultMap>
+
+    <select id="selectRulePage" resultMap="ConflictRuleMap">
+        <include refid="ruleColumns"/>
+        <where>
+            <if test="dto.ruleName != null and dto.ruleName != ''">
+                AND r.rule_name LIKE CONCAT('%', #{dto.ruleName}, '%')
+            </if>
+            <if test="dto.catAId != null">
+                AND r.cat_a_id = #{dto.catAId}
+            </if>
+            <if test="dto.catBId != null">
+                AND r.cat_b_id = #{dto.catBId}
+            </if>
+            <if test="dto.status != null">
+                AND r.status = #{dto.status}
+            </if>
+        </where>
+        ORDER BY r.sort ASC, r.rule_id ASC
+    </select>
+
+    <select id="selectRuleById" resultMap="ConflictRuleMap">
+        <include refid="ruleColumns"/>
+        WHERE r.rule_id = #{ruleId}
+    </select>
+
+    <!--
+        检测用：按方案中实际出现的子系统组合捞出命中的启用规则。
+        两侧各自 IN，得到的是「候选规则集」；真正的配件配对在 service 里按有序对枚举，
+        因为这里只关心子系统是否出现在方案中。
+    -->
+    <select id="selectEnabledByCatPairs" resultMap="ConflictRuleMap">
+        <include refid="ruleColumns"/>
+        WHERE r.status = 1
+            AND r.cat_a_id IN
+            <foreach collection="catAIds" item="id" open="(" close=")" separator=",">
+                #{id}
+            </foreach>
+            AND r.cat_b_id IN
+            <foreach collection="catBIds" item="id" open="(" close=")" separator=",">
+                #{id}
+            </foreach>
+        ORDER BY r.sort ASC, r.rule_id ASC
+    </select>
+
+    <!-- 规则编辑器：二级子系统候选（规则只能挂 level=2） -->
+    <resultMap id="SubsystemMap" type="module.compat.vo.SubsystemVO">
+        <result property="catId"         column="cat_id"/>
+        <result property="catName"       column="cat_name"/>
+        <result property="catCode"       column="cat_code"/>
+        <result property="parentCatId"   column="parent_cat_id"/>
+        <result property="parentCatName" column="parent_cat_name"/>
+    </resultMap>
+
+    <select id="selectSubsystems" resultMap="SubsystemMap">
+        SELECT
+            sub.cat_id,
+            sub.cat_name,
+            sub.cat_code,
+            sub.parent_cat_id,
+            top.cat_name AS parent_cat_name
+        FROM part_category sub
+            LEFT JOIN part_category top ON top.cat_id = sub.parent_cat_id
+        WHERE sub.level = 2
+        ORDER BY top.sort, sub.sort, sub.cat_id
+    </select>
+
+    <!--
+        规则编辑器：某二级子系统下实际出现过的参数编码。
+        链路是 二级子系统 -> 其下三级类别 -> 已发布模板 -> 模板字段。
+        只取已发布模板（status=2）：未发布模板不会进入方案，其参数也不会被规则求值。
+    -->
+    <resultMap id="ParamCodeOptionMap" type="module.compat.vo.ParamCodeOptionVO">
+        <result property="paramCode"    column="param_code"/>
+        <result property="paramCn"      column="param_cn"/>
+        <result property="paramEn"      column="param_en"/>
+        <result property="unit"         column="unit"/>
+        <result property="dataType"     column="data_type"/>
+        <result property="templateName" column="template_name"/>
+        <result property="catName"      column="cat_name"/>
+    </resultMap>
+
+    <select id="selectParamCodesBySubsystem" resultMap="ParamCodeOptionMap">
+        SELECT DISTINCT
+            f.param_code,
+            f.param_cn,
+            f.param_en,
+            f.unit,
+            f.data_type,
+            t.template_name,
+            leaf.cat_name
+        FROM part_category sub
+            INNER JOIN part_category leaf ON leaf.parent_cat_id = sub.cat_id
+            INNER JOIN param_template t ON t.cat_id = leaf.cat_id
+                AND t.status = 2
+            INNER JOIN param_template_field f ON f.template_id = t.template_id
+        WHERE sub.cat_id = #{catId}
+            AND sub.level = 2
+        ORDER BY f.param_code
+    </select>
+
+</mapper>

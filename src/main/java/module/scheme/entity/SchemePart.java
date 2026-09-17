@@ -1,5 +1,8 @@
 package module.scheme.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,9 +16,11 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@TableName("scheme_part")
 public class SchemePart {
 
     /** 主键ID（雪花算法，业务生成） */
+    @TableId
     private Long schemePartId;
 
     /** 外键：selection_scheme.scheme_id 所属方案 */
@@ -23,6 +28,9 @@ public class SchemePart {
 
     /** 外键：part_info.part_id 选配配件 */
     private Long partId;
+
+    /** 选用数量 */
+    private Integer quantity;
 
     /** 配件匹配整车需求得分，方案A智能匹配生成 */
     private BigDecimal matchScore;

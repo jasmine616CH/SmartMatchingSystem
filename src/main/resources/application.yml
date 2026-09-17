@@ -10,5 +10,12 @@ spring:
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
+
+# JWT 配置：JwtTokenProvider 通过 @Value 读取下面两个值，
+# 缺失会导致占位符解析失败、应用无法启动。
+# secret 使用 HS256 签名，长度必须 >= 32 字节。
 jwt:
   issuer: "ug-vc"
+  secret: "ugvc-smart-matching-system-default-jwt-secret-key-2026"
+  # Access Token 有效期（毫秒），默认 30 分钟
+  access-token-ttl: 1800000

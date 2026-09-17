@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="module.review.mapper.AuditRecordMapper">
+
+    <!--
+        待办列表与审批历史共用同一段列定义，都要 LEFT JOIN sys_user 两次
+        （提交人 + 审批人）。注意 sys_user 的主键列是 user_id、姓名列是 real_name，
+        不是 id / user_name。
+    -->
+    <sql id="auditColumns">
+        SELECT
+            ar.audit_id,
+            ar.biz_type,
+            ar.biz_id,
+            ar.status,
+            ar.submit_user_id,
+            ar.audit_user_id,
+            ar.audit_time,
+            ar.reject_reason,
+            ar.create_time,
+            su.real_name AS submit_user_name,
+            au.real_name AS audit_user_name
+        FROM audit_record ar
+            LEFT JOIN sys_user su ON su.user_id = ar.submit_user_id
+            LEFT JOIN sys_user au ON au.user_id = ar.audit_user_id
+    </sql>
+
+    <resultMap id="AuditRecordMap" type="module.review.vo.AuditRecordVO">
+        <result property="auditId"         column="audit_id"/>
+        <result property="bizType"         column="biz_type"/>
+        <result property="bizId"           column="biz_id"/>
+        <result property="status"          column="status"/>
+        <result property="submitUserId"    column="submit_user_id"/>
+        <result property="submitUserName"  column="submit_user_name"/>
+        <result property="createTime"      column="create_time"/>
+        <result property="auditUserId"     column="audit_user_id"/>
+        <result property="auditUserName"   column="audit_user_name"/>
+        <result property="auditTime"       column="audit_time"/>
+        <result property="rejectReason"    column="reject_reason"/>
+    </resultMap>
+
+    <!-- 审批任务分页列表：bizName / bizStatus 等业务摘要由 Service 层用 Handler 回填 -->
+    <select id="selectAuditPage" resultMap="AuditRecordMap">
+        <include refid="auditColumns"/>
+        <where>
+            <if test="dto.bizType != null and dto.bizType != ''">
+                AND ar.biz_type = #{dto.bizType}
+            </if>
+            <if test="dto.status != null">
+                AND ar.status = #{dto.status}
+            </if>
+            <if test="dto.bizId != null">
+                AND ar.biz_id = #{dto.bizId}
+            </if>
+            <if test="dto.submitUserId != null">
+                AND ar.submit_user_id = #{dto.submitUserId}
+            </if>
+            <if test="dto.auditUserId != null">
+                AND ar.audit_user_id = #{dto.auditUserId}
+            </if>
+        </where>
+        ORDER BY ar.audit_id DESC
+    </select>
+
+    <!-- 某业务对象的完整审批历史（含已撤回、已驳回） -->
+    <select id="selectHistory" resultMap="AuditRecordMap">
+        <include refid="auditColumns"/>
+        WHERE ar.biz_type = #{bizType}
+            AND ar.biz_id = #{bizId}
+        ORDER BY ar.audit_id DESC
+    </select>
+
+</mapper>

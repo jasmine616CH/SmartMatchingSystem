@@ -21,4 +21,11 @@ public interface ParamTemplateService {
     void submitAudit(Long templateId);
 
     void revoke(Long templateId);
+
+    /**
+     * 撤销申请：待审核 → 草稿
+     *
+     * @param templateId 参数模板ID
+     */
+    void cancelSubmit(Long templateId);
 }

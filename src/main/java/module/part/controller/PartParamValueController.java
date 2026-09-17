@@ -43,11 +43,10 @@ public class PartParamValueController {
     // 获取配件参数信息详情
     @GetMapping("/{paramValId}")
     public Result<PartParamValueVO> queryPartInfoParamValueDetail(
-        @NotNull @PathVariable("paramValId") Long paramValId) {
+            @NotNull @PathVariable("paramValId") Long paramValId) {
         return Result.success();
     }
 
-    
     /**
      * 查询配件模板参数列表（动态）
      *
@@ -56,19 +55,15 @@ public class PartParamValueController {
      */
     @GetMapping("/{partId}/fields")
     public Result<List<PartParamFieldVO>> listFields(
-        @NotNull @PathVariable("partId") Long partId) {
+            @NotNull @PathVariable("partId") Long partId) {
         return Result.success(partParamValueService.listFieldVO(partId));
     }
 
     /**
      * 单条参数保存：有值即新增/覆盖，清空即删除，返回最新列表 + 被自动清除的脏数据
      */
-    @OperateLog (
-        operateDesc = "保存配件参数值",
-        operateType = OperateType.UPDATE,
-        operateModule = OperateModule.PART
-    )
-    
+    @OperateLog(operateDesc = "保存配件参数值", operateType = OperateType.UPDATE, operateModule = OperateModule.PART)
+
     @PostMapping("/{partId}/save")
     public Result<SaveParamResultVO> saveParamValue(
             @NotNull @PathVariable("partId") Long partId,
@@ -87,11 +82,7 @@ public class PartParamValueController {
     }
 
     // 新增配件参数信息
-    @OperateLog (
-        operateDesc = "新增配件参数信息",
-        operateType = OperateType.ADD,
-        operateModule = OperateModule.PART
-    )
+    @OperateLog(operateDesc = "新增配件参数信息", operateType = OperateType.ADD, operateModule = OperateModule.PART)
     @PostMapping("")
     public Result<?> addPartInfoParamValue(
             @Valid @RequestBody PartParamValueSaveDTO partParamValueSaveDTO) {
@@ -100,11 +91,7 @@ public class PartParamValueController {
     }
 
     // 修改配件参数信息
-    @OperateLog (
-        operateDesc = "修改配件参数信息",
-        operateType = OperateType.UPDATE,
-        operateModule = OperateModule.PART
-    )
+    @OperateLog(operateDesc = "修改配件参数信息", operateType = OperateType.UPDATE, operateModule = OperateModule.PART)
     @PutMapping("/{partId}")
     public Result<?> updatePartInfoParamValue(
             @Valid @RequestBody PartParamValueUpdateDTO partParamValueUpdateDTO) {
@@ -113,14 +100,10 @@ public class PartParamValueController {
     }
 
     // 删除配件参数信息
-    @OperateLog (
-        operateDesc = "删除配件参数信息",
-        operateType = OperateType.DELETE,
-        operateModule = OperateModule.PART
-    )
+    @OperateLog(operateDesc = "删除配件参数信息", operateType = OperateType.DELETE, operateModule = OperateModule.PART)
     @DeleteMapping("/{paramValId}")
     public Result<?> deletePartInfoParamValue(
-        @NotNull @PathVariable("paramValId") Long paramValId) {
+            @NotNull @PathVariable("paramValId") Long paramValId) {
         partParamValueService.deletePartParamValue(paramValId);
         return Result.success();
     }

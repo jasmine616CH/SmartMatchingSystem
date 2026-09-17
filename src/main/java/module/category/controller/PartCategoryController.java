@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import common.enums.OperateModule;
+import common.enums.OperateType;
 import common.result.Result;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -21,6 +23,7 @@ import module.category.dto.PartCategorySaveDTO;
 import module.category.service.PartCategoryService;
 import module.category.vo.PartCategoryDetailVO;
 import module.category.vo.PartCategoryTreeVO;
+import module.system.annotation.OperateLog;
 
 /**
  * 模板体系管理控制器
@@ -97,6 +100,48 @@ public class PartCategoryController {
     public Result<?> deleteCategory(
         @NotNull(message = "catId 不能为空") @PathVariable Long catId) {
         partCategoryService.deleteCategory(catId);
+        return Result.success();
+    }
+
+    /**
+     * 提交审核：草稿 → 待审核
+     *
+     * @param catId 分类主键ID
+     * @return 提交结果
+     */
+    @OperateLog(operateDesc = "提交配件分类审核", operateType = OperateType.AUDIT, operateModule = OperateModule.AUDIT)
+    @PostMapping("/{catId}/submitAudit")
+    public Result<?> submitAudit(
+            @NotNull(message = "catId不能为空") @PathVariable("catId") Long catId) {
+        partCategoryService.submitAudit(catId);
+        return Result.success();
+    }
+
+    /**
+     * 撤回：已发布 → 草稿
+     *
+     * @param catId 分类主键ID
+     * @return 撤回结果
+     */
+    @OperateLog(operateDesc = "撤回已发布的配件分类", operateType = OperateType.AUDIT, operateModule = OperateModule.AUDIT)
+    @PostMapping("/{catId}/revoke")
+    public Result<?> revoke(
+            @NotNull(message = "catId不能为空") @PathVariable("catId") Long catId) {
+        partCategoryService.revoke(catId);
+        return Result.success();
+    }
+
+    /**
+     * 撤销申请：待审核 → 草稿
+     *
+     * @param catId 分类主键ID
+     * @return 撤销结果
+     */
+    @OperateLog(operateDesc = "撤销配件分类审核申请", operateType = OperateType.AUDIT, operateModule = OperateModule.AUDIT)
+    @PostMapping("/{catId}/cancelSubmit")
+    public Result<?> cancelSubmit(
+            @NotNull(message = "catId不能为空") @PathVariable("catId") Long catId) {
+        partCategoryService.cancelSubmit(catId);
         return Result.success();
     }
 }

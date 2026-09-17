@@ -3,6 +3,9 @@ package module.part.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import lombok.Data;
+
+@Data
 public class PartInfoUpdateDTO {
 
     /** 主键ID（雪花算法，业务生成） */
@@ -29,13 +32,9 @@ public class PartInfoUpdateDTO {
     @NotBlank(message = "lifeStatus 不能为空")
     private String lifeStatus;
 
-    // // 适配无人车平台/车型 
-    // @NotBlank(message = "adaptPlatform 不能为空")
-    // private String adaptPlatform;
+    // 适配无人车平台/车型，多个用逗号分隔
+    private String adaptPlatform;
 
-    // 发布状态：0-草稿 1-正式发布，仅发布配件可参与选型
-    @NotNull(message = "publishingStatus 不能为空")
-    private Integer publishingStatus;
 
     // 配件备注说明
     @NotBlank(message = "remark 不能为空")

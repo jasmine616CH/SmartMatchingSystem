@@ -52,6 +52,11 @@ public class ParamFieldCheckRule {
     private Integer status;
 
     /**
+     * 约束强度：0-硬性约束（不满足即判为不满足） 1-偏好条件（不满足判为临界，参与匹配度计算）
+     */
+    private Integer severity;
+
+    /**
      * 创建时间
      */
     private LocalDateTime createTime;

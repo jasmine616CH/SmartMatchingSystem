@@ -4,11 +4,16 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import common.enums.UserType;
+import common.exception.BusinessException;
+import common.result.ResultCode;
+import lombok.RequiredArgsConstructor;
 import module.system.dto.AccountDTO;
 import module.system.dto.AddAccountDTO;
 import module.system.dto.QueryUserInformationDTO;
 import module.system.entity.SysUser;
 import module.system.mapper.SysUserMapper;
+import module.system.service.AccountService;
 import module.system.service.AdminService;
 import module.system.vo.QueryAccountVo;
 import org.springframework.beans.BeanUtils;
@@ -43,6 +48,9 @@ public class AdminServiceImpl implements AdminService {
 
     @Autowired
     private SysUserMapper sysUserMapper;
+
+    @Autowired
+    private AccountService accountService;
 
     /**
      * 获取用户列表
@@ -181,11 +189,44 @@ public class AdminServiceImpl implements AdminService {
     }
 
     /**
-     * 新增账号
+     * 新增账号（仅超级管理员可调用，权限由 AdminController 上的 @PreAuthorize 保证）
+     * <p>
+     * 只允许分配「数据管理员 / 供应商管理员 / 审批人 / 采购人」四种角色。
+     * 不允许创建超管（避免超管数量失控）、方案工程师（由自助注册产生）、
+     * 设计工程师（当前不启用）。
+     *
      * @param dto 账号信息
      */
     @Override
     public void addNewAccount(AddAccountDTO dto) {
-        sysUserMapper.addAccount(dto);
+        if (dto == null) {
+            throw new BusinessException(ResultCode.PARAM_IS_NULL, "数据为空");
+        }
+        UserType type = UserType.fromInput(dto.getUserType());
+        if (type == null) {
+            throw new BusinessException(ResultCode.PARAM_VALUE_INVALID,
+                    "账号角色不合法，可选值：" + assignableNames());
+        }
+        if (!type.isSuperAdminAssignable()) {
+            throw new BusinessException(ResultCode.PARAM_VALUE_INVALID,
+                    "不允许分配【" + type.getDesc() + "】角色，可选值：" + assignableNames());
+        }
+
+        accountService.createAccount(
+                dto.getUsername(),
+                dto.getRealName(),
+                dto.getPhone(),
+                null,       // AddAccountDTO 不收邮箱，与原 addAccount 的行为保持一致
+                dto.getPassword(),
+                type);
+    }
+
+    /**
+     * 超管可分配的角色名（用于报错提示）
+     */
+    private String assignableNames() {
+        return UserType.getSuperAdminAssignable().stream()
+                .map(t -> t.getDbValue() + "(" + t.getDesc() + ")")
+                .collect(Collectors.joining("、"));
     }
 }

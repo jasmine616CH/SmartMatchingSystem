@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -39,6 +38,10 @@ public class SecurityConfig {
                         .requestMatchers("/actuator/**").permitAll()
                         // 放行登录注册
                         .requestMatchers("/api/user/**").permitAll()
+                        // 认证接口必须匿名可达：否则「登录需要先登录」形成死锁，
+                        // 任何人都拿不到 token。这里只放行这三个，logout 仍需携带 token。
+                        .requestMatchers("/api/auth/login", "/api/auth/register",
+                                "/api/auth/refresh-token").permitAll()
                         // 放行WebSocket
                         .requestMatchers("/ws/**").permitAll()
                         // 放行文档
