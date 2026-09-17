@@ -34,9 +34,9 @@ public class PartAttachmentController {
      * 
      */
     @PostMapping("/upload")
-    public Result<?> uploadAttachment(MultipartFile file, PartAttachmentDTO dto) {
+    public Result<?> uploadAttachment(MultipartFile file, PartAttachmentDTO dto, String objectName) {
         try {
-            storageService.uploadFile(file, dto);
+            storageService.uploadFile(file, dto, objectName);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

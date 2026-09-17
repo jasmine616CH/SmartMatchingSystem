@@ -12,7 +12,7 @@ public interface StorageService {
      * @param file 上传文件
      * @param dto 上传文件参数
      */
-    void uploadFile(MultipartFile file, PartAttachmentDTO dto) throws Exception;
+    void uploadFile(MultipartFile file, PartAttachmentDTO dto, String objectName) throws Exception;
 
     /**
      * 删除文件

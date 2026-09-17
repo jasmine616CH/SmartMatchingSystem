@@ -33,7 +33,7 @@ public class StorageServiceImpl implements StorageService {
      * @param dto 上传文件参数
      */
     @Override
-    public void uploadFile(MultipartFile file, PartAttachmentDTO dto) throws Exception{
+    public void uploadFile(MultipartFile file, PartAttachmentDTO dto,String objectName) throws Exception{
 
         //1.参数校验
         if (file == null || file.isEmpty()) {
@@ -57,7 +57,7 @@ public class StorageServiceImpl implements StorageService {
         minioClient.putObject(
             PutObjectArgs.builder()
                     .bucket("ug-vc")
-                    .object("part/"+ dto.getUserId()+ "/"+ originalFilename)
+                    .object(objectName+ "/"+ dto.getUserId()+ "/"+ originalFilename)
                     .stream(file.getInputStream(), file.getSize(), -1)
                     .contentType(file.getContentType())
                     .build()
@@ -70,7 +70,7 @@ public class StorageServiceImpl implements StorageService {
         entity.setFileName(originalFilename);
         entity.setFileType(file.getContentType());
         entity.setFileSize(file.getSize());
-        entity.setObjectName("part/"+ dto.getUserId()+ "/"+ originalFilename);
+        entity.setObjectName(objectName+ "/"+ dto.getUserId()+ "/"+ originalFilename);
 
         partAttachmentMapper.insertByFileName(entity);
     }
