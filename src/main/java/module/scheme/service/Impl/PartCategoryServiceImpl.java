@@ -172,4 +172,12 @@ public class PartCategoryServiceImpl implements PartCategoryService {
 
         return voList;
     }
+
+    /**
+     *
+     */
+    @Override
+    public void storagePartBOM() {
+
+    }
 }

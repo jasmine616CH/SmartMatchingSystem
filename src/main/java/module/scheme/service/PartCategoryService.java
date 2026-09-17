@@ -20,5 +20,8 @@ public interface PartCategoryService {
      */
     List<List<PartParameterValueVO>> getPartParameterValue(Long catId);
 
+    /**
+     *
+     */
     void storagePartBOM();
 }

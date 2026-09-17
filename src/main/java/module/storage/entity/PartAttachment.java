@@ -1,9 +1,10 @@
-package module.storage.service.entity;
+package module.storage.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.security.PrivilegedAction;
 import java.time.LocalDateTime;
 
 /**
@@ -20,19 +21,20 @@ public class PartAttachment {
     /** 外键：part_info.part_id 所属配件 */
     private Long partId;
 
+    /** 关联外键：user.user_id 用户id */
     private Long userId;
 
     /** 文件原始名称 */
     private String fileName;
+
+    /** 文件后缀类型 pdf/dwg/stp等 */
+    private String fileType;
 
     /** 文件大小（字节） */
     private Long fileSize;
 
     /** 存储路径 */
     private String objectName;
-
-    /** 桶名称 */
-    private String bucketName;
 
     /** 文件上传时间 */
     private LocalDateTime uploadTime;

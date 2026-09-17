@@ -50,3 +50,8 @@ logging:
     rollingpolicy:
       max-file-size: 10MB                     # 单个日志文件最大大小
       max-history: 30                         # 最多保留 30 天日志
+# application.yml
+minio:
+  endpoint: http://127.0.0.1:9000
+  access-key: admin
+  secret-key: admin1234

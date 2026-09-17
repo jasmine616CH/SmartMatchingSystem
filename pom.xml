@@ -182,10 +182,16 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- 21. springaop -->
+        <!-- 21. spring aop -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <!-- 22. minio-->
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+            <version>8.6.0</version>
         </dependency>
     </dependencies>
 
